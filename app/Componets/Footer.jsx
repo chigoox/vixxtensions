@@ -48,8 +48,7 @@ function Footer() {
                 <div className='p-2 h-fit center flex-col'>
                     <h1 className='m-1 font-bold text-2xl'>Newsletter</h1>
                     <h1 className='m-1 '>Be the first to hear
-                        the latest news from Void
-                        Apps, and much more!
+                        the latest news from {siteName}, and much more!
                     </h1>
                     <input className='w-[90%] m-auto text-black h-8 trans p-2 focus:scale-110 hover:scale-105' type="text" placeholder='Email' />
                     <h1>By subscribing you agree to our privacy policy</h1>
