@@ -3,7 +3,7 @@ import NavBar from './Componets/Header/NavBar'
 import { siteName } from './META'
 import './globals.css'
 import { Inter } from 'next/font/google'
-
+import {useScrollPosition} from 'next'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
