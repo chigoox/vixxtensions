@@ -4,6 +4,7 @@ import { siteName } from '../META'
 import Link from 'next/link'
 
 function Footer() {
+    const date = new Date()
     return (
         <div className=' w-full bg-slate-100'>
             <div className='flex flex-wrap  justify-between'>
@@ -56,6 +57,20 @@ function Footer() {
                 </div>
 
             </div>
+            <div className='bg-slate-400 h-16 between'>
+                <div>
+                    © {date.getFullYear()} {siteName}, Inc.
+                    Terms
+                    Privacy
+                </div>
+                <div className="center gap-4   w-fit">
+                    <button className="trans hover:scale-105 center"><AiFillTwitterSquare size={32} /></button>
+                    <button className="trans hover:scale-105 center"><AiFillFacebook size={32} /></button>
+                    <button className="trans hover:scale-105 center"><AiFillInstagram size={32} /></button>
+                    <button className="trans hover:scale-105 center"><AiFillYoutube size={32} /></button>
+                </div>
+
+            </div>
         </div>
     )
 }
@@ -69,10 +84,5 @@ export default Footer
 <h1 className='my-1 '>Need to reach me?</h1>
                     <h1 className='my-1 '>+555-555-5555</h1>
                     <h1 className='my-1 '>void.void@gmail.com</h1>
-                    <div className="my-1  flex gap-4  items-center">
-                        <button className="h-4 w-4 trans hover:scale-105 center"><AiFillTwitterSquare size={32} /></button>
-                        <button className="h-4 w-4 trans hover:scale-105 center"><AiFillFacebook size={32} /></button>
-                        <button className="h-4 w-4 trans hover:scale-105 center"><AiFillInstagram size={32} /></button>
-                        <button className="h-4 w-4 trans hover:scale-105 center"><AiFillYoutube size={32} /></button>
-                    </div>
+                    
 */
