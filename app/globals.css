@@ -8,11 +8,9 @@
 }
 
 .bg-black-900 {
-
+   
   background-color: #070707;
 }
-
-
 
 .bg-black-800 {
 
@@ -62,6 +60,12 @@ body {
 .around {
   display: flex;
   justify-content: space-around;
+  align-items: center;
+}
+
+.evenly {
+  display: flex;
+  justify-content: space-evenly;
   align-items: center;
 }
 

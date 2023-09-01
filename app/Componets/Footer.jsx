@@ -2,14 +2,19 @@ import React from 'react'
 import { AiFillFacebook, AiFillInstagram, AiFillTwitterSquare, AiFillYoutube } from 'react-icons/ai'
 import { siteName } from '../META'
 import Link from 'next/link'
+import { Jost } from 'next/font/google'
 
+const jost = Jost({
+    weight: '400',
+    subsets: ['latin'],
+})
 function Footer() {
     const date = new Date()
     return (
         <div className=' w-full bg-slate-100'>
             <div className='flex flex-wrap  justify-between'>
-                <div className='p-2 fadeInRight    md:w-full lg:w-fit  '>
-                    <Link href={"/"} className='my-1 font-bold text-2xl'>{siteName}</Link>
+                <div className='p-2 fadeInRight  md:w-full lg:w-fit  '>
+                    <Link href={"/"} className='my-1 font-bold text-2xl'><h1 className={jost.className}>{siteName}</h1></Link>
 
                 </div>
                 <div className='fadeInBottom  text-xs gap-y-5 gap-x-10  h-fit text-black  p-2 flex flex-wrap items-start'>
@@ -45,7 +50,7 @@ function Footer() {
 
             </div>
 
-            <div className='m-auto  fadeInRight overflow-hidden w-fit'>
+            <div className='m-auto mt-10 fadeInRight overflow-hidden w-fit'>
                 <div className='p-2 h-fit center flex-col'>
                     <h1 className='m-1 font-bold text-2xl'>Newsletter</h1>
                     <h1 className='m-1 '>Be the first to hear
