@@ -12,9 +12,9 @@ const jost = Jost({
 function NavBar() {
 
     return (
-        <div className='h-22 bg-black w-full '>
+        <div className='h-22 bg-black w-full  overflow-hidden'>
             <div className=' mt-8 relative h-8'>
-                <div className='w-full h-8 center ' >
+                <div className=' h-8 center ' >
                     <Banner message={'New sale'} linkColor={'red'} link={'/'} linkMessage={'show Now'} />
                 </div>
                 <div className='w-[25%] absolute right-0  h-8'>
@@ -22,19 +22,20 @@ function NavBar() {
                 </div>
 
             </div>
-            <div className='between bg-white px-[15%] py-2'>
+            <div className='between  bg-white  p-2'>
 
-                <div className='relative center bg-slate-200 text-gray-500 p-1'>
+                <div className='relative center scale-[.60] md:scale-100 bg-slate-200 text-gray-500 p-1'>
                     <div className=''><AiOutlineSearch size={24} /></div>
-                    <input placeholder='Search' className='p-2 h-7 w-52 focus:outline-none  bg-slate-200' type="text" /></div>
+                    <input placeholder='Search' className='p-2 h-7 w-32  md:w-52 focus:outline-none  bg-slate-200' type="text" />
+                </div>
                 <div className={jost.className}>
-                    <h1 className={`text-center font-bold text-3xl `}>ViXxtensions</h1>
+                    <h1 className={`text-center  font-bold text-3xl `}>ViXxtensions</h1>
                     <h1 className='text-center text-xs'>Luxury Raw Hair</h1>
                 </div>
-                <h1 className='h-7'>1-800-5istheGOAT</h1>
+                <h1 className='h-7 md:relative absolute md:scale-1 scale-0 text-sm md:text-xs'>1-800-5istheGOAT</h1>
             </div>
-            <nav className='fixed top-0 w-full evenly  bg-white  h-8'>
-                <Link href={'/'}>Home</Link>
+            <nav className='fixed trans top-0 w-full evenly  bg-white group scale-y-0 md:scale-[1]  h-8'>
+                <Link className='' href={'/'}>Home</Link>
                 <Link href={'/Shop/HotTools'}>Shop</Link>
                 <Link href={'/Book'}>Book</Link>
 
