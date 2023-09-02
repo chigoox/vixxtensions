@@ -133,6 +133,21 @@ body {
   }
 }
 
+@keyframes zoom {
+  from {
+    scale: 115%;
+  }
+
+  to {
+    bottom: 100%;
+  }
+}
+
+.zoom {
+  position: relative;
+  animation: zoom 2s ease-in-out;
+}
+
 .fadeIn {
 
   animation: fadeIn 2s ease-in-out;
@@ -156,4 +171,22 @@ body {
 .fadeInUp {
   position: relative;
   animation: fadeInUp 2s ease-in-out;
+}
+
+
+/* 
+
+used for Carouse
+*/
+.embla {
+  overflow: hidden;
+}
+
+.embla__container {
+  display: flex;
+}
+
+.embla__slide {
+  flex: 0 0 100%;
+  min-width: 0;
 }
