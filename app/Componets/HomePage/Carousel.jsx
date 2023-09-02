@@ -3,6 +3,7 @@ import React, { useCallback } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 import { AiFillBackward, AiFillStepBackward, AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
+import Image from 'next/image'
 
 export const EmblaCarousel = ({ img1, img2, img3 }) => {
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()])
@@ -17,14 +18,14 @@ export const EmblaCarousel = ({ img1, img2, img3 }) => {
 
     return (
         <div className="embla relative">
-            <div className="embla__viewport from-slate-400 to-slate-500 bg-gradient-to-br h-[334.89px] overflow-hidden" ref={emblaRef}>
-                <div className="embla__container zoom">
+            <div className="embla__viewport from-slate-400 to-slate-500 bg-gradient-to-br h-[14rem] md:[20rem] lg:h-[40rem] overflow-hidden" ref={emblaRef}>
+                <div className="embla__container h-full w-full  gap-4">
                     {img1 &&
-                        <div className="embla__slide"> <img className='object-cover' src={img1} alt="" /></div>}
+                        <div className="embla__slide"> <img className='object-cover zoom w-full h-full' src={img1} alt="" /></div>}
                     {img2 &&
-                        <div className="embla__slide"><img className='object-cover' src={img2} alt="" /></div>}
+                        <div className="embla__slide"><img className='object-cover zoom w-full h-full' src={img2} alt="" /></div>}
                     {img3 &&
-                        <div className="embla__slide"><img className='object-cover' src={img3} alt="" /></div>}
+                        <div className="embla__slide"><img className='object-cover zoom w-full h-full' src={img3} alt="" /></div>}
                 </div>
             </div>
             <div className='absolute top-[70%] between gap-4 p-4 w-full'>

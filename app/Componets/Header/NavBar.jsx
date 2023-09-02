@@ -32,7 +32,7 @@ function NavBar() {
                     <h1 className={`text-center  font-bold text-3xl `}>ViXxtensions</h1>
                     <h1 className='text-center text-xs'>Luxury Raw Hair</h1>
                 </div>
-                <h1 className='h-7 md:relative absolute md:scale-1 scale-0 text-sm md:text-xs'>1-800-5istheGOAT</h1>
+                <h1 className='h-0 md:relative absolute top-0 w-0 md:w-fit md:h-7 text-sm md:text-xs text-gray-500 overflow-hidden'>1-800-5istheGOAT</h1>
             </div>
             <nav className='fixed trans top-0 w-full evenly  bg-white group scale-y-0 md:scale-[1]  h-8'>
                 <Link className='' href={'/'}>Home</Link>

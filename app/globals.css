@@ -144,7 +144,6 @@ body {
 }
 
 .zoom {
-  position: relative;
   animation: zoom 2s ease-in-out;
 }
 
