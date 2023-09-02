@@ -5,7 +5,7 @@ import Autoplay from 'embla-carousel-autoplay'
 import { AiFillBackward, AiFillStepBackward, AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
 import Image from 'next/image'
 
-export const EmblaCarousel = ({ img1, img2, img3 }) => {
+export const EmblaCarousel = ({ img1, img2, img3, img4 }) => {
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()])
 
     const scrollPrev = useCallback(() => {
@@ -26,6 +26,8 @@ export const EmblaCarousel = ({ img1, img2, img3 }) => {
                         <div className="embla__slide"><img className='object-cover zoom w-full h-full' src={img2} alt="" /></div>}
                     {img3 &&
                         <div className="embla__slide"><img className='object-cover zoom w-full h-full' src={img3} alt="" /></div>}
+                    {img4 &&
+                        <div className="embla__slide"><img className='object-cover zoom w-full h-full' src={img4} alt="" /></div>}
                 </div>
             </div>
             <div className='absolute top-[70%] between gap-4 p-4 w-full'>
