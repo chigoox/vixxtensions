@@ -30,7 +30,7 @@ export const EmblaCarousel = ({ img1, img2, img3, img4, square }) => {
                         <div className="embla__slide"><img className='object-cover zoom w-full h-full' src={img4} alt="" /></div>}
                 </div>
             </div>
-            <div className='absolute top-[70%] between gap-4 p-4 w-full'>
+            <div className='absolute z-[99999] top-[50%] between gap-4 p-4 w-full'>
                 <button className="embla__prev hover:scale-110 trans scale-100 rounded-full border border-dotted bg-white bg-opacity-50" onClick={scrollPrev}>
                     <AiOutlineArrowLeft size={32} color='white' />
                 </button>

@@ -17,7 +17,7 @@ export const EmblaCarousel2 = ({ img1, img2, img3, img4, square }) => {
     }, [embla2Api])
 
     return (
-        <div className="embla2 z-0">
+        <div className="embla2 relative z-0">
             <div className="embla2__viewport  h-[14rem] md:[20rem] lg:h-[40rem]" ref={embla2Ref}>
                 <div className="embla2__container h-full w-full  ">
                     {img1 &&
@@ -30,7 +30,7 @@ export const EmblaCarousel2 = ({ img1, img2, img3, img4, square }) => {
                         <div className="embla2__slide center"><img className='embla2__slide__img' src={img4} alt="" /></div>}
                 </div>
             </div>
-            <div className='absolute top-[70%] between gap-4 p-4 w-full'>
+            <div className='absolute top-[20%] between gap-4 z-[99] p-4 w-full'>
                 <button className="embla2__prev hover:scale-110 trans scale-100 rounded-full border border-dotted bg-white bg-opacity-50" onClick={scrollPrev}>
                     <AiOutlineArrowLeft size={32} color='white' />
                 </button>
