@@ -1,4 +1,5 @@
 import EmblaCarousel from "./Componets/HomePage/Carousel";
+import { EmblaCarousel2 } from "./Componets/HomePage/Carousel copy";
 
 
 export default function Home() {
@@ -11,6 +12,16 @@ export default function Home() {
         img3={'https://static.wixstatic.com/media/53a3ab_3b3d05b47884499cb57590fcf11aa824~mv2.jpg/v1/fill/w_1462,h_971,al_t,q_85,enc_auto/53a3ab_3b3d05b47884499cb57590fcf11aa824~mv2.jpg'}
         img4={'https://hairinbeauty.com/cdn/shop/files/lunbo04_c77caeff-ce7f-443b-b137-b31baae25c52.jpg?v=1692687737&width=2400'}
       />
+
+<h1 className="text-center font-thin text-5xl my-12">Shop The Look</h1>
+      <EmblaCarousel2 
+        img1={'http://yummyextensions.com/cdn/shop/files/IMG_1445.jpg?v=1687996125'}
+        img2={'http://yummyextensions.com/cdn/shop/files/YUMMY_EXTENSIONS_LOOSE_CURL_SHOP_THE_LOOK.jpg?v=1687658312'} 
+        img3={'http://yummyextensions.com/cdn/shop/files/IMG_1439.jpg?v=1687995106'}
+        img4={'http://yummyextensions.com/cdn/shop/files/IMG_1456.jpg?v=1687994832'}
+      />
+
+
       
     </main>
   )
