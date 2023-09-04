@@ -12,5 +12,6 @@ function Banner({ message, link, linkMessage, linkColor }) {
         </div>
     )
 }
+//
 
 export default Banner
