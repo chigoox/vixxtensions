@@ -14,6 +14,7 @@ export default function Home() {
       />
 
 <h1 className="text-center font-thin text-5xl my-12">Shop The Look</h1>
+
       <EmblaCarousel2 
         img1={'http://yummyextensions.com/cdn/shop/files/IMG_1445.jpg?v=1687996125'}
         img2={'http://yummyextensions.com/cdn/shop/files/YUMMY_EXTENSIONS_LOOSE_CURL_SHOP_THE_LOOK.jpg?v=1687658312'} 
