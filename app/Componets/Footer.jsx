@@ -11,7 +11,7 @@ const jost = Jost({
 function Footer() {
     const date = new Date()
     return (
-        <div className=' w-full bg-slate-100'>
+        <div className=' w-full bg-pink-50'>
             <div className='flex flex-wrap  justify-between'>
                 <div className='p-2 fadeInRight  md:w-full lg:w-fit  '>
                     <Link href={"/"} className='my-1 font-bold text-2xl'><h1 className={jost.className}>{siteName}</h1></Link>
@@ -58,11 +58,11 @@ function Footer() {
                     </h1>
                     <input className='w-[90%] m-auto text-black h-8 trans p-2 focus:scale-110 hover:scale-105' type="text" placeholder='Email' />
                     <h1>By subscribing you agree to our privacy policy</h1>
-                    <button className='h-12 w-32 p-2 bg-gray-700 trans-slow hover:bg-black hover:scale-110 my-8'>Subscribe</button>
+                    <button className='h-12 w-32 p-2 bg-black text-white trans-slow hover:bg-black hover:scale-110 my-8'>Subscribe</button>
                 </div>
 
             </div>
-            <div className='bg-slate-400 h-16 between'>
+            <div className='bg-black text-white   h-12 between'>
                 <div>
                     © {date.getFullYear()} {siteName}, Inc.
                     Terms

@@ -4,6 +4,8 @@ import { siteName } from './META'
 import './globals.css'
 import { Inter } from 'next/font/google'
 import {useScrollPosition} from 'next'
+import Script from 'next/script'
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -16,6 +18,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <link rel='icon' href='public/Images/371104266_1371705300076286_136258277339424492_n.jpeg' />
+        
       </head>
 
       <body className={inter.className}>
