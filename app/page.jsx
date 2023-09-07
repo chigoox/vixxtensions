@@ -42,7 +42,7 @@ export default function Home() {
         <h1 className="my-2 text-2xl text-center">SHOP BY CATEGORY</h1>
         <div className="flex flex-wrap  m-auto h-80 relative">
           {category.map(category => (
-            <div className=" w-[50%] lg:w-[25%] lg:h-full  h-[50%]">
+            <div className=" w-[50%] lg:w-[25%] lg:h-full  h-[50%] relative">
               <img className='h-full w-full  object-cover'
                 src={category == 'Luxury Wigs' ? 'http://yummyextensions.com/cdn/shop/files/EmilynnRoseSaweetie4990.jpg?v=1614733372)' :
                   category == 'Luxury Lace' ? 'http://yummyextensions.com/cdn/shop/products/raw-cambodian-natural-wave-yummy-extensions-2_copy_300x300.jpg?v=1568791827' :
@@ -50,8 +50,8 @@ export default function Home() {
                       category == 'Hot Tools' ? 'https://images.unsplash.com/photo-1522336284037-91f7da073525?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3269&q=80' :
                         ''
                 } alt="" />
-              <div className="absolute bottom-12 center w-32 opacity-75 bg-black">
-                <h1 className="text-white text-center">{category}</h1>
+              <div className="absolute bottom-12 m-auto center w-full">
+                <h1 className="text-white text-center  w-32  opacity-75 bg-black">{category}</h1>
               </div>
             </div>
           ))}
