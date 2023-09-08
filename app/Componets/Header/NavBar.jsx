@@ -34,7 +34,7 @@ function NavBar() {
                 </div>
                 <h1 className='h-0 md:relative absolute top-0 w-0 md:w-fit md:h-7 text-sm md:text-xs text-gray-500 overflow-hidden'>1-800-5istheGOAT</h1>
             </div>
-            <nav className='fixed trans top-0 w-full evenly  bg-white group scale-y-0 md:scale-[1]  h-8 z-[99999]'>
+            <nav className='fixed trans top-0 w-full evenly  bg-white group scale-y-0 md:scale-[1]  h-8'>
                 <Link className='' href={'/'}>Home</Link>
                 <Link href={'/Shop/HotTools'}>Shop</Link>
                 <Link href={'/Book'}>Book</Link>
