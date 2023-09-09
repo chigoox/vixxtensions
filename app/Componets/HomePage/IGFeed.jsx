@@ -3,7 +3,7 @@ import IGPost from './IGPost';
 export const revalidate = 300
 async function getData() {
     try {
-        const res = await fetch('https://feeds.behold.so/a8MIJ35pXYq2syUql3wg')
+        const res = await fetch('https://feeds.behold.so/vOsDvHVWwnD25oSzFvCQ')
         // The return value is *not* serialized
         // You can return Date, Map, Set, etc.
 
