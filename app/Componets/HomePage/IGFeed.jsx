@@ -2,7 +2,9 @@ import React from 'react'
 import IGPost from './IGPost';
 
 async function getData() {
-    const res = await fetch('https://feeds.behold.so/a8MIJ35pXYq2syUql3wg')
+    const res = await fetch('https://feeds.behold.so/a8MIJ35pXYq2syUql3wg', {
+        next: { revalidate: 10 }
+    })
     // The return value is *not* serialized
     // You can return Date, Map, Set, etc.
 
