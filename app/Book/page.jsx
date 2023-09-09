@@ -8,7 +8,8 @@ import AvailableHours from "./Componets/AvailableHours"
 import TimesBar from './Componets/TimesBar'
 import { AiFillBackward, AiOutlineArrowDown, AiOutlineArrowLeft, AiOutlineArrowUp } from 'react-icons/ai'
 import { addToDatabase, fetchDocument } from '../../app/myCodes/Database'
-import { checkColor, monthColor, weekDayColor, weekendColor } from "./Componets/Meta";
+import { checkColor, monthColor, weekDayColor, weekendColor } from "./Meta";
+import BookingOptions from "./Componets/BookingOptions";
 
 let colStartClasses = [
     "",
@@ -142,7 +143,7 @@ function Booking({ myPackage }) {
     }
     return (
         <div className=' bg-white  m-auto w-full text-black h-full hidescroll overflow-scroll'>
-
+            <BookingOptions />
 
 
             {

@@ -1,8 +1,10 @@
+'use client'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import Banner from './Componets/Banner'
 import { Jost } from 'next/font/google'
 import { AiOutlineSearch } from 'react-icons/ai'
+import MenuButton from '../General/MobileMenuButton'
 
 const jost = Jost({
     weight: '400',
@@ -10,6 +12,11 @@ const jost = Jost({
 })
 
 function NavBar() {
+    const [showMobileMenu, setShowMobileMenu] = useState(false)
+    const toggleMobileMenu = () => {
+        setShowMobileMenu(!showMobileMenu)
+        return (!showMobileMenu)
+    }
 
     return (
         <div className='h-22 bg-black w-full  overflow-hidden'>
@@ -34,7 +41,10 @@ function NavBar() {
                 </div>
                 <h1 className='h-0 md:relative absolute top-0 w-0 md:w-fit md:h-7 text-sm md:text-xs text-gray-500 overflow-hidden'>1-800-5istheGOAT</h1>
             </div>
-            <nav className='fixed trans top-0 w-full evenly  bg-white group scale-y-0 md:scale-[1]  h-8 z-[99999]'>
+            <nav className={`fixed  trans md:top-0 -bottom-2 items-center md:justify-evenly justify-center w-full flex md:flex-row  gap-4 md:gap-0 ${showMobileMenu ? 'h-16 scale-100' : 'h-0 p-0'} rounded-t-2xl md:rounded-none bg-black-900 text-white md:text-black md:bg-white group   md:h-8 z-[99999]`}>
+                <button onClick={toggleMobileMenu} className={`absolute -top-12 bg-black rounded-full h-12 w-12 center p-2`}>
+                    <MenuButton menuOpen={showMobileMenu} />
+                </button>
                 <Link className='' href={'/'}>Home</Link>
                 <Link href={'/Shop/HotTools'}>Shop</Link>
                 <Link href={'/Book'}>Book</Link>
