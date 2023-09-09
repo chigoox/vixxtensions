@@ -5,7 +5,7 @@ import IGPost from './IGPost';
 
 async function IGFeed() {
 
-    const response = await fetch('https://feeds.behold.so/a8MIJ35pXYq2syUql3wg');
+    const response = await fetch('https://feeds.behold.so/a8MIJ35pXYq2syUql3wg', { next: { revalidate: 10000 } });
     const jsonFeed = await response.json();
     const feedMap = jsonFeed.map(instagramPost => (<IGPost post={instagramPost} />))
 
