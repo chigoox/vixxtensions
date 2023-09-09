@@ -2,18 +2,28 @@ import React from 'react'
 import IGPost from './IGPost';
 
 async function getData() {
-    const res = await fetch('https://feeds.behold.so/a8MIJ35pXYq2syUql3wg', {
-        next: { revalidate: 10 }
-    })
-    // The return value is *not* serialized
-    // You can return Date, Map, Set, etc.
+    try {
+        const res = await fetch('https://feeds.behold.so/a8MIJ35pXYq2syUql3wg', {
+            next: { revalidate: 10 }
+        })
+        // The return value is *not* serialized
+        // You can return Date, Map, Set, etc.
 
-    if (!res.ok) {
-        // This will activate the closest `error.js` Error Boundary
-        throw new Error('Failed to fetch data')
+        if (!res.ok) {
+            // This will activate the closest `error.js` Error Boundary
+            throw new Error('Failed to fetch data')
+        }
+
+        return res.json()
+    } catch (e) {
+        console.log("error inside get route", e)
+        if (e instanceof Error) {
+            return new Response(e.message, { status: 500 });
+        }
+        return new Response("Internal Server Error", { status: 500 });
+
     }
 
-    return res.json()
 }
 
 async function IGFeed() {
