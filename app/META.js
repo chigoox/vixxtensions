@@ -18,3 +18,4 @@ export const category = ['Luxury Bundles', 'Luxury Lace', 'Luxury Wigs', 'Hot To
 
 
 
+//salePrice category type

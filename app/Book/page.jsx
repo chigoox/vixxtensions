@@ -24,6 +24,7 @@ let colStartClasses = [
 function Booking({ myPackage }) {
     const [adminDATA, setAdminDATA] = useState({})
     const reservations = adminDATA?.allRes ? adminDATA?.allRes : []
+    const [booktype, setBooktype] = useState()
 
 
     const [bookingInfo, setBookingInfo] = useState({})
@@ -116,7 +117,7 @@ function Booking({ myPackage }) {
     }, [currentMonth])
 
 
-    const total = 5 //(myPackage.addOn1[0] != 'None' ? (myPackage.addOn1.length * 100) : 0) + (myPackage.addOn2[0] != 'None' ? (myPackage.addOn2.length * 30) : 0) + (myPackage.addOn3[0] != 'None' ? (myPackage.addOn3.length * 200) : 0) + (bookingInfo.extraTime == 'Yes' ? 60 : 0) + (myPackage.type == 'sensual Massage' ? 350 : 150)
+    const total = booktype == 'Wig Class' ? 1850 : 300
     useEffect(() => {
         fetchDocument('Admin', 'reservations', setAdminDATA)
 
@@ -130,7 +131,7 @@ function Booking({ myPackage }) {
             pinkirect: 'follow',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                price: total / 2,
+                price: 200,
                 name: myPackage.type
             })
         }).then(res => {
@@ -142,13 +143,13 @@ function Booking({ myPackage }) {
         })
     }
     return (
-        <div className=' bg-white  m-auto w-full text-black h-full hidescroll overflow-scroll'>
-            <BookingOptions />
+        <div className=' bg-white  m-auto w-full text-black h-full '>
+            <h1 className='text-5xl text-center mb-6 '>Bookings</h1>
+            <BookingOptions booktype={booktype} setBooktype={setBooktype} />
 
 
             {
                 <div className='center flex-col mb-20'>
-                    <h1 className='text-5xl text-center mb-6 '>Bookings</h1>
 
 
 
@@ -156,7 +157,7 @@ function Booking({ myPackage }) {
                 </div>}
             {true &&
                 <div>
-                    <h1 className='text-center'>When would you like to meet?</h1>
+                    <h1 className='text-center'>Select your reservation</h1>
                 </div>
             }
             {
