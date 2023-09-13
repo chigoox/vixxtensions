@@ -7,9 +7,13 @@ import ShopItem from "./Componets/Shop/ShopItem";
 import { bestseller, category } from "./META";
 import IGFeed from "./Componets/HomePage/IGFeed";
 
+export const fetchCache = 'force-no-store';
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
+export default async function Home() {
 
-export default function Home() {
+  //await fetch("/api/revalidate?secret=5isthegoat");
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-evenly">
@@ -48,7 +52,7 @@ export default function Home() {
                 src={category == 'Luxury Wigs' ? 'http://yummyextensions.com/cdn/shop/files/EmilynnRoseSaweetie4990.jpg?v=1614733372)' :
                   category == 'Luxury Lace' ? 'http://yummyextensions.com/cdn/shop/products/raw-cambodian-natural-wave-yummy-extensions-2_copy_300x300.jpg?v=1568791827' :
                     category == 'Luxury Bundles' ? 'http://yummyextensions.com/cdn/shop/products/rawseawavyopulence_Yummyhairextensions_1024x1024@2x.jpg?v=1676367879' :
-                      category == 'Hot Tools' ? 'https://images.unsplash.com/photo-1522336284037-91f7da073525?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3269&q=80' :
+                      category.includes('Hot Tools') ? 'https://images.unsplash.com/photo-1522336284037-91f7da073525?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3269&q=80' :
                         ''
                 } alt="" />
               <div className="absolute bottom-12 m-auto center w-full">

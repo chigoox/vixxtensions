@@ -25,6 +25,7 @@ function Booking({ myPackage }) {
     const [adminDATA, setAdminDATA] = useState({})
     const reservations = adminDATA?.allRes ? adminDATA?.allRes : []
     const [booktype, setBooktype] = useState()
+    console.log(booktype)
 
 
     const [bookingInfo, setBookingInfo] = useState({})
@@ -118,6 +119,7 @@ function Booking({ myPackage }) {
 
 
     const total = booktype == 'Wig Class' ? 1850 : 300
+    console.log(total)
     useEffect(() => {
         fetchDocument('Admin', 'reservations', setAdminDATA)
 
@@ -312,8 +314,8 @@ function Booking({ myPackage }) {
             }
             {bookingInfo.apointment && <div className=' mb-96  center flex-col text-white p-2'>
                 <h1 className='text-xl text-center'>{`Your reservation is on ${bookingInfo.apointment}`}</h1>
-                <h1 className='text-center text-pink-700'>depoit half to comfirm booking</h1>
-                <div className='center gap-1'>
+                <h1 className='text-center text-pink-700'>depoit $200 to comfirm booking</h1>
+                <div className='center gap-1 my-4'>
                     <h1 className='text-center text-pink-700 text-5xl'>{'$' + total}</h1>
                     <h1>+ Tax</h1>
                 </div>

@@ -1,10 +1,11 @@
 'use client'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { Suspense, useState } from 'react'
 import Banner from './Componets/Banner'
 import { Jost } from 'next/font/google'
 import { AiOutlineSearch } from 'react-icons/ai'
 import MenuButton from '../General/MobileMenuButton'
+import { Navigation, NavigationEvents } from "../NavigationEvents";
 
 const jost = Jost({
     weight: '400',
@@ -17,9 +18,15 @@ function NavBar() {
         setShowMobileMenu(!showMobileMenu)
         return (!showMobileMenu)
     }
+    const [navRoute, setNavRoute] = useState([])
+
+
 
     return (
         <div className='h-22 bg-black w-full  overflow-hidden'>
+            <Suspense>
+                <NavigationEvents setRoute={setNavRoute} />
+            </Suspense>
             <div className=' mt-8 relative h-8'>
                 <div className=' h-8 center ' >
                     <Banner message={'New sale'} linkColor={'red'} link={'/'} linkMessage={'show Now'} />

@@ -14,7 +14,7 @@ export const bestseller = [
 
 ]
 
-export const category = ['Luxury Bundles', 'Luxury Lace', 'Luxury Wigs', 'Hot Tools']
+export const category = ['Luxury Bundles', 'Luxury Lace', 'Luxury Wigs', 'Hot Tools & Accessories']
 
 
 

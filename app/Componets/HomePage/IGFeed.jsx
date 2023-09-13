@@ -1,6 +1,5 @@
 import React from 'react'
 import IGPost from './IGPost';
-export const revalidate = 300
 async function getData() {
     try {
         const res = await fetch('https://feeds.behold.so/vOsDvHVWwnD25oSzFvCQ')
