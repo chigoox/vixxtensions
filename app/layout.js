@@ -5,8 +5,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import {useScrollPosition} from 'next'
 import Script from 'next/script'
-export const fetchCache = 'force-no-store';
-export const dynamic = 'force-dynamic';
+
 export const revalidate = 0;
 const inter = Inter({ subsets: ['latin'] })
 
