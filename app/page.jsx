@@ -6,10 +6,12 @@ import { EmblaCarousel2 } from "./Componets/HomePage/Carousel copy";
 import ShopItem from "./Componets/Shop/ShopItem";
 import { bestseller, category } from "./META";
 import IGFeed from "./Componets/HomePage/IGFeed";
+import { revalidatePath } from "next/cache";
 
 
 
 export default async function Home() {
+  revalidatePath('/')
 
   //await fetch("/api/revalidate?secret=5isthegoat");
 

@@ -1,19 +1,17 @@
-// https://<your-siste.com>/api/revalidate?secret=<TOKEN>
-// http://localhost:3000/api/revalidate?path=/&secret=5isthegoat
+import { NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 
+export async function GET(request) {
+    const path = request.nextUrl.searchParams.get('/')
 
-export default async function handler(req, res) {
-    // Check for secret to confirm this is a valid request
-    if (req.query.secret !== process.env.MY_SECRET_TOKEN) {
-        return res.status(401).json({ message: 'Invalid token' })
+    if (path) {
+        revalidatePath(path)
+        return NextResponse.json({ revalidated: true, now: Date.now() })
     }
 
-    try {
-        await res.unstable_revalidate('/')
-        return res.json({ revalidated: true })
-    } catch (err) {
-        // If there was an error, Next.js will continue
-        // to show the last successfully generated page
-        return res.status(500).send('Error revalidating')
-    }
+    return NextResponse.json({
+        revalidated: false,
+        now: Date.now(),
+        message: 'Missing path to revalidate',
+    })
 }
