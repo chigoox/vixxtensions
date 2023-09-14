@@ -7,7 +7,7 @@ import ShopItem from "./Componets/Shop/ShopItem";
 import { bestseller, category } from "./META";
 import IGFeed from "./Componets/HomePage/IGFeed";
 
-export const fetchCache = 'force-no-store';
+
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
