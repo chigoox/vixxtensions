@@ -25,8 +25,7 @@ async function getData() {
 
 async function IGFeed() {
     const IGData = await getData()
-    console.log(IGData)
-    const IGPosts = IGData ? IGData?.map(instagramPost => (<IGPost post={instagramPost} />)) : []
+    const IGPosts = IGData ? IGData?.map((instagramPost, index) => (<IGPost key={index} post={instagramPost} />)) : []
 
 
     return (
