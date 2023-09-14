@@ -1,10 +1,11 @@
+'use client'
 
 import React from 'react'
 
 import { useNavEvent } from "@/app/Componets/NavigationEvents"
 
-export default function LuxHotToolItemPage() {
-  // const [path] = useNavEvent()
+export default function LuxHotToolItemPage({ repo }) {
+  const [path] = useNavEvent()
   return (
     <main className="flex min-h-screen flex-col items-center justify-evenly">
 
