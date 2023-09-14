@@ -1,9 +1,9 @@
-'use client'
+
 
 import { useNavEvent } from "@/app/Componets/NavigationEvents"
 
 export default function LuxHotToolItemPage() {
-  const [path] = useNavEvent()
+  // const [path] = useNavEvent()
   return (
     <main className="flex min-h-screen flex-col items-center justify-evenly">
 
