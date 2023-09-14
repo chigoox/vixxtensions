@@ -2,7 +2,7 @@ import React from 'react'
 
 //import { useNavEvent } from "@/app/Componets/NavigationEvents"
 export function generateStaticParams() {
-  return [{ id: '1' }, { id: '2' }, { id: '3' }]
+  return [{ Item: '1' }, { Item: '2' }, { Item: '3' }]
 }
 
 export default function LuxHotToolItemPage({ params }) {
