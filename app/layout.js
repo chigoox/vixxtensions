@@ -6,7 +6,6 @@ import { Inter } from 'next/font/google'
 import {useScrollPosition} from 'next'
 import Script from 'next/script'
 
-export const revalidate = 0;
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
