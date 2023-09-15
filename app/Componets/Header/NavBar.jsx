@@ -6,6 +6,7 @@ import { Jost } from 'next/font/google'
 import { AiOutlineSearch } from 'react-icons/ai'
 import MenuButton from '../General/MobileMenuButton'
 import { Navigation, NavigationEvents } from "../NavigationEvents";
+import { siteName } from '@/app/META'
 
 const jost = Jost({
     weight: '400',
@@ -43,7 +44,7 @@ function NavBar() {
                     <input placeholder='Search' className='p-2 h-7 w-32  md:w-52 focus:outline-none  bg-slate-200' type="text" />
                 </div>
                 <div className={jost.className}>
-                    <h1 className={`text-center  font-bold text-3xl `}>ViXxtensions</h1>
+                    <h1 className={`text-center  font-bold text-3xl `}>{siteName}</h1>
                     <h1 className='text-center text-xs'>Luxury Raw Hair</h1>
                 </div>
                 <h1 className='h-0 md:relative absolute top-0 w-0 md:w-fit md:h-7 text-sm md:text-xs text-gray-500 overflow-hidden'>1-800-5istheGOAT</h1>

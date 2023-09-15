@@ -1,4 +1,4 @@
-export const siteName = 'ViXxtension'
+export const siteName = 'ViHair'
 
 const shopItem = (title, img, price, salePrice, rating) =>{
     return {title: title,img:img, price: price, salePrice: salePrice, rating:rating}
