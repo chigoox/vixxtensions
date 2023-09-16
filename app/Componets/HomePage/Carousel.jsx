@@ -5,7 +5,8 @@ import Autoplay from 'embla-carousel-autoplay'
 import { AiFillBackward, AiFillStepBackward, AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
 import Image from 'next/image'
 
-export const EmblaCarousel = ({ img1, img2, img3, img4, square }) => {
+export const EmblaCarousel = ({ img1, img2, img3, img4, rounded, noArrow }) => {
+    console.log(rounded)
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()])
 
     const scrollPrev = useCallback(() => {
@@ -18,8 +19,8 @@ export const EmblaCarousel = ({ img1, img2, img3, img4, square }) => {
 
     return (
         <div className="embla relative z-0">
-            <div className="embla__viewport bg-[#EEEFF0] h-[14rem] md:[20rem] lg:h-[40rem] overflow-hidden" ref={emblaRef}>
-                <div className="embla__container h-full w-[100vw] relative  gap-4">
+            <div className={`embla__viewport bg-[#EEEFF0] h-[14rem] md:[20rem] ${rounded ? 'rounded-full' : ''} lg:h-[40rem] overflow-hidden`} ref={emblaRef}>
+                <div className="embla__container h-full w-[100vw] relative   gap-4">
                     {img1 &&
                         <div className="embla__slide"><Image height={0} width={0} className='object-cover zoom w-full h-full' src={img1} alt="" /></div>}
                     {img2 &&
@@ -30,14 +31,14 @@ export const EmblaCarousel = ({ img1, img2, img3, img4, square }) => {
                         <div className="embla__slide"><Image height={0} width={0} className='object-cover zoom w-full h-full' src={img4} alt="" /></div>}
                 </div>
             </div>
-            <div className='absolute z-[99999] top-[50%] between gap-4 p-4 w-full'>
+            {!noArrow && <div className='absolute z-[99999] top-[50%] between gap-4 p-4 w-full'>
                 <button className="embla__prev hover:scale-110 trans scale-100 rounded-full border border-dotted bg-white bg-opacity-50" onClick={scrollPrev}>
                     <AiOutlineArrowLeft size={32} color='white' />
                 </button>
                 <button className="embla__next hover:scale-110 trans scale-100 rounded-full border border-dotted bg-white bg-opacity-50" onClick={scrollNext}>
                     <AiOutlineArrowRight size={32} color='white' />
                 </button>
-            </div>
+            </div>}
         </div>
     )
 }

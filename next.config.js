@@ -5,6 +5,6 @@ module.exports = nextConfig
 
 module.exports = {
   images: {
-    domains: ['yummyextensions.com','images.unsplash.com', 'static.wixstatic.com'],
+    domains: ['yummyextensions.com','images.unsplash.com', 'static.wixstatic.com', 'www.divatress.com'],
   },
 }

@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { AiFillStar } from 'react-icons/ai'
 
 function ShopItem({ shopItems }) {
@@ -5,7 +6,7 @@ function ShopItem({ shopItems }) {
     const stars = Array.apply(null, Array(rating))
 
     return (
-        <div className='h-[30rem] md:h-[25rem]  md:w-[20rem] m-auto my-2 w-80 bg-black relative text-white font-thin rounded-2xl overflow-hidden'>
+        <Link href={`/Shop/HotTools/${title}`} className='h-[30rem] md:h-[25rem]  md:w-[20rem] m-auto my-2 w-80 bg-black relative text-white font-thin rounded-2xl overflow-hidden'>
             <img src={img} className='h-[80%] w-full object-cover' alt="" />
             <div className='h-[20%]  w-full center-col'>
                 <h1 className='text-2xl'>{title}</h1>
@@ -26,7 +27,7 @@ function ShopItem({ shopItems }) {
 
             </div>
 
-        </div>
+        </Link>
     )
 }
 

@@ -6,7 +6,7 @@ import { Jost } from 'next/font/google'
 import { AiOutlineSearch } from 'react-icons/ai'
 import MenuButton from '../General/MobileMenuButton'
 import { Navigation, NavigationEvents } from "../NavigationEvents";
-import { siteName } from '@/app/META'
+import { category, siteName } from '@/app/META'
 
 const jost = Jost({
     weight: '400',
@@ -20,7 +20,6 @@ function NavBar() {
         return (!showMobileMenu)
     }
     const [navRoute, setNavRoute] = useState([])
-
 
 
     return (
@@ -49,7 +48,7 @@ function NavBar() {
                 </div>
                 <h1 className='h-0 md:relative absolute top-0 w-0 md:w-fit md:h-7 text-sm md:text-xs text-gray-500 overflow-hidden'>1-800-5istheGOAT</h1>
             </div>
-            <nav className={`fixed  trans md:top-0 -bottom-2 items-center md:justify-evenly justify-center w-full flex md:flex-row  gap-4 md:gap-0 ${showMobileMenu ? 'h-16 scale-100' : 'h-0 p-0'} rounded-t-2xl md:rounded-none bg-black-900 text-white md:text-black md:bg-white group   md:h-8 z-[99999]`}>
+            <nav className={`fixed  trans md:top-0 -bottom-2 items-center md:justify-evenly justify-center w-full flex md:flex-row  gap-4 md:gap-0 ${showMobileMenu ? 'h-16 scale-100' : 'h-0 p-0'} rounded-t-2xl md:rounded-none  bg-black-900 text-white md:text-black md:bg-white group   md:h-8 z-[99999]`}>
                 <button onClick={toggleMobileMenu} className={`absolute -top-[3.7rem] bg-black rounded-full h-12 w-12 center p-2`}>
                     <MenuButton menuOpen={showMobileMenu} />
                 </button>
@@ -58,6 +57,14 @@ function NavBar() {
                 <Link href={'/Book'}>Book</Link>
 
             </nav>
+            {navRoute[0]?.includes('Shop') && <div className='bg-white '>
+                <div className='h-20 w-3/4 evenly gap-2 text-black font-light text-center m-auto bg-white'>
+                    {category.map(item => (<Link key={item} href={item.includes('Hot') ? `/Shop/HotTools` : `/Shop/${item.replace(/\s/g, '')}`}>
+                        <div className='h-12 w-20  rounded'>
+                            <h1 className=''>{item.includes('Hot') ? 'Tools & Acces...' : item}</h1>
+                        </div></Link>))}
+                </div>
+            </div>}
         </div>
 
     )

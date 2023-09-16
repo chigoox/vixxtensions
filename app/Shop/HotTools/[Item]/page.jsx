@@ -1,19 +1,38 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
+//import { useRouter } from 'next/navigation'
 
-//import { useNavEvent } from "@/app/Componets/NavigationEvents"
+import { NavigationEvents } from "@/app/Componets/NavigationEvents"
+
+
+
 export function generateStaticParams() {
-  return [{ Item: '1' }, { Item: '2' }, { Item: '3' }]
+  return [{ Item: 'wig1' }, { Item: 'wig2' }, { Item: 'wig3' }, { Item: 'wig4' }]
 }
 
 export default function LuxHotToolItemPage({ params }) {
-  // const [path] = useNavEvent()
+  const [route, setRoute] = useState([])
+  console.log(route)
+
   const { id } = params
   console.log(id)
 
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-evenly">
+  //const router = useRouter();
+  //const ShopItemData = router.query;
 
-      {/*   {path.includes('helloworld') ? 'yes' : 'no'} */}
+  return (
+    <main className="flex min-h-screen flex-col items-center">
+      <NavigationEvents setRoute={setRoute} />
+      <div className='flex md:flex-row flex-col gap-2'>
+        <div className='border h-12 w-1/2'>
+
+        </div>
+        <div className='border h-12 w-1/2'>
+
+        </div>
+
+      </div>
+
     </main>
   )
 }
