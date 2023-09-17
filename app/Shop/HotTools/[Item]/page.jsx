@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 
 import { NavigationEvents } from "@/app/Componets/NavigationEvents"
 import { AiFillMoneyCollect } from 'react-icons/ai'
+import EmblaCarouselThumb from '@/app/Componets/HomePage/CarouselThumb'
 
 
 
@@ -13,45 +14,39 @@ export function generateStaticParams() {
 
 export default function LuxHotToolItemPage({ params }) {
   const [route, setRoute] = useState([])
-  console.log(route)
 
   const { id } = params
-  console.log(id)
 
   const galary = [1, 1, 1, 1]
   const price = 275
   const type = ['16in straight', '18in straight', '19in straight', '16in wavy', '18in wavy', '19in wavy']
-
+  const slides = [
+    'https://images.unsplash.com/photo-1694875464499-334d2dc113a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1913&q=80',
+    'https://images.unsplash.com/photo-1694901555616-d7b2b33e6406?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1888&q=80',
+    'https://images.unsplash.com/photo-1692698921100-e31dc7453d4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80',
+    'https://images.unsplash.com/photo-1682687982046-e5e46906bc6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80'
+  ]
   //const router = useRouter();
   //const ShopItemData = router.query;
 
   return (
     <main className="flex min-h-screen flex-col ">
       <NavigationEvents setRoute={setRoute} />
+      <EmblaCarouselThumb options={{}} slides={slides} />
       <div className='flex md:flex-row flex-col gap-2'>
-        <div className='border md:h-[40rem] md:w-1/2'>
-          <div className='border-black border-2 h-96 w-96 m-auto'>
-            <h1>pictures go here</h1>
-          </div>
-          <div className='m-auto center gap-2 w-96 mt-2'>
-            {galary.map(item => (<div className='h-24 w-24 border-black border m-auto'>
-              <h1>pictures go here</h1>
-            </div>))}
-          </div>
-
-        </div>
 
 
-        <div className='border h-fit md:w-1/2 p-2'>
-          <h1 className='text-2xl md:text-6xl font-bold'>The Name Of the Wig</h1>
+
+        <div className='h-fit md:w-1/2 p-2'>
+          <h1 className='text-3xl md:text-6xl font-bold'>The Name Of the Wig</h1>
           <span className='font-thin'>from</span>
-          <span className=' font-light'> ${price}.00</span>
+          <span className=' font-light text-2xl'> ${price}.00</span>
           <div className='center gap-2'>
-            <h1>or 4 interest-free payments of $ {price / 4} with</h1>
+            <h1 className='font-thin text-sm md:text-base'>or 4 interest-free payments of <span className=' font-normal'>${price / 4}</span> with</h1>
             <AiFillMoneyCollect size={32} />
           </div>
           <div className='center gap-2'>
-            <h1>or 4 interest-free payments of $ {price / 4} with</h1>
+            <h1 className='font-thin text-sm md:text-base'>or 4 interest-free payments of <span className=' font-normal'>${price / 4}</span> with</h1>
             <AiFillMoneyCollect size={32} />
           </div>
           <div className='center flex-wrap md:w-3/4 m-auto mt-2 gap-2'>
@@ -60,13 +55,13 @@ export default function LuxHotToolItemPage({ params }) {
           </div>
           <div className='mt-2 '>
             <h1 className='text-center font-light'>Quntity</h1>
-            <div className='border-black border gap-4 items-center  flex md:flex-row flex-col'>
-              <input type="number" className='w-20 font-bold h-9 p-2 border border-slate-300' />
+            <div className=' gap-4 items-center  flex md:flex-row flex-col'>
+              <input type="number" className='w-20 font-bold h-9 p-2 border text-center items-center border-slate-300' />
               <button className='h-12 w-48 bg-gray-500'>ADD TO CART</button>
             </div>
           </div>
 
-          <div className='border mt-2 '>
+          <div className=' mt-2 '>
             <h1 className='text-2xl font-extralight text-white bg-black-800'>Description</h1>
             <h1 className='p-2'>
               Lorem ipsum dolor sit amet,
