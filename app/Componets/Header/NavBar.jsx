@@ -53,7 +53,7 @@ function NavBar() {
                     <MenuButton menuOpen={showMobileMenu} />
                 </button>
                 <Link className='' href={'/'}>Home</Link>
-                <Link href={'/Shop/HotTools'}>Shop</Link>
+                <Link href={'/Shop'}>Shop</Link>
                 <Link href={'/Book'}>Book</Link>
 
             </nav>
