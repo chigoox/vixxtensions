@@ -57,7 +57,7 @@ function NavBar() {
                 <Link href={'/Book'}>Book</Link>
 
             </nav>
-            {navRoute[0]?.includes('Shop') && <div className='bg-white '>
+            {navRoute[0]?.toUpperCase()?.includes('SHOP') && <div className='bg-white '>
                 <div className='h-20 w-3/4 evenly gap-2 text-black font-light text-center m-auto bg-white'>
                     {category.map(item => (<Link key={item} href={item.includes('Hot') ? `/Shop/HotTools` : `/Shop/${item.replace(/\s/g, '')}`}>
                         <div className='h-12 w-20  rounded'>
