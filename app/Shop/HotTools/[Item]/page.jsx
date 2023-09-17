@@ -19,7 +19,7 @@ export default function LuxHotToolItemPage({ params }) {
   console.log(id)
 
   const galary = [1, 1, 1, 1]
-  const price = 2750
+  const price = 275
   const type = ['16in straight', '18in straight', '19in straight', '16in wavy', '18in wavy', '19in wavy']
 
   //const router = useRouter();
