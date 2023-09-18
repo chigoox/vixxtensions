@@ -32,7 +32,7 @@ export default function LuxHotToolItemPage({ params }) {
 
   return (
     <main className="flex min-h-screen flex-col ">
-      <div className={font1.className}>
+      <div>
         <NavigationEvents setRoute={setRoute} />
         <div className='flex md:flex-row flex-col gap-2'>
           <EmblaCarouselThumb options={{}} slides={slides} />
@@ -63,7 +63,7 @@ export default function LuxHotToolItemPage({ params }) {
               </div>
             </div>
 
-            <div className={font2.className}>
+            <div className={font1.className}>
               <h1 className='text-2xl font-extralight text-white bg-black-800'>Description</h1>
               <h1 className='p-2'>
                 Lorem ipsum dolor sit amet,
