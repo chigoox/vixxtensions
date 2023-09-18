@@ -25,16 +25,7 @@ export default async function Home() {
         img2={VIXBAN1}
       />
 
-      <div className="">
-        <h1 className="text-center font-thin md:text-6xl text-3xl  border-black mt-24 mb-2">Shop The Look</h1>
 
-        <EmblaCarousel2
-          img1={'http://yummyextensions.com/cdn/shop/files/IMG_1445.jpg?v=1687996125'}
-          img2={'http://yummyextensions.com/cdn/shop/files/YUMMY_EXTENSIONS_LOOSE_CURL_SHOP_THE_LOOK.jpg?v=1687658312'}
-          img3={'http://yummyextensions.com/cdn/shop/files/IMG_1439.jpg?v=1687995106'}
-          img4={'http://yummyextensions.com/cdn/shop/files/IMG_1456.jpg?v=1687994832'}
-        />
-      </div>
 
       <div className=" mt-8 w-full ">
         <h1 className="my-2 text-2xl text-center">Best Sellers</h1>
