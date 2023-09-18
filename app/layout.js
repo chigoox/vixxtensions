@@ -2,11 +2,12 @@ import Footer from './Componets/Footer'
 import NavBar from './Componets/Header/NavBar'
 import { siteName } from './META'
 import './globals.css'
-import { Inter } from 'next/font/google'
+import { Inter, Jost } from 'next/font/google'
 import {useScrollPosition} from 'next'
 import Script from 'next/script'
 
 const inter = Inter({ subsets: ['latin'] })
+const jost = Jost({ subsets: ['latin'] })
 
 export const metadata = {
   title: siteName,
@@ -21,7 +22,7 @@ export default function RootLayout({ children }) {
         
       </head>
 
-      <body className={inter.className}>
+      <body className={jost.className}>
         <NavBar />
         {children}
         <Footer />

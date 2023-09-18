@@ -18,7 +18,7 @@ export const Thumb = (props) => {
                     <span>{index + 1}</span>
                 </div>
                 <img
-                    className="emblathumb-thumbs__slide__img"
+                    className="emblathumb-thumbs__slide__img rounded-full"
                     src={imgSrc}
                     alt="Your alt text"
                 />

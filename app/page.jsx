@@ -9,6 +9,9 @@ import IGFeed from "./Componets/HomePage/IGFeed";
 import { revalidatePath } from "next/cache";
 import VIXBAN1 from "../public/Images/VIXBAN1.webp";
 import VIXBAN2 from "../public/Images/VIXBAN2.webp";
+import RawBundlesImage from '../public/Images/RawBundles.jpeg'
+import RawLace from '../public/Images/RawLace.jpeg'
+import RawWig from '../public/Images/RawWig.jpeg'
 
 
 
@@ -40,9 +43,9 @@ export default async function Home() {
           {category.map(category => (
             <div className=" w-[50%] lg:w-[25%] lg:h-full  h-[50%] relative">
               <Image width='0' height='0' className='h-full w-full  object-cover'
-                src={category == 'Luxury Wigs' ? 'http://yummyextensions.com/cdn/shop/files/EmilynnRoseSaweetie4990.jpg?v=1614733372)' :
-                  category == 'Luxury Lace' ? 'http://yummyextensions.com/cdn/shop/products/raw-cambodian-natural-wave-yummy-extensions-2_copy_300x300.jpg?v=1568791827' :
-                    category == 'Luxury Bundles' ? 'http://yummyextensions.com/cdn/shop/products/rawseawavyopulence_Yummyhairextensions_1024x1024@2x.jpg?v=1676367879' :
+                src={category == 'Luxury Wigs' ? RawWig :
+                  category == 'Luxury Lace' ? RawLace :
+                    category == 'Luxury Bundles' ? RawBundlesImage :
                       category.includes('Hot Tools') ? 'https://images.unsplash.com/photo-1522336284037-91f7da073525?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3269&q=80' :
                         ''
                 } alt="" />

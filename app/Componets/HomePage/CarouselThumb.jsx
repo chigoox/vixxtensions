@@ -33,8 +33,8 @@ const EmblaCarouselThumb = ({ slides, options }) => {
     }, [emblaMainApi, onSelect])
     return (
         <div className="emblathumb ">
-            <div className="emblathumb__viewport overflow-hidden w-full md:w-96" ref={emblaMainRef}>
-                <div className="emblathumb__container ">
+            <div className="emblathumb__viewport overflow-hidden rounded-lg w-full md:w-[30rem]" ref={emblaMainRef}>
+                <div className="emblathumb__container">
                     {slides.map((value, index) => (
                         <div className="emblathumb__slide" key={index}>
                             <div className="emblathumb__slide__number">
@@ -50,7 +50,7 @@ const EmblaCarouselThumb = ({ slides, options }) => {
                 </div>
             </div>
 
-            <div className="emblathumb-thumbs border-y p-2 w-full md:w-96">
+            <div className="emblathumb-thumbs border-y p-2 w-full md:w-96 m-auto">
                 <div className="emblathumb-thumbs__viewport" ref={emblaThumbsRef}>
                     <div className="embla-thumbs__container flex">
                         {slides.map((value, index) => (

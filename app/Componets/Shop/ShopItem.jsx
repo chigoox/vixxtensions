@@ -17,7 +17,7 @@ function ShopItem({ shopItems }) {
 
             </div>
 
-            <div className='w-28 h-8 absolute rounded-full flex justify-end items-center p-2 top-[70%] right-4 bg-black bg-opacity-75'>
+            {/*  <div className='w-28 h-8 absolute rounded-full flex justify-end items-center p-2 top-[70%] right-4 bg-black bg-opacity-75'>
                 {stars.map((star) => {
                     return (
                         <AiFillStar size={14} color='yellow' />
@@ -25,7 +25,7 @@ function ShopItem({ shopItems }) {
                 })}
 
 
-            </div>
+            </div> */}
 
         </Link>
     )
