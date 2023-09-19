@@ -14,23 +14,36 @@ const fetchData = async (name) => {
 }
 
 
-const Product = ({ forThis }) => {
-    const [products, setProducts] = useState({})
-    useEffect(async () => {
-        setProducts(await fetchData(forThis))
+const Product = ({ forThis, itemData }) => {
+    const { Item } = forThis
+    const nameOfRouteWithOutSpace = Item
+
+    const thisProduct = itemData?.map(item => {
+        if (item.name.replace(/\s/g, '') == nameOfRouteWithOutSpace) return item
+    }).filter(Boolean)[0]
+
+    const [prices, setPrices] = useState({})
+    useEffect(() => {
+        async () => {
+            setPrices(await fetchData(Item))
+        }
     }, [])
 
-    console.log(products)
+    console.log(thisProduct)
+    const price = Number(thisProduct?.metadata?.price.replace('$', ''))
+    const name = thisProduct?.name
+    const slides = thisProduct?.images
+    const desc = thisProduct.description
+    const feats = thisProduct.features
 
-    const { Item } = forThis
-    const price = 275
+
     const type = ['16in straight', '18in straight', '19in straight', '16in wavy', '18in wavy', '19in wavy']
-    const slides = [
-        'https://images.unsplash.com/photo-1694875464499-334d2dc113a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1913&q=80',
-        'https://images.unsplash.com/photo-1694901555616-d7b2b33e6406?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1888&q=80',
-        'https://images.unsplash.com/photo-1692698921100-e31dc7453d4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80',
-        'https://images.unsplash.com/photo-1682687982046-e5e46906bc6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80'
-    ]
+    /*  const slides = [
+         'https://images.unsplash.com/photo-1694875464499-334d2dc113a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1913&q=80',
+         'https://images.unsplash.com/photo-1694901555616-d7b2b33e6406?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1888&q=80',
+         'https://images.unsplash.com/photo-1692698921100-e31dc7453d4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80',
+         'https://images.unsplash.com/photo-1682687982046-e5e46906bc6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80'
+     ] */
 
 
 
@@ -47,7 +60,7 @@ const Product = ({ forThis }) => {
 
 
                     <div className='h-fit md:w-1/2 p-2 pt-8'>
-                        <h1 className='text-3xl md:text-6xl font-bold'>The Name Of the Wig</h1>
+                        <h1 className='text-3xl md:text-6xl font-bold'>{name}</h1>
                         <span className='font-thin'>from</span>
                         <span className=' font-light text-2xl'> ${price}.00</span>
                         <div className='flex mt-2 gap-2'>

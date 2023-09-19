@@ -1,5 +1,8 @@
+'use client'
 import { fetchProducts } from '@/app/myCodes/Stripe'
 import Product from '../../Componets/Product'
+import { useEffect, useState } from 'react'
+import { useGetItemData } from '../../Hooks/useGetItemData'
 
 const fetchData = async () => {
   const data = await fetchProducts('LuxuryLace')
@@ -16,13 +19,13 @@ export async function generateStaticParams() {
 }
 
 export default function LuxLaceItemPage({ params }) {
+  const itemData = useGetItemData(fetchData)
+
+
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-evenly">
-
-      <Product forThis={params} />
-
-
+    <div>
+      <Product forThis={params} itemData={itemData} />
     </div>
   )
 }
