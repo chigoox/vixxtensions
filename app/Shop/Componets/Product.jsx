@@ -20,6 +20,8 @@ const Product = ({ forThis }) => {
         setProducts(await fetchData(forThis))
     }, [])
 
+    console.log(products)
+
     const { Item } = forThis
     const price = 275
     const type = ['16in straight', '18in straight', '19in straight', '16in wavy', '18in wavy', '19in wavy']

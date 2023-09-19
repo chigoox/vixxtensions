@@ -18,12 +18,12 @@ export async function generateStaticParams() {
 export default function LuxLaceItemPage({ params }) {
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-evenly">
+    <div className="flex min-h-screen flex-col items-center justify-evenly">
+
+      <Product forThis={params} />
 
 
-
-
-    </main>
+    </div>
   )
 }
 

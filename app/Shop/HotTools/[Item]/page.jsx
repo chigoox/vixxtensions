@@ -22,6 +22,10 @@ export async function generateStaticParams() {
 
 export default function LuxHotToolItemPage({ params }) {
 
-
+  return (
+    <div>
+      <Product forThis={params} />
+    </div>
+  )
 }
 

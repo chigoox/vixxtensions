@@ -1,4 +1,7 @@
+'use client'
+
 import { fetchProducts } from '@/app/myCodes/Stripe'
+import Product from '../../Componets/Product'
 
 const fetchData = async () => {
   const data = await fetchProducts('LuxuryBundles')
@@ -13,15 +16,16 @@ export async function generateStaticParams() {
 
   // return [{ Item: 'wig1' }, { Item: 'wig2' }, { Item: 'wig3' }, { Item: 'wig4' }]
 }
-export default function LuxBundleItemPage() {
+
+
+
+
+export default function LuxBundleItemPage({ params }) {
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-evenly">
-
-
-
-
-    </main>
+    <div>
+      <Product forThis={params} />
+    </div>
   )
 }
 
