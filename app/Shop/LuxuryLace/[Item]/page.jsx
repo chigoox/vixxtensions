@@ -1,4 +1,5 @@
 import { fetchProducts } from '@/app/myCodes/Stripe'
+import Product from '../../Componets/Product'
 
 const fetchData = async () => {
   const data = await fetchProducts('LuxuryLace')
@@ -14,7 +15,7 @@ export async function generateStaticParams() {
   // return [{ Item: 'wig1' }, { Item: 'wig2' }, { Item: 'wig3' }, { Item: 'wig4' }]
 }
 
-export default function LuxLaceItemPage() {
+export default function LuxLaceItemPage({ params }) {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-evenly">

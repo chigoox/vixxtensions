@@ -1,6 +1,6 @@
 import EmblaCarousel from '@/app/Componets/HomePage/Carousel'
 import React from 'react'
-import Products from '../Componets/Products'
+import ProductsList from '../Componets/ProductsList'
 import luxWigs from '../../../public/Images/RawWig.jpeg'
 
 function LuxWigs() {
@@ -14,7 +14,7 @@ function LuxWigs() {
                 rounded={true} noArrow={true}
             />
 
-            <Products category={'LuxuryWigs'} />
+            <ProductsList category={'LuxuryWigs'} />
 
         </div>
     )

@@ -1,7 +1,7 @@
 import ShopItem from '@/app/Componets/Shop/ShopItem';
 import Stripe from 'stripe'
 
-export const Products = async ({ category }) => {
+export const ProductsList = async ({ category }) => {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
     const prices = await stripe.products.search({
         limit: 25,
@@ -21,4 +21,4 @@ export const Products = async ({ category }) => {
     )
 }
 
-export default Products
+export default ProductsList

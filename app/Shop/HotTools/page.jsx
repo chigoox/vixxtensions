@@ -1,6 +1,6 @@
 import EmblaCarousel from '@/app/Componets/HomePage/Carousel'
 import React from 'react'
-import Products from '../Componets/Products'
+import ProductsList from '../Componets/ProductsList'
 import hotTools from '../../../public/Images/RawTools.jpeg'
 
 
@@ -16,7 +16,7 @@ async function HotTools() {
                 rounded={true} noArrow={true}
             />
 
-            <Products category={'HotTools'} />
+            <ProductsList category={'HotTools'} />
 
         </div>
     )
