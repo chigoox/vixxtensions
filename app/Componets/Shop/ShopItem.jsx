@@ -5,7 +5,7 @@ import { AiFillStar } from 'react-icons/ai'
 function ShopItem({ shopItems, location = 'HotTools' }) {
     console.log(shopItems)
     const { name, images, metadata } = shopItems ? shopItems : {}
-    const { salePrice } = metadata
+    const { price } = metadata
     // const stars = Array.apply(null, Array(rating))
 
     return (
@@ -14,7 +14,7 @@ function ShopItem({ shopItems, location = 'HotTools' }) {
             <div className='h-[20%] bg-black absolute bottom-0  w-full center-col'>
                 <h1 className='text-2xl'>{name}</h1>
                 <div className=' w-20'>
-                    <span className='font-thin'>from</span><span className='text-xl'> ${salePrice}</span>
+                    <span className='font-thin'>from</span><span className='text-xl'> {price}</span>
 
                 </div>
 
