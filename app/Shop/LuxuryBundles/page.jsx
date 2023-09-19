@@ -14,7 +14,7 @@ function LuxBundles() {
                 rounded={true} noArrow={true}
             />
 
-            <Products category={'hoodies'} />
+            <Products category={'LuxuryBundles'} />
 
         </div>
     )

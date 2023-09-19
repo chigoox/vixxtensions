@@ -14,7 +14,7 @@ function LuxLace() {
                 rounded={true} noArrow={true}
             />
 
-            <Products category={'hats'} />
+            <Products category={'LuxuryLace'} />
 
         </div>
     )

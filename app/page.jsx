@@ -12,6 +12,7 @@ import VIXBAN2 from "../public/Images/VIXBAN2.webp";
 import RawBundlesImage from '../public/Images/RawBundles.jpeg'
 import RawLace from '../public/Images/RawLace.jpeg'
 import RawWig from '../public/Images/RawWig.jpeg'
+import RawTools from '../public/Images/RawTools.jpeg'
 
 
 
@@ -46,7 +47,7 @@ export default async function Home() {
                 src={category == 'Luxury Wigs' ? RawWig :
                   category == 'Luxury Lace' ? RawLace :
                     category == 'Luxury Bundles' ? RawBundlesImage :
-                      category.includes('Hot Tools') ? 'https://images.unsplash.com/photo-1522336284037-91f7da073525?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3269&q=80' :
+                      category.includes('Hot Tools') ? RawTools :
                         ''
                 } alt="" />
               <div className="absolute bottom-12 m-auto center w-full">

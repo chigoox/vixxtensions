@@ -14,7 +14,7 @@ function LuxWigs() {
                 rounded={true} noArrow={true}
             />
 
-            <Products category={'sweatpants'} />
+            <Products category={'LuxuryWigs'} />
 
         </div>
     )
