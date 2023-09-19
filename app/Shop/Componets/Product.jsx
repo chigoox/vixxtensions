@@ -29,12 +29,11 @@ const Product = ({ forThis, itemData }) => {
         }
     }, [])
 
-    console.log(thisProduct)
     const price = Number(thisProduct?.metadata?.price.replace('$', ''))
     const name = thisProduct?.name
     const slides = thisProduct?.images
-    const desc = thisProduct.description
-    const feats = thisProduct.features
+    const desc = thisProduct?.description
+    const feats = thisProduct?.features
 
 
     const type = ['16in straight', '18in straight', '19in straight', '16in wavy', '18in wavy', '19in wavy']
