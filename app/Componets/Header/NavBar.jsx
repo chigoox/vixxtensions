@@ -27,7 +27,7 @@ function NavBar() {
             <Suspense>
                 <NavigationEvents setRoute={setNavRoute} />
             </Suspense>
-            <div className=' relative '>
+            <div className='mt-0 md:mt-8 relative '>
                 <div className=' h-10 center ' >
                     <Banner message={'New sale'} linkColor={'red'} link={'/'} linkMessage={'show Now'} />
                 </div>
@@ -42,7 +42,6 @@ function NavBar() {
                 <div className={jost.className}>
                     <h1 className={`text-center  font-bold text-3xl `}>{siteName}</h1>
                 </div>
-                <h1 className='h-0 md:relative absolute top-0 w-0 md:w-fit md:h-7 text-sm md:text-xs text-gray-500 overflow-hidden'>1-800-5istheGOAT</h1>
             </div>
             <nav className={`fixed  trans md:top-0 -bottom-2 items-center md:justify-evenly justify-center w-full flex md:flex-row  gap-4 md:gap-0 ${showMobileMenu ? 'h-16 scale-100' : 'h-0 p-0'} rounded-t-2xl md:rounded-none  bg-black-900 text-white md:text-black md:bg-white group   md:h-8 z-[99999]`}>
                 <button onClick={toggleMobileMenu} className={`absolute -top-[3.7rem] bg-black rounded-full h-12 w-12 center p-2`}>
