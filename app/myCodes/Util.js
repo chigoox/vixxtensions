@@ -1,6 +1,4 @@
 
-import React, { useEffect, useState } from 'react'
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Toastify from 'toastify-js'
 
 export const isDev = () => {

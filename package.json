@@ -10,8 +10,9 @@
   },
   "dependencies": {
     "@stripe/react-stripe-js": "^1.16.5",
-    "@stripe/stripe-js": "^1.47.0",
+    "@stripe/stripe-js": "^1.54.2",
     "autoprefixer": "10.4.15",
+    "axios": "^1.5.0",
     "clsx": "^2.0.0",
     "date-fns": "^2.30.0",
     "embla-carousel-autoplay": "^8.0.0-rc12",

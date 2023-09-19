@@ -1,23 +1,24 @@
 'use client'
-import React, { useState } from 'react'
-//import { useRouter } from 'next/navigation'
-
+import React, { useEffect, useState } from 'react'
 import { NavigationEvents } from "@/app/Componets/NavigationEvents"
 import { AiFillMoneyCollect } from 'react-icons/ai'
 import EmblaCarouselThumb from '@/app/Componets/HomePage/CarouselThumb'
 import { Red_Hat_Text } from 'next/font/google'
 
-const font1 = Red_Hat_Text({ subsets: ['latin'] })
+
 
 export function generateStaticParams() {
   return [{ Item: 'wig1' }, { Item: 'wig2' }, { Item: 'wig3' }, { Item: 'wig4' }]
 }
+const font1 = Red_Hat_Text({ subsets: ['latin'] })
+
+
+
 
 export default function LuxHotToolItemPage({ params }) {
   const [route, setRoute] = useState([])
-
+  const [products, setProducts] = useState({})
   const { id } = params
-
   const galary = [1, 1, 1, 1]
   const price = 275
   const type = ['16in straight', '18in straight', '19in straight', '16in wavy', '18in wavy', '19in wavy']
@@ -27,11 +28,14 @@ export default function LuxHotToolItemPage({ params }) {
     'https://images.unsplash.com/photo-1692698921100-e31dc7453d4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80',
     'https://images.unsplash.com/photo-1682687982046-e5e46906bc6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80'
   ]
-  //const router = useRouter();
-  //const ShopItemData = router.query;
+
+
+
+
 
   return (
     <main className="flex min-h-screen flex-col ">
+
       <div>
         <NavigationEvents setRoute={setRoute} />
         <div className='flex md:flex-row flex-col gap-2'>
@@ -52,7 +56,7 @@ export default function LuxHotToolItemPage({ params }) {
               <AiFillMoneyCollect size={32} />
             </div>
             <div className='center flex-wrap md:w-3/4 m-auto mt-2 gap-2'>
-              {type.map(type => (<button className='h-12 m-auto w-16 bg-black-800 text-white'>{type}</button>))}
+              {type.map(type => (<button key={type} className='h-12 m-auto w-16 bg-black-800 text-white'>{type}</button>))}
 
             </div>
             <div className='mt-2 '>
