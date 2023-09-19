@@ -4,11 +4,21 @@ import { NavigationEvents } from "@/app/Componets/NavigationEvents"
 import { AiFillMoneyCollect } from 'react-icons/ai'
 import EmblaCarouselThumb from '@/app/Componets/HomePage/CarouselThumb'
 import { Red_Hat_Text } from 'next/font/google'
+import { fetchProducts } from '@/app/myCodes/Stripe'
+
+const fetchData = async () => {
+  const data = await fetchProducts('LuxuryLace')
+  console.log(data[0].name.replace(/\s/g, ''))
+  return data
+}
 
 
+export async function generateStaticParams() {
+  const data = await fetchData()
 
-export function generateStaticParams() {
-  return [{ Item: 'wig1' }, { Item: 'wig2' }, { Item: 'wig3' }, { Item: 'wig4' }]
+  return (data.map(d => ({ Item: d.name.replace(/\s/g, '') })))
+
+  // return [{ Item: 'wig1' }, { Item: 'wig2' }, { Item: 'wig3' }, { Item: 'wig4' }]
 }
 const font1 = Red_Hat_Text({ subsets: ['latin'] })
 
