@@ -7,8 +7,7 @@ import { Red_Hat_Text } from 'next/font/google'
 import { fetchProducts } from '@/app/myCodes/Stripe'
 
 const fetchData = async () => {
-  const data = await fetchProducts('LuxuryLace')
-  console.log(data[0].name.replace(/\s/g, ''))
+  const data = await fetchProducts('HotTools')
   return data
 }
 
