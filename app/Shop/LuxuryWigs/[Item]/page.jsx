@@ -23,7 +23,6 @@ export default function LuxWigItemPage({ params }) {
   const itemData = useGetItemData(fetchData)
 
 
-
   return (
     <div>
       <Product forThis={params} itemData={itemData} />
