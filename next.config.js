@@ -11,7 +11,9 @@ module.exports = {
        'static.wixstatic.com',
         'www.divatress.com',
         'files.stripe.com',
-        'www.asteriahair.com'
+        'www.asteriahair.com',
+        'media.freestocktextures.com',
+        'img.freepik.com'
       ],
   },
 }

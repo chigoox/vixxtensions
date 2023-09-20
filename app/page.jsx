@@ -13,6 +13,7 @@ import RawBundlesImage from '../public/Images/RawBundles.jpeg'
 import RawLace from '../public/Images/RawLace.jpeg'
 import RawWig from '../public/Images/RawWig.jpeg'
 import RawTools from '../public/Images/RawTools.jpeg'
+import Link from "next/link";
 
 
 
@@ -39,10 +40,10 @@ export default async function Home() {
       </div>
 
       <div className=" mt-8 w-full ">
-        <h1 className="my-2 text-2xl text-center">SHOP BY CATEGORY</h1>
-        <div className="flex flex-wrap  m-auto h-80 relative">
+        <h1 className="my-6  border-4 w-fit m-auto border-dotted p-2 border-spacing-8 font-extrabold text-3xl text-center">SHOP BY CATEGORY</h1>
+        <div className="grid grid-cols-2 md:grid-cols-4  w-full h-80 relative">
           {category.map(category => (
-            <div className=" w-[50%] lg:w-[25%] lg:h-full  h-[50%] relative">
+            <Link href={`/Shop/${category.includes('Hot') ? 'HotTools' : category.replace(/\s/g, '')}`} className="  drop-shadow-md shadow-black m-auto overflow-hidden rounded-full md:w-[50%] md:h-[100%]  w-[90%] h-[90%] relative">
               <Image width='0' height='0' className='h-full w-full  object-cover'
                 src={category == 'Luxury Wigs' ? RawWig :
                   category == 'Luxury Lace' ? RawLace :
@@ -50,10 +51,10 @@ export default async function Home() {
                       category.includes('Hot Tools') ? RawTools :
                         ''
                 } alt="" />
-              <div className="absolute bottom-12 m-auto center w-full">
-                <h1 className="text-white text-center  w-32  opacity-75 bg-black">{category}</h1>
+              <div className="absolute top-0 m-auto h-full center w-full">
+                <h1 className="text-white text-2xl text-center center  w-full h-full  bg-opacity-50 bg-black">{category}</h1>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

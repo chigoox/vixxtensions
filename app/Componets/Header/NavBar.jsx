@@ -7,6 +7,7 @@ import { AiOutlineSearch } from 'react-icons/ai'
 import MenuButton from '../General/MobileMenuButton'
 import { Navigation, NavigationEvents } from "../NavigationEvents";
 import { category, siteName } from '@/app/META'
+import Image from 'next/image'
 
 const jost = Jost({
     weight: '400',
@@ -36,11 +37,16 @@ function NavBar() {
                 </div>
 
             </div >
-            <div className='center  bg-white  p-2'>
-
+            <div className='center  overflow-hidden bg-white relative  p-2'>
 
                 <div className={jost.className}>
-                    <h1 className={`text-center  font-bold text-3xl `}>{siteName}</h1>
+
+                    <div className={' h-8 w-96  border-red-700 absolute'}>
+                        <h1 className={`text-center absolute top-0 h-8 w-full z-[9999] font-bold text-3xl `}>{siteName}</h1>
+                    </div>
+                    <Image height={0} width={600} src={'https://img.freepik.com/free-photo/white-painted-wall-texture-background_53876-138197.jpg?w=2000'} alt={''} />
+
+
                 </div>
             </div>
             <nav className={`fixed  trans md:top-0 -bottom-2 items-center md:justify-evenly justify-center w-full flex md:flex-row  gap-4 md:gap-0 ${showMobileMenu ? 'h-16 scale-100' : 'h-0 p-0'} rounded-t-2xl md:rounded-none  bg-black-900 text-white md:text-black md:bg-white group   md:h-8 z-[99999]`}>

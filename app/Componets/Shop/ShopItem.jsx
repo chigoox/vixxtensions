@@ -9,12 +9,12 @@ function ShopItem({ shopItems, location = 'HotTools' }) {
     // const stars = Array.apply(null, Array(rating))
 
     return (
-        <Link href={`/Shop/${location}/${name.replace(/\s/g, '')}`} className='h-[30rem] md:h-[25rem]  md:w-[20rem] m-auto my-2 w-80 bg-black relative text-white font-thin rounded-2xl overflow-hidden'>
+        <Link href={`/Shop/${location}/${name.replace(/\s/g, '')}`} className='h-[30rem] md:h-[25rem]  md:w-[20rem] m-auto my-2 w-80 border border-gray-300 relative text-black font-thin rounded-2xl overflow-hidden'>
             <Image fill src={images[0]} className='h-[80%] w-full object-cover' alt="" />
-            <div className='h-[20%] bg-black absolute bottom-0  w-full center-col'>
-                <h1 className='text-2xl'>{name}</h1>
+            <div className='h-[20%] bg-gray-50 absolute bottom-0  w-full center-col'>
+                <h1 className='text-xl border p-1 w-[95%] text-center max-h-12 max-w'>{name}</h1>
                 <div className=' w-20'>
-                    <span className='font-thin'>from</span><span className='text-xl'> {price}</span>
+                    <span className='font-light'>from</span><span className='text-xl font-bold'> {price}</span>
 
                 </div>
 
