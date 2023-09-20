@@ -9,9 +9,9 @@ function ShopItem({ shopItems, location = 'HotTools', onShopPage }) {
     // const stars = Array.apply(null, Array(rating))
 
     return (
-        <Link href={`/Shop/${location}/${name.replace(/\s/g, '')}`} className='h-[20rem] w-[11rem] md:h-[25rem]  md:w-[20rem] m-auto my-2 shadow-sm shadow-gray-300  border border-gray-100 relative text-black font-thin rounded-lg overflow-hidden'>
+        <Link href={`/Shop/${location}/${name.replace(/\s/g, '')}`} className='h-[20rem] w-[11rem] max-h-[25rem] md:h-[25rem]  md:w-[20rem] m-auto my-2 shadow-sm shadow-gray-300  border border-gray-100 relative text-black font-thin rounded-lg overflow-hidden'>
             <Image fill src={images[0]} className='h-[60%] w-full object-cover' alt="" />
-            <div className='h-[40%] md:h-[20%] bg-gray-50 absolute bottom-0  w-full center-col'>
+            <div className='h-[40%] md:h-[20%] bg-gray-50 absolute bottom-0  w-full flex items-center flex-col p-2'>
                 <h1 className='md:text-xl text-sm border p-1 w-[95%] text-center max-h-12 max-w'>{name}</h1>
                 <div className=' w-full center gap-1'>
                     <span className='font-light'>from</span><span className='text-xl font-bold'>{price}</span>
