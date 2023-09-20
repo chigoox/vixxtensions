@@ -21,15 +21,15 @@ export const EmblaCarousel = ({ img1, img2, img3, img4, rounded, noArrow, dim, t
             <div className={`embla__slide ${rounded ? 'h-[5rem]' : 'h-full w-full'}   relative`}>
                 {text && <div className='text-center w-full h-full text-4xl absolute center text-white font-bold z-[50] drop-shadow-sm shadow-black shadow-md'>{text}</div>}
                 {dim && <div className='bg-opacity-25  h-full w-full bg-black absolute top-0'></div>}
-                <Image quality={100} objectFit='cover' className={`object-cover ${noZoom ? '' : 'zoom'} h-full  object-cover`} src={img} alt="" />
+                <Image quality={100} objectFit='cover' className={`object-cover ${noZoom ? '' : ''} h-full  object-cover`} src={img} alt="" />
             </div>
 
         )
     }
 
     return (
-        <div className="embla relative z-0 shadow-md shadow-black">
-            <div className={`embla__viewport bg-[#EEEFF0]  ${rounded ? 'h-[5rem]' : 'lg:h-[40rem] h-[60rem]'}  overflow-hidden`} ref={emblaRef}>
+        <div className="embla relative z-0 shadow-md shadow-black ">
+            <div className={`embla__viewport bg-[#EEEFF0] zoom ${rounded ? 'h-[5rem]' : 'lg:h-[40rem] h-[60rem]'}  overflow-hidden`} ref={emblaRef}>
                 <div className="embla__container h-full w-[100vw] relative   gap-4">
                     {img1 && <Slide rounded={rounded} img={img1} text={text} dim={dim} noZoom={noZoom} />}
                     {img2 && <Slide rounded={rounded} img={img2} text={text2} dim={dim} noZoom={noZoom} />}

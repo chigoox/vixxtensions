@@ -34,7 +34,7 @@ export default async function Home() {
 
       <div className=" mt-8 w-full ">
         <h1 className="my-2 text-2xl text-center">Best Sellers</h1>
-        <div className="grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  w-full m-auto">
+        <div className="grid grid-flow-row grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  w-full m-auto">
           {bestseller.map(shopItems => (<ShopItem shopItems={shopItems} />))}
         </div>
       </div>

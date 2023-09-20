@@ -7,10 +7,9 @@ export const ProductsList = async ({ category }) => {
         limit: 25,
         query: `active:\'true\' AND metadata[\'category\']:\'${category}\'`,
     });
-    console.log(prices)
     return (
         <div className='mt-12'>
-            <div className='grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  w-full m-auto'>
+            <div className='grid grid-flow-row grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  w-full m-auto'>
                 {prices.data.map(product => {
                     return (
                         <ShopItem key={product} location={category} shopItems={product} />
