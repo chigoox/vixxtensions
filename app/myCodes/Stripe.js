@@ -1,7 +1,7 @@
 import axios from 'axios'
 export const fetchProducts = async (category, setterfunction = null) => {
     const { data } = await axios.post('/api/fetchProducts', {
-      category: category
+      category: category ? category : ''
     },
       {
         headers: {

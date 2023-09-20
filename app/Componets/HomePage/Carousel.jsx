@@ -28,7 +28,7 @@ export const EmblaCarousel = ({ img1, img2, img3, img4, rounded, noArrow, dim, t
     }
 
     return (
-        <div className="embla relative z-0 shadow-md shadow-black ">
+        <div className="embla relative z-0 shadow-md shadow-gray-100 ">
             <div className={`embla__viewport bg-[#EEEFF0] zoom ${rounded ? 'h-[5rem]' : 'lg:h-[40rem] h-[60rem]'}  overflow-hidden`} ref={emblaRef}>
                 <div className="embla__container h-full w-[100vw] relative   gap-4">
                     {img1 && <Slide rounded={rounded} img={img1} text={text} dim={dim} noZoom={noZoom} />}

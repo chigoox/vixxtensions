@@ -1,11 +1,21 @@
+import { fetchProducts } from "@/app/myCodes/Stripe"
 import { useEffect, useState } from "react"
 
-export function useGetItemData(fetchData) {
+
+
+const fetchData = async (fetchThis) => {
+  const data = await fetchProducts(fetchThis)
+  return data
+}
+
+
+
+export function useGetItemData(_fetchData) {
     const [itemData, setItemData] = useState()
 
   useEffect(() => {
     const getData = async () => {
-      setItemData(await fetchData())
+      typeof(_fetchData) == String  ? setItemData(await fetchData(_fetchData)) : setItemData(await _fetchData())
     }
     getData()
 
