@@ -37,14 +37,14 @@ function NavBar() {
                 </div>
 
             </div >
-            <div className='center h-20 overflow-hidden bg-white relative '>
+            <div className='center h-20 overflow-hidden bg-white relative m-auto'>
 
                 <div className={jost.className}>
 
-                    <div className={' h-8 w-96 border top-[25%] right-[25%] absolute m-auto'}>
-                        <h1 className={`text-center   border-black h-8 w-full font-bold text-3xl `}>{siteName}</h1>
+                    <div className={' h-8 w-full  top-[25%] absolute m-auto'}>
+                        <h1 className={`text-center   border-black border-y font-bold text-3xl `}>{siteName}</h1>
                     </div>
-                    <Image height={30} width={1000} src={'https://img.freepik.com/free-photo/white-painted-wall-texture-background_53876-138197.jpg?w=2000'} alt={''} />
+                    <Image height={30} width={2000} src={'https://img.freepik.com/free-photo/white-painted-wall-texture-background_53876-138197.jpg?w=2000'} alt={''} />
 
 
                 </div>
