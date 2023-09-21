@@ -1,6 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { AiFillStar } from 'react-icons/ai'
+import { Grandstander, Dosis } from 'next/font/google'
+const font = Grandstander({ subsets: ['latin'], weight: ['400'] })
+const font2 = Dosis({ subsets: ['latin'], weight: ['400'] })
 
 function ShopItem({ shopItems, location = 'HotTools', onShopPage }) {
     console.log(shopItems)
@@ -9,12 +12,15 @@ function ShopItem({ shopItems, location = 'HotTools', onShopPage }) {
     // const stars = Array.apply(null, Array(rating))
 
     return (
-        <Link href={`/Shop/${location}/${name.replace(/\s/g, '')}`} className='h-[20rem] w-[11rem] md:h-[30rem]  md:w-[20rem] m-auto my-2 shadow-sm shadow-gray-300  border border-gray-100 relative text-black font-thin rounded-lg overflow-hidden'>
+        <Link href={`/Shop/${location}/${name.replace(/\s/g, '')}`} className='h-[20rem] w-[11rem] md:h-[33rem]  md:w-[20rem] m-auto my-2 shadow-sm shadow-gray-300  border border-gray-100 relative text-black rounded-lg overflow-hidden'>
             <Image fill src={images[0]} className='h-[70%] w-full object-cover' alt="" />
             <div className='h-[30%] md:h-[20%] bg-gray-50 absolute bottom-0  w-full flex items-center flex-col p-2'>
-                <h1 className='md:text-xl text-sm font-semibold border p-1 w-[95%] text-center max-h-12 max-w'>{name}</h1>
+
+                <div className={'font.className'}>
+                    <h1 className='md:text-xl text-sm   p-1 w-[95%] text-center max-h-16 max-w'>{name}</h1>
+                </div>
                 <div className=' w-full center gap-1'>
-                    <span className='font-light'>from</span><span className='text-xl font-bold'>{price}</span>
+                    <span className='font-extralight'>from</span><span className='text-xl font-bold'><h1 className={font2.className}>{price}</h1></span>
 
                 </div>
 
