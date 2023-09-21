@@ -1,4 +1,4 @@
-import ShopItem from '@/app/Componets/Shop/ShopItem';
+import ShopItem from '@/app/Shop/Componets/ShopItem';
 import Stripe from 'stripe'
 
 export const ProductsList = async ({ category }) => {

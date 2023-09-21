@@ -3,7 +3,7 @@ import Image from "next/image";
 import Script from "next/script";
 import EmblaCarousel from "./Componets/HomePage/Carousel";
 import { EmblaCarousel2 } from "./Componets/HomePage/Carousel copy";
-import ShopItem from "./Componets/Shop/ShopItem";
+import ShopItem from "./Shop/Componets/ShopItem";
 import { bestseller, category } from "./META";
 import IGFeed from "./Componets/HomePage/IGFeed";
 import { revalidatePath } from "next/cache";

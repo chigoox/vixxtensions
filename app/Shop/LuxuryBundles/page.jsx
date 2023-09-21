@@ -2,18 +2,14 @@ import EmblaCarousel from '@/app/Componets/HomePage/Carousel'
 import React from 'react'
 import ProductsList from '../Componets/ProductsList'
 import luxBundles from '../../../public/Images/RawBundles.jpeg'
+import ShopCategoryTitle from '../Componets/ShopCategoryTitle'
 
 function LuxBundles() {
     return (
         <div className=' relative min-h-screen flex-col '>
-            <EmblaCarousel
-                text={'Luxury Bundles'}
-                dim={true}
-                noZoom={true}
-                img1={luxBundles}
-                rounded={true} noArrow={true}
-            />
 
+
+            <ShopCategoryTitle title={'Luxury Bundles'} />
             <ProductsList category={'LuxuryBundles'} />
 
         </div>

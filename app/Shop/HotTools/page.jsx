@@ -4,6 +4,7 @@ import ProductsList from '../Componets/ProductsList'
 import hotTools from '../../../public/Images/RawTools.jpeg'
 import Image from 'next/image'
 import { category } from '@/app/META'
+import ShopCategoryTitle from '../Componets/ShopCategoryTitle'
 
 
 async function HotTools() {
@@ -11,7 +12,7 @@ async function HotTools() {
 
     return (
         <div className=' relative min-h-screen flex-col '>
-            <h1></h1>
+
 
             <ShopCategoryTitle title={'Hot Tools'} />
             <ProductsList category={'HotTools'} />
