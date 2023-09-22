@@ -41,10 +41,13 @@ function NavBar() {
 
                 <div className={jost.className}>
 
-                    <div className={' h-8 w-full  top-[25%] absolute m-auto'}>
-                        <h1 className={`text-center   border-black border-y font-bold text-3xl `}>{siteName}</h1>
+                    <div className={' h-full bg-black bg-opacity-75 w-full top-0 center absolute right-0'}>
+                        <h1 className={`text-center text-white font-bold text-3xl `}>{siteName}</h1>
                     </div>
-                    <Image height={30} width={2000} src={'https://img.freepik.com/free-photo/white-painted-wall-texture-background_53876-138197.jpg?w=2000'} alt={''} />
+                    <iframe width="560" height="315"
+                        src="https://www.youtube.com/embed/83h5XA6LYa4?autoplay=1&mute=1&controls=0&loop=1">
+                    </iframe>
+                    {/* <Image height={30} width={2000} src={'https://img.freepik.com/free-photo/white-painted-wall-texture-background_53876-138197.jpg?w=2000'} alt={''} /> */}
 
 
                 </div>
