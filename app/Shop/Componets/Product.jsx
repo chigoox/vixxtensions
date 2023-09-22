@@ -18,6 +18,8 @@ const Product = ({ forThis, itemData }) => {
     const { Item } = forThis
     const nameOfRouteWithOutSpace = Item
 
+    console.log(forThis)
+
     const thisProduct = itemData?.map(item => {
         if (item.name.replace(/\s/g, '') == nameOfRouteWithOutSpace) return item
     }).filter(Boolean)[0]
