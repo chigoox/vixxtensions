@@ -9,7 +9,7 @@ export const ProductsList = async ({ category, limit, list }) => {
     });
     return (
         <div className='mt-12'>
-            <div className={` ${list ? 'flex overflow-x-scroll gap-2 p-2 justify-start items-start  hidescroll border-black   w-full' : 'grid grid-flow-row grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 '} w-full m-auto`}>
+            <div className={` ${list ? 'flex overflow-x-scroll gap-2 p-2 justify-start items-start  hidescroll border-black   w-full' : 'grid grid-flow-row grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 tems-center justify-items-center'} w-full m-auto`}>
                 {prices.data.map(product => {
                     return (
                         <ShopItem key={product} location={category} shopItems={product} />
