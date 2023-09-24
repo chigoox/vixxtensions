@@ -65,7 +65,7 @@ function NavBar() {
 
                 </div>
             </div>
-            <nav className={`fixed  trans md:top-0 -bottom-2 items-center md:justify-evenly justify-evenly w-full flex md:flex-row  gap-4 md:gap-0 ${showMobileMenu ? 'h-16 scale-100 ' : showCart ? '' : 'h-0 p-0 '} ${showCart ? 'h-16 scale-100 w-[50%] left-[50%] ' : 'w-[100%] left-[0%] '} border rounded-t-2xl md:rounded-none  bg-black-900 text-white md:text-black md:bg-white group   md:h-8 z-[99999]`}>
+            <nav className={`fixed  trans md:top-0 -bottom-2 items-center md:justify-evenly justify-evenly w-full flex md:flex-row overflow-hidden  gap-4 md:gap-0 ${showMobileMenu ? 'h-16 scale-100 ' : showCart ? '' : 'h-0 p-0 '} ${showCart ? 'h-16 scale-100 w-[25%] left-[50%] ' : 'w-[100%] left-[0%] '} border rounded-t-2xl md:rounded-none  bg-black-900 text-white md:text-black md:bg-white group   md:h-8 z-[99999]`}>
                 {!showCart && <button onClick={toggleMobileMenu} className={`absolute -top-[3.7rem] bg-black rounded-full h-12 w-12 center p-2 ${showCart ? '' : ''}`}>
                     <MenuButton menuOpen={showMobileMenu} />
                 </button>}
