@@ -65,10 +65,10 @@ function NavBar() {
 
                 </div>
             </div>
-            <nav className={`fixed   md:top-0 -bottom-2 items-center md:justify-evenly justify-center w-full flex md:flex-row  gap-4 md:gap-0 ${showMobileMenu ? 'h-16 scale-100 trans' : showCart ? '' : 'h-0 p-0 trans'} ${showCart ? 'h-16 scale-100 w-[50%] right-0 trans' : 'w-[100%] left-0 '} rounded-t-2xl md:rounded-none  bg-black-900 text-white md:text-black md:bg-white group   md:h-8 z-[99999]`}>
-                <button onClick={toggleMobileMenu} className={`absolute -top-[3.7rem] bg-black rounded-full h-12 w-12 center p-2 ${showCart ? '-left-3' : ''}`}>
+            <nav className={`fixed   md:top-0 -bottom-2 items-center md:justify-evenly justify-center w-full flex md:flex-row  gap-4 md:gap-0 ${showMobileMenu ? 'h-16 scale-100 ' : showCart ? '' : 'h-0 p-0 '} ${showCart ? 'h-16 scale-100 w-[50%] right-0 ' : 'w-[100%] left-0 '} rounded-t-2xl md:rounded-none  bg-black-900 text-white md:text-black md:bg-white group   md:h-8 z-[99999]`}>
+                {!showCart && <button onClick={toggleMobileMenu} className={`absolute -top-[3.7rem] bg-black rounded-full h-12 w-12 center p-2 ${showCart ? '' : ''}`}>
                     <MenuButton menuOpen={showMobileMenu} />
-                </button>
+                </button>}
 
                 <button onClick={toggleCart} className={`trans bg-black rounded-full p-2 center  gap-4 absolute flex -top-[3.7rem] ${showCart ? 'right-40' : 'right-2'}`}>
                     {!showCart ? <AiOutlineShoppingCart size={32} /> : <AiOutlineClose size={32} />}
