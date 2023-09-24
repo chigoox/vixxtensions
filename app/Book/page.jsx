@@ -25,7 +25,6 @@ function Booking({ myPackage }) {
     const [adminDATA, setAdminDATA] = useState({})
     const reservations = adminDATA?.allRes ? adminDATA?.allRes : []
     const [booktype, setBooktype] = useState()
-    console.log(booktype)
 
 
     const [bookingInfo, setBookingInfo] = useState({})

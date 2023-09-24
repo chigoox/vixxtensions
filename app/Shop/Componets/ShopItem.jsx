@@ -9,7 +9,6 @@ function ShopItem({ shopItems, location = 'HotTools', onShopPage }) {
     const { name, images, metadata } = shopItems ? shopItems : {}
     const { price } = metadata
     // const stars = Array.apply(null, Array(rating))
-    console.log(name.length)
     return (
         <Link href={`/Shop/${location}/${name.replace(/\s/g, '')}`} className='h-[20rem] flex-shrink-0  w-[11rem] md:h-[33rem]  md:w-[20rem]  my-2 shadow-sm shadow-gray-300  border border-gray-100 relative text-black rounded-lg overflow-hidden'>
             <Image fill src={images[0]} className='h-[70%] w-full object-cover' alt="" />
@@ -19,7 +18,7 @@ function ShopItem({ shopItems, location = 'HotTools', onShopPage }) {
                     <h1 className='md:text-xl text-sm   p-1 w-[95%] text-center max-h-10 overflow-hidden md:max-h-16 max-w'>{name.substr(0, 50)}{name.length > 50 ? '...' : ''}</h1>
                 </div>
                 <div className=' w-full center gap-1'>
-                    <span className='font-extralight'>from</span><span className='text-xl font-bold'><h1 className={font2.className}>{price}</h1></span>
+                    <span className='font-extralight text-sm'>from</span><span className='text-2xl font-semibold'><h1 className={font2.className}>{price}</h1></span>
 
                 </div>
 

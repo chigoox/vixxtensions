@@ -1,10 +1,9 @@
+import { CartWrapper } from '@/StateManager/CartContext'
 import Footer from './Componets/Footer'
 import NavBar from './Componets/Header/NavBar'
 import { siteName } from './META'
 import './globals.css'
 import { Inter, Jost } from 'next/font/google'
-import {useScrollPosition} from 'next'
-import Script from 'next/script'
 
 const inter = Inter({ subsets: ['latin'] })
 const jost = Jost({ subsets: ['latin'] })
@@ -23,9 +22,11 @@ export default function RootLayout({ children }) {
       </head>
 
       <body className={jost.className}>
-        <NavBar />
+        <CartWrapper>
+          <NavBar />
         {children}
         <Footer />
+        </CartWrapper>
         </body>
     </html>
   )

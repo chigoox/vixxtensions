@@ -5,6 +5,7 @@ import { AiFillMoneyCollect } from 'react-icons/ai'
 import EmblaCarouselThumb from '@/app/Componets/HomePage/CarouselThumb'
 import { Red_Hat_Text } from 'next/font/google'
 import { fetchPricesFor } from '@/app/myCodes/Stripe'
+import { useCartContext } from '@/StateManager/CartContext'
 
 const font1 = Red_Hat_Text({ subsets: ['latin'] })
 
@@ -18,7 +19,7 @@ const Product = ({ forThis, itemData }) => {
     const { Item } = forThis
     const nameOfRouteWithOutSpace = Item
 
-    console.log(forThis)
+
 
     const thisProduct = itemData?.map(item => {
         if (item.name.replace(/\s/g, '') == nameOfRouteWithOutSpace) return item
@@ -86,27 +87,8 @@ const Product = ({ forThis, itemData }) => {
 
                         <div className={font1.className}>
                             <h1 className='text-2xl font-extralight text-white bg-black-800'>Description</h1>
-                            <h1 className='p-2'>
-                                Lorem ipsum dolor sit amet,
-                                consectetuer adipiscing elit.
-                                Aenean commodo ligula eget dolor.
-                                Aenean massa. Cum sociis natoque
-                                penatibus et magnis dis parturient
-                                montes, nascetur ridiculus mus.
-                                Donec quam felis, ultricies nec,
-                                pellentesque eu, pretium quis,
-                                sem. Nulla consequat massa quis
-                                enim.
-                            </h1>
-                            <h1 className='mt-4 p-2'>
-                                Donec pede justo, fringilla vel,
-                                aliquet nec, vulputate eget,
-                                arcu. In enim justo, rhoncus ut,
-                                imperdiet a, venenatis vitae, justo.
-                                Nullam dictum felis eu pede mollis pretium.
-                                Integer tincidunt. Cras dapibus. Vivamus elementum
-                                semper nisi. Aenean vulputate eleifend tellus.
-                            </h1>
+                            <h1>{desc}</h1>
+                            <h1>{feats}</h1>
 
 
                         </div>

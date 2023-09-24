@@ -7,7 +7,7 @@ import ShopItem from "./Shop/Componets/ShopItem";
 import { bestseller, category } from "./META";
 import IGFeed from "./Componets/HomePage/IGFeed";
 import { revalidatePath } from "next/cache";
-import VIXBAN1 from "../public/Images/VIXBAN1.webp";
+import VIXBAN1 from "../public/Images/ban1.jpg";
 import VIXBAN2 from "../public/Images/VIXBAN2.webp";
 import RawBundlesImage from '../public/Images/RawBundles.jpeg'
 import RawLace from '../public/Images/RawLace.jpeg'
