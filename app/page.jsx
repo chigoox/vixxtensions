@@ -7,7 +7,9 @@ import ShopItem from "./Shop/Componets/ShopItem";
 import { bestseller, category } from "./META";
 import IGFeed from "./Componets/HomePage/IGFeed";
 import { revalidatePath } from "next/cache";
-import VIXBAN1 from "../public/Images/ban1.jpg";
+import VIXBAN1 from "../public/Images/BAN1.jpg";
+import VIXBAN4 from "../public/Images/BAN2.jpg";
+import VIXBAN3 from "../public/Images/BAN3.jpg";
 import VIXBAN2 from "../public/Images/VIXBAN2.webp";
 import RawBundlesImage from '../public/Images/RawBundles.jpeg'
 import RawLace from '../public/Images/RawLace.jpeg'
@@ -28,6 +30,8 @@ export default async function Home() {
       <EmblaCarousel
         img1={VIXBAN2}
         img2={VIXBAN1}
+        img3={VIXBAN3}
+        img4={VIXBAN4}
       />
 
 
