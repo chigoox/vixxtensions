@@ -70,7 +70,7 @@ function NavBar() {
                     <MenuButton menuOpen={showMobileMenu} />
                 </button>}
 
-                <button onClick={toggleCart} className={`trans bg-black rounded-full p-2 center  gap-4 absolute flex -top-[3.7rem] ${showCart ? 'right-[90%]' : 'right-[2%]'}`}>
+                <button onClick={toggleCart} className={`trans bg-black rounded-full p-2 center  gap-4 absolute flex -top-[3.7rem] ${showCart ? 'right-[88%]' : 'right-[2%]'}`}>
                     {!showCart ? <AiOutlineShoppingCart size={32} /> : <AiOutlineClose size={32} />}
                 </button>
 
