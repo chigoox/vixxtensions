@@ -51,3 +51,14 @@ export function disableScroll(enable = true, name = "scroll-able") {
 }
 
 export const getRand = (max) => { return Math.floor(Math.random() * max) + 1; }
+
+export const filterObject = (obj, filterFunc) => {
+    Object.filter = (obj, predicate) => 
+        Object.keys(obj)
+              .filter( key => predicate(obj[key]) )
+              .reduce( (res, key) => Object.assign(res, { [key]: obj[key] }), {} );
+  
+    var filtered = Object.filter(obj, filterFunc); 
+    return(filtered);
+
+}

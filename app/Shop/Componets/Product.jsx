@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { AiFillMoneyCollect } from 'react-icons/ai'
+import { AiFillAlipayCircle, AiFillMoneyCollect } from 'react-icons/ai'
 import EmblaCarouselThumb from '@/app/Componets/HomePage/CarouselThumb'
 import { Red_Hat_Text } from 'next/font/google'
 import { fetchPricesFor } from '@/app/myCodes/Stripe'
@@ -56,6 +56,20 @@ const Product = ({ forThis, itemData }) => {
     }, [thisProduct])
 
 
+    const PayOptions = ({ price, service }) => {
+        return (
+            <Skeleton className={'rounded-xl w-fit flex mt-2 gap-2 relative p-2'} isLoaded={price}>
+                <div className='font-thin text-sm md:text-base'>or 4 interest-free payments of <span className=' font-normal'>${price / 4}</span> with   </div>
+                <div className='absolute top-0 -right-4'>
+                    {service == 'afterPay' && <AiFillMoneyCollect size={32} />}
+                    {service == 'klanr' && <AiFillAlipayCircle size={32} />}
+
+                </div>
+            </Skeleton>
+
+        )
+    }
+
 
 
     return (
@@ -64,24 +78,22 @@ const Product = ({ forThis, itemData }) => {
             <div>
 
                 <div className='flex md:flex-row flex-col gap-2'>
-                    <Skeleton className='h-auto' isLoaded={thisProduct}>
+                    <Skeleton className='h-fit' isLoaded={thisProduct}>
                         <EmblaCarouselThumb options={{}} slides={slides} />
                     </Skeleton>
 
 
 
                     <div className='h-fit md:w-1/2 p-2 pt-8'>
-                        <h1 className='text-3xl md:text-6xl font-bold'>{name}</h1>
+                        <Skeleton isLoaded={name} className='rounded'>
+                            <h1 className='text-3xl md:text-6xl font-bold'>{name}</h1>
+                        </Skeleton>
                         <span className='font-thin'>from</span>
-                        <span className=' font-light text-2xl'><Skeleton isLoaded={price} className='w-fit'>${price}.00</Skeleton></span>
-                        <div className='flex mt-2 gap-2'>
-                            <h1 className='font-thin text-sm md:text-base'>or 4 interest-free payments of <span className=' font-normal'>${price / 4}</span> with</h1>
-                            <AiFillMoneyCollect size={32} />
-                        </div>
-                        <div className='flex gap-2'>
-                            <h1 className='font-thin text-sm md:text-base'>or 4 interest-free payments of <span className=' font-normal'>${price / 4}</span> with</h1>
-                            <AiFillMoneyCollect size={32} />
-                        </div>
+                        <Skeleton isLoaded={price} className='w-fit flex rounded-full'>
+                            <span className=' font-light text-2xl'>${price}.00</span>
+                        </Skeleton>
+                        <PayOptions price={price} service={'klanr'} />
+                        <PayOptions price={price} service={'afterPay'} />
                         <div className='center flex-wrap md:w-3/4 m-auto mt-2 gap-2'>
                             {/* {prices && variants.map(variant => (<button key={variant.id} className='h-12 m-auto w-32 bg-black-800 text-white'>{variant.nickname}</button>))} */}
                             <Select
@@ -117,7 +129,7 @@ const Product = ({ forThis, itemData }) => {
 
                 </div>
             </div>
-        </main>
+        </main >
     )
 }
 

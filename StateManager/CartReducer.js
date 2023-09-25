@@ -1,26 +1,44 @@
+import { filterObject } from "@/app/myCodes/Util";
+
 export const initialCartState = {
-   total: 0,
    lineItems: []
 };
 export const CartReducer = (state, action) => {
 
-
-   switch (action.type){
-    case "SAVE_CART": {
-         return action.value
+    switch (action.type){
+        case "SAVE_CART": {
+            return action.value
       }
       case "ADD_TO_CART": {
-        console.log(state.lineItems)
-        console.log(action.value)
+          const stateQTY = state?.lineItems[action.value.priceID]?.Qty ? state?.lineItems[action.value.priceID].Qty : 0
+          const actionQTY = action?.value?.Qty 
+          console.log(state?.lineItems[action.value.priceID])
          return {
             ...state,
-            lineItems: {...state.lineItems,  [action.value.priceID]:action.value},
+            lineItems: {...state.lineItems,  [action.value.priceID]:{...action.value, Qty: actionQTY + stateQTY}},
+         };
+      }
+      case "SUB_FROM_CART": {
+          const stateQTY = state?.lineItems[action.value.priceID]?.Qty ? state?.lineItems[action.value.priceID].Qty : 0
+          const actionQTY = action?.value?.Qty 
+          console.log(state?.lineItems[action.value.priceID])
+         return {
+            ...state,
+            lineItems: {...state.lineItems,  [action.value.priceID]:{...action.value, Qty: (stateQTY - actionQTY < 0) ? 0 : stateQTY - actionQTY  }},
+         };
+      }
+      case "SET_CART": {
+          const stateQTY = state?.lineItems[action.value.priceID]?.Qty ? state?.lineItems[action.value.priceID].Qty : 0
+          const actionQTY = action?.value?.Qty 
+         return {
+            ...state,
+            lineItems: {...state.lineItems,  [action.value.priceID]:{...action.value, Qty: actionQTY  }},
          };
       }
       case "REMOVE_FROM_CART": {
          return {
             ...state,
-            lineItems: {...state.lineItems, [action.value.priceID]:{...action.value, Qty: action.value.Qty + state.lineItems.priceID.Qty}},
+            lineItems: filterObject(state.lineItems, items => {console.log(items); return(items != action.value)}),
          };
       }
        default:
