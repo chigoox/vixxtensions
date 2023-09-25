@@ -15,7 +15,7 @@ export const CartReducer = (state, action) => {
           console.log(state?.lineItems[action.value.priceID])
          return {
             ...state,
-            lineItems: {...state.lineItems,  [action.value.priceID]:{...action.value, Qty: actionQTY + stateQTY}},
+            lineItems: {...state.lineItems,  [action.value.priceID]:{...action.value, Qty: Number(actionQTY) + Number(stateQTY)}},
          };
       }
       case "SUB_FROM_CART": {
@@ -39,6 +39,12 @@ export const CartReducer = (state, action) => {
          return {
             ...state,
             lineItems: filterObject(state.lineItems, items => {console.log(items); return(items != action.value)}),
+         };
+      }
+      case "EMPTY_CART": {
+         return {
+            ...state,
+            lineItems: {},
          };
       }
        default:

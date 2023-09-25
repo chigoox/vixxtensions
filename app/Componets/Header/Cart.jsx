@@ -3,6 +3,7 @@ import { checkout } from "@/app/myCodes/Stripe"
 import Image from "next/image"
 import { useCartContext } from "@/StateManager/CartContext";
 import ItemQTYButton from "../../Shop/Componets/ItemQTYButton";
+import { DeleteIcon, Trash2Icon } from "lucide-react";
 
 
 function Cart({ showCart }) {
@@ -13,11 +14,14 @@ function Cart({ showCart }) {
     const RemoveFromCart = (itemRemove) => {
         dispatch({ type: "REMOVE_FROM_CART", value: itemRemove })
     }
-    console.log(checkOutItems)
 
     return (
         <div className={`fixed z-[99999] overflow-hidden md:top-10  trans right-0 ${showCart ? 'w-[50vw] p-2' : 'w-[0] P-0'} h-[100vh] bg-black`}>
-            <h1 className="text-white text-center text-2xl font-bold">Cart</h1>
+            <div className="center gap-2">
+                <h1 className="text-white text-center text-2xl font-bold">Cart</h1>
+                <button onClick={() => { dispatch({ type: "EMPTY_CART", value: null }) }}><Trash2Icon color="red" /></button>
+
+            </div>
             <div className=" h-[80%] mb-4 m-auto  hidescroll overflow-y-scroll py-2 start-col gap-1">
                 {Object.values(lineItems).map(item => {
                     return (
@@ -36,14 +40,16 @@ function Cart({ showCart }) {
 
                             </div>
                             <button onClick={() => { RemoveFromCart(item) }} className="h-6 rounded-t-md  w-full center bottom-0  absolute">
-                                <h1 className="font-semibold w-24 w rounded-t  text-red-500 bg-gray-600">X</h1>
+                                <div className="font-semibold w-24 w rounded-t center text-red-500 bg-gray-600"><Trash2Icon /></div>
                             </button>
-                            <ItemQTYButton product={item} />
+                            <div className={'text-black my-8'}>
+                                <ItemQTYButton product={item} />
+                            </div>
                         </div>
                     )
                 })}
 
-            </div>
+            </div >
 
             <div className="center">
                 <button onClick={(e) => { checkout(e, checkOutItems) }} className="w-3/4 h-12 bg-white rounded hover:text-lg trans">
@@ -52,7 +58,7 @@ function Cart({ showCart }) {
 
             </div>
 
-        </div>
+        </div >
     )
 }
 
