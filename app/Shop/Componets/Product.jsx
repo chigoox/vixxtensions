@@ -5,8 +5,9 @@ import { AiFillMoneyCollect } from 'react-icons/ai'
 import EmblaCarouselThumb from '@/app/Componets/HomePage/CarouselThumb'
 import { Red_Hat_Text } from 'next/font/google'
 import { fetchPricesFor } from '@/app/myCodes/Stripe'
-import ItemQTYButton from '@/app/Componets/Header/Componets/ItemQTYButton'
-import { Skeleton } from "@nextui-org/react";
+import ItemQTYButton from '@/app/Shop/Componets/ItemQTYButton'
+import { Select, SelectItem, Skeleton } from "@nextui-org/react";
+import { useCartContext } from '@/StateManager/CartContext'
 
 const font1 = Red_Hat_Text({ subsets: ['latin'] })
 
@@ -15,10 +16,10 @@ const fetchData = async (name) => {
     return data
 }
 
-
 const Product = ({ forThis, itemData }) => {
     const { Item } = forThis
     const nameOfRouteWithOutSpace = Item
+    const { state, dispatch } = useCartContext()
 
 
 
@@ -26,30 +27,34 @@ const Product = ({ forThis, itemData }) => {
         if (item.name.replace(/\s/g, '') == nameOfRouteWithOutSpace) return item
     }).filter(Boolean)[0]
 
-    const [prices, setPrices] = useState({})
-    useEffect(() => {
-        const getData = async () => {
-            setPrices(await fetchData(Item))
-        }
-        getData()
-
-    }, [])
-
     const price = Number(thisProduct?.metadata?.price.replace('$', ''))
     const name = thisProduct?.name
     const slides = thisProduct?.images
     const desc = thisProduct?.description
     const feats = thisProduct?.features
 
+    const [prices, setPrices] = useState({})
+    const [itemToCheckOut, setItemToCheckOut] = useState({ priceId: 0, Qty: 0, images: [] })
+    const addToCart = () => {
+        if (itemToCheckOut.priceId && itemToCheckOut.Qty > 0) dispatch({ type: "ADD_TO_CART", value: itemToCheckOut })
+    }
 
-    const type = ['16in straight', '18in straight', '19in straight', '16in wavy', '18in wavy', '19in wavy']
-    /*  const slides = [
-         'https://images.unsplash.com/photo-1694875464499-334d2dc113a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1913&q=80',
-         'https://images.unsplash.com/photo-1694901555616-d7b2b33e6406?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1888&q=80',
-         'https://images.unsplash.com/photo-1692698921100-e31dc7453d4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80',
-         'https://images.unsplash.com/photo-1682687982046-e5e46906bc6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80'
-     ] */
 
+    const variants = Object.values(prices).map(i => {
+        return i
+    })
+    useEffect(() => {
+        const getData = async () => {
+            setPrices(await fetchData(Item))
+        }
+        getData()
+
+
+    }, [])
+
+    useEffect(() => {
+        setItemToCheckOut(prev => ({ ...prev, price: price, name: name, images: slides }))
+    }, [thisProduct])
 
 
 
@@ -79,14 +84,26 @@ const Product = ({ forThis, itemData }) => {
                             <AiFillMoneyCollect size={32} />
                         </div>
                         <div className='center flex-wrap md:w-3/4 m-auto mt-2 gap-2'>
-                            {type.map(type => (<button key={type} className='h-12 m-auto w-16 bg-black-800 text-white'>{type}</button>))}
+                            {/* {prices && variants.map(variant => (<button key={variant.id} className='h-12 m-auto w-32 bg-black-800 text-white'>{variant.nickname}</button>))} */}
+                            <Select
+                                onChange={({ target }) => { setItemToCheckOut(prev => ({ ...prev, priceId: target.value.split(',', 2)[0], variant: target.value.split(',', 2)[1] })) }}
+                                labelPlacement={'outside'}
+                                label="Select Variant"
+                                className="max-w-xs my-8"
+                            >
+                                {variants.map((variant) => (
+                                    <SelectItem key={[variant.id, variant.nickname]} name={variant.nickname}>
+                                        {`${variant.nickname} - ${variant.metadata.price}`}
+                                    </SelectItem>
+                                ))}
+                            </Select>
 
                         </div>
                         <div className='mt-2 '>
                             <h1 className='text-center md:text-left font-light'>Quntity</h1>
                             <div className=' gap-4 items-center  flex md:flex-row flex-col'>
-                                <ItemQTYButton />
-                                <button className='h-12 w-48 bg-gray-500'>ADD TO CART</button>
+                                <ItemQTYButton state={itemToCheckOut} setState={setItemToCheckOut} />
+                                <button onClick={addToCart} className='h-12 w-48 bg-gray-500'>ADD TO CART</button>
                             </div>
                         </div>
 
@@ -106,3 +123,14 @@ const Product = ({ forThis, itemData }) => {
 }
 
 export default Product
+
+
+
+/*  const slides = [
+     'https://images.unsplash.com/photo-1694875464499-334d2dc113a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1913&q=80',
+     'https://images.unsplash.com/photo-1694901555616-d7b2b33e6406?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1888&q=80',
+     'https://images.unsplash.com/photo-1692698921100-e31dc7453d4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80',
+     'https://images.unsplash.com/photo-1682687982046-e5e46906bc6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80'
+ ] */
+
+

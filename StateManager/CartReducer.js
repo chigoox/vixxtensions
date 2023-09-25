@@ -3,11 +3,16 @@ export const initialCartState = {
    lineItems: []
 };
 export const CartReducer = (state, action) => {
+
+
    switch (action.type){
+    case "SAVE_CART": {
+         return action.value
+      }
       case "ADD_TO_CART": {
          return {
             ...state,
-            total: action.value + state.total,
+            lineItems: [...state.lineItems, action.value],
          };
       }
        default:
