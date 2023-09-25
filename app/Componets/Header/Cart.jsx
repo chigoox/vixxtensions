@@ -9,10 +9,11 @@ function Cart({ showCart }) {
 
     const { state, dispatch } = useCartContext()
     const { lineItems } = state
-    const checkOutItems = Object.values(lineItems).map(item => ({ price: item.priceId, quantity: item.Qty }))
+    const checkOutItems = Object.values(lineItems).map(item => ({ price: item.priceID, quantity: item.Qty }))
     const RemoveFromCart = (itemRemove) => {
         dispatch({ type: "REMOVE_FROM_CART", value: itemRemove })
     }
+    console.log(checkOutItems)
 
     return (
         <div className={`fixed z-[99999] overflow-hidden md:top-10  trans right-0 ${showCart ? 'w-[50vw] p-2' : 'w-[0] P-0'} h-[100vh] bg-black`}>
