@@ -31,7 +31,7 @@ export const fetchPricesFor = async (nameNoSpace, setterfunction) => {
     event.preventDefault();
     const { data } = await axios.post('/api/Checkout',
       {
-        priceId: "price_1MvOQ8LPNdUzkCF3TGq5VLuZ"
+        cart: cart
       },
       {
         headers: {

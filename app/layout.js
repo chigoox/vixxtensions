@@ -4,6 +4,7 @@ import NavBar from './Componets/Header/NavBar'
 import { siteName } from './META'
 import './globals.css'
 import { Inter, Jost } from 'next/font/google'
+import {  UIProvider } from './UIProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 const jost = Jost({ subsets: ['latin'] })
@@ -22,11 +23,14 @@ export default function RootLayout({ children }) {
       </head>
 
       <body className={jost.className}>
-        <CartWrapper>
+        <UIProvider>
+<CartWrapper>
           <NavBar />
         {children}
         <Footer />
         </CartWrapper>
+        </UIProvider>
+        
         </body>
     </html>
   )

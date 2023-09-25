@@ -5,7 +5,8 @@ import { AiFillMoneyCollect } from 'react-icons/ai'
 import EmblaCarouselThumb from '@/app/Componets/HomePage/CarouselThumb'
 import { Red_Hat_Text } from 'next/font/google'
 import { fetchPricesFor } from '@/app/myCodes/Stripe'
-import { useCartContext } from '@/StateManager/CartContext'
+import ItemQTYButton from '@/app/Componets/Header/Componets/ItemQTYButton'
+import { Skeleton } from "@nextui-org/react";
 
 const font1 = Red_Hat_Text({ subsets: ['latin'] })
 
@@ -27,9 +28,11 @@ const Product = ({ forThis, itemData }) => {
 
     const [prices, setPrices] = useState({})
     useEffect(() => {
-        async () => {
+        const getData = async () => {
             setPrices(await fetchData(Item))
         }
+        getData()
+
     }, [])
 
     const price = Number(thisProduct?.metadata?.price.replace('$', ''))
@@ -57,14 +60,16 @@ const Product = ({ forThis, itemData }) => {
             <div>
 
                 <div className='flex md:flex-row flex-col gap-2'>
-                    <EmblaCarouselThumb options={{}} slides={slides} />
+                    <Skeleton className='h-auto' isLoaded={thisProduct}>
+                        <EmblaCarouselThumb options={{}} slides={slides} />
+                    </Skeleton>
 
 
 
                     <div className='h-fit md:w-1/2 p-2 pt-8'>
                         <h1 className='text-3xl md:text-6xl font-bold'>{name}</h1>
                         <span className='font-thin'>from</span>
-                        <span className=' font-light text-2xl'> ${price}.00</span>
+                        <span className=' font-light text-2xl'><Skeleton isLoaded={price} className='w-fit'>${price}.00</Skeleton></span>
                         <div className='flex mt-2 gap-2'>
                             <h1 className='font-thin text-sm md:text-base'>or 4 interest-free payments of <span className=' font-normal'>${price / 4}</span> with</h1>
                             <AiFillMoneyCollect size={32} />
@@ -80,17 +85,17 @@ const Product = ({ forThis, itemData }) => {
                         <div className='mt-2 '>
                             <h1 className='text-center md:text-left font-light'>Quntity</h1>
                             <div className=' gap-4 items-center  flex md:flex-row flex-col'>
-                                <input type="number" className='w-20 font-bold h-9 p-2 border text-center items-center border-slate-300' />
+                                <ItemQTYButton />
                                 <button className='h-12 w-48 bg-gray-500'>ADD TO CART</button>
                             </div>
                         </div>
 
                         <div className={font1.className}>
                             <h1 className='text-2xl font-extralight text-white bg-black-800'>Description</h1>
-                            <h1>{desc}</h1>
-                            <h1>{feats}</h1>
-
-
+                            <Skeleton className='w-fit' isLoaded={desc}>
+                                <h1>{desc}</h1>
+                                <h1>{feats}</h1>
+                            </Skeleton>
                         </div>
                     </div>
 

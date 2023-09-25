@@ -118,7 +118,6 @@ function Booking({ myPackage }) {
 
 
     const total = booktype == 'Wig Class' ? 1850 : 300
-    console.log(total)
     useEffect(() => {
         fetchDocument('Admin', 'reservations', setAdminDATA)
 

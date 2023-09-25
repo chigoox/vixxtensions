@@ -9,7 +9,10 @@ const {name} = data
         limit: 25,
         query: `active:\'true\' AND metadata[\'for\']:\'${name}\'`,
     });
-
+    const pricesall = await stripe.prices.list({
+        limit: 25,
+    });
+console.log(pricesall.data)
     return NextResponse.json(prices.data.reverse())
 }
 

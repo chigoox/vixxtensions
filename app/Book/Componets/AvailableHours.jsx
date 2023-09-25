@@ -8,7 +8,6 @@ import { addToDatabase, updateArrayDatabaseItem } from "../../myCodes/Database"
 const AvailableHours = memo(({ freeTimes, setBookingInfo, setReload, reload }) => {
     const [selectedTime, setSelectedTime] = useState()
     const user = 'uID'
-    console.log(startOfDay(selectedTime))
 
     const bookTime = () => {
         const fullDate = format(selectedTime, "MM-dd-yy hh:mm aaaaa'm'")

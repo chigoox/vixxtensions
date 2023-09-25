@@ -6,7 +6,6 @@ import WigConDetails from './WigConDetail'
 import BookingInfo from './BookingInfo'
 
 function BookingOptions({ booktype, setBooktype }) {
-    console.log(booktype)
     const BookingButton = ({ type }) => {
         return (<button onClick={() => { setBooktype(type) }} className='h-72 w-52 rounded overflow-hidden hover:scale-110 scale-100  bg-black trans-slow'>
             <h1 className='h-full text-center  text-2xl w-full bg-opacity-30 bg-black absolute top-0 left-0 text-white center '>{type}</h1>
