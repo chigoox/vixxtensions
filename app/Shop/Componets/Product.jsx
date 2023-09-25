@@ -34,11 +34,10 @@ const Product = ({ forThis, itemData }) => {
     const feats = thisProduct?.features
 
     const [prices, setPrices] = useState({})
-    const [itemToCheckOut, setItemToCheckOut] = useState({ priceId: 0, Qty: 0, images: [] })
+    const [itemToCheckOut, setItemToCheckOut] = useState({ priceID: 0, Qty: 0, images: [] })
     const addToCart = () => {
-        if (itemToCheckOut.priceId && itemToCheckOut.Qty > 0) dispatch({ type: "ADD_TO_CART", value: itemToCheckOut })
+        if (itemToCheckOut.priceID && itemToCheckOut.Qty > 0) dispatch({ type: "ADD_TO_CART", value: itemToCheckOut })
     }
-
 
     const variants = Object.values(prices).map(i => {
         return i
@@ -86,7 +85,7 @@ const Product = ({ forThis, itemData }) => {
                         <div className='center flex-wrap md:w-3/4 m-auto mt-2 gap-2'>
                             {/* {prices && variants.map(variant => (<button key={variant.id} className='h-12 m-auto w-32 bg-black-800 text-white'>{variant.nickname}</button>))} */}
                             <Select
-                                onChange={({ target }) => { setItemToCheckOut(prev => ({ ...prev, priceId: target.value.split(',', 2)[0], variant: target.value.split(',', 2)[1] })) }}
+                                onChange={({ target }) => { setItemToCheckOut(prev => ({ ...prev, priceID: target.value.split(',', 2)[0], variant: target.value.split(',', 2)[1] })) }}
                                 labelPlacement={'outside'}
                                 label="Select Variant"
                                 className="max-w-xs my-8"

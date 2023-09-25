@@ -10,9 +10,17 @@ export const CartReducer = (state, action) => {
          return action.value
       }
       case "ADD_TO_CART": {
+        console.log(state.lineItems)
+        console.log(action.value)
          return {
             ...state,
-            lineItems: [...state.lineItems, action.value],
+            lineItems: {...state.lineItems,  [action.value.priceID]:action.value},
+         };
+      }
+      case "REMOVE_FROM_CART": {
+         return {
+            ...state,
+            lineItems: {...state.lineItems, [action.value.priceID]:{...action.value, Qty: action.value.Qty + state.lineItems.priceID.Qty}},
          };
       }
        default:

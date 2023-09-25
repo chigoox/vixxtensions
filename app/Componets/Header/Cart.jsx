@@ -9,14 +9,14 @@ function Cart({ showCart }) {
 
     const { state, dispatch } = useCartContext()
     const { lineItems } = state
-    const checkOutItems = lineItems.map(item => ({ price: item.priceId, quantity: item.Qty }))
+    const checkOutItems = Object.values(lineItems).map(item => ({ price: item.priceId, quantity: item.Qty }))
 
 
     return (
         <div className={`fixed z-[99999] overflow-hidden md:top-10  trans right-0 ${showCart ? 'w-[50vw] p-2' : 'w-[0] P-0'} h-[100vh] bg-black`}>
             <h1 className="text-white text-center text-2xl font-bold">Cart</h1>
             <div className=" h-[80%] mb-4 m-auto  hidescroll overflow-y-scroll py-2 start-col gap-1">
-                {lineItems.map(item => {
+                {Object.values(lineItems).map(item => {
                     return (
                         <div key={item.priceId} className="h-40  flex-shrink-0 border-b-2 text-white">
                             <div className="evenly relative h-1/2 overflow-hidden ">
