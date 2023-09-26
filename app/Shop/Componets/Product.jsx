@@ -60,7 +60,7 @@ const Product = ({ forThis, itemData }) => {
     const PayOptions = ({ price, service }) => {
         const services = ['After Pay', 'Klarna', 'Affirm']
         return (
-            <Skeleton className={'rounded-xl w-fit flex mt-2 gap-2 relative p-2'} isLoaded={price}>
+            <Skeleton className={'rounded-xl w-fit flex mt-2 gap-2 relative p-2 overflow-hidden'} isLoaded={price}>
                 <div className='font-thin text-sm md:text-base'>or 4 interest-free payments of <span className=' font-normal'>${price / 4}</span> with:</div>
                 <div className='center gap-2 mt-1'>
                     {services.map(service => (<div key={service} className='w-20 h-8 rounded-full center bg-green-100 shadow-gray-300 shadow-sm font-bold text-gray-500 text-sm'>
