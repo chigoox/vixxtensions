@@ -8,8 +8,10 @@ import MenuButton from '../General/MobileMenuButton'
 import { Navigation, NavigationEvents } from "../NavigationEvents";
 import { category, siteName } from '@/app/META'
 import Image from 'next/image'
-import { BedSingle, Calendar, HomeIcon, ShoppingBagIcon } from 'lucide-react'
+import { BedSingle, Calendar, HomeIcon, ShoppingBagIcon, User } from 'lucide-react'
 import Cart from './Cart'
+import LoginCard from '../General/Auth/LoginCard'
+import { Button } from '@nextui-org/react'
 
 const jost = Jost({
     weight: '400',
@@ -19,6 +21,7 @@ const jost = Jost({
 function NavBar() {
     const [showMobileMenu, setShowMobileMenu] = useState(false)
     const [showCart, setShowCart] = useState(false)
+    const [showLogin, setShowLogin] = useState(false)
     const toggleMobileMenu = () => {
         setShowMobileMenu(!showMobileMenu)
         return (!showMobileMenu)
@@ -27,6 +30,9 @@ function NavBar() {
         setShowCart(!showCart)
         return (!showCart)
     }
+
+    const toggleLogin = () => setShowLogin(!showLogin)
+
     const [navRoute, setNavRoute] = useState([])
 
 
@@ -34,8 +40,10 @@ function NavBar() {
 
 
     return (
-        <div className='h-22 bg-black w-full  overflow-hidden'>
+        <div className='h-22 bg-black w-full  center-col overflow-hidden'>
             <Cart showCart={showCart} />
+            {showLogin && <LoginCard toggleLogin={toggleLogin} />}
+
             <Suspense>
                 <NavigationEvents setRoute={setNavRoute} />
             </Suspense>
@@ -65,7 +73,7 @@ function NavBar() {
 
                 </div>
             </div>
-            <nav className={`fixed  trans md:top-0 -bottom-2 items-center md:justify-evenly justify-center  flex md:flex-row  gap-4 md:gap-0 ${showMobileMenu ? 'h-16 scale-100 ' : 'h-0 p-0 '} ${showCart ? 'h-16 scale-100 w-[50%] md:w-[100%] md:left-[0%]  left-[50%] ' : 'w-[100%] left-[0%] '}  rounded-t-2xl md:rounded-none  bg-black-900 text-white md:text-black md:bg-white group   md:h-8 z-[99999]`}>
+            <nav className={`fixed  trans md:top-0 -bottom-3 items-center md:justify-evenly justify-center  flex md:flex-row  gap-4 md:gap-0 ${showMobileMenu ? 'h-16 scale-100 ' : 'h-0 p-0 '} ${showCart ? 'h-16 scale-100 w-[50%] md:w-[100%] md:left-[0%]  left-[50%] ' : 'w-[100%] left-[0%] '}  rounded-t-2xl md:rounded-none  bg-black-900 text-white md:text-black md:bg-white group   md:h-8 z-[99999]`}>
                 {!showCart && <button onClick={toggleMobileMenu} className={`absolute -top-[4.7rem] bg-black rounded-full h-12 w-12 center p-2 ${showCart ? '' : ''}`}>
                     <MenuButton menuOpen={showMobileMenu} />
                 </button>}
@@ -74,15 +82,16 @@ function NavBar() {
                     {!showCart ? <AiOutlineShoppingCart size={32} /> : <AiOutlineClose size={32} />}
                 </button>
 
-                <Link className='' href={'/'}><HomeIcon /></Link>
-                <Link href={'/Shop'}><ShoppingBagIcon /></Link>
-                <Link href={'/Book'}><Calendar /></Link>
+                <Link className='' href={'/'}><HomeIcon size={24} /></Link>
+                <Link href={'/Shop'}><ShoppingBagIcon size={24} /></Link>
+                <Link href={'/Book'}><Calendar size={24} /></Link>
+                {<div className={`absolute ${showCart ? 'right-2' : 'right-4'} ${showMobileMenu ? '' : '-bottom-8 md:bottom-0'}  flex items-end justify-end`}><Button onPress={toggleLogin} className={'min-w-0 h-fit w-fit p-1 center bg-none'}><User size={24} /></Button></div>}
 
 
             </nav>
             {
-                navRoute[0]?.toUpperCase()?.includes('SHOP') && <div className='bg-white '>
-                    <div className='h-20 w-3/4 evenly gap-2 text-black font-light text-center m-auto bg-white'>
+                navRoute[0]?.toUpperCase()?.includes('SHOP') && <div className='bg-white w-full'>
+                    <div className='h-20 w-full evenly gap-2 text-black font-light text-center m-auto bg-white'>
                         {category.map(item => (<Link key={item} href={item.includes('Hot') ? `/Shop/HotTools` : `/Shop/${item.replace(/\s/g, '')}`}>
                             <div className='h-12 w-20  rounded'>
                                 <h1 className=''>{item.includes('Hot') ? 'Tools & Acces...' : item}</h1>

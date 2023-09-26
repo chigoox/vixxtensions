@@ -20,6 +20,7 @@ import ProductsList from "./Shop/Componets/ProductsList";
 
 
 
+
 export default async function Home() {
   revalidatePath('/')
 
@@ -34,6 +35,7 @@ export default async function Home() {
         img3={VIXBAN3}
         img4={VIXBAN4}
       />
+
 
 
 

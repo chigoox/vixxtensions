@@ -24,11 +24,11 @@ export default function RootLayout({ children }) {
 
       <body className={jost.className}>
         <UIProvider>
-<CartWrapper>
-          <NavBar />
-        {children}
-        <Footer />
-        </CartWrapper>
+          <CartWrapper>
+            <NavBar />
+              {children}
+            <Footer />
+          </CartWrapper>
         </UIProvider>
         
         </body>

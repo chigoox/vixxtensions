@@ -16,7 +16,7 @@ function Cart({ showCart }) {
     }
 
     return (
-        <div className={`fixed z-[99999] overflow-hidden md:top-10  trans right-0 ${showCart ? 'w-[50vw] p-2' : 'w-[0] P-0'} h-[100vh] bg-black`}>
+        <div className={`fixed z-[99999] overflow-hidden md:top-8 top-0 trans right-0 ${showCart ? 'w-[50vw] p-2' : 'w-[0] P-0'} h-[100vh] bg-black`}>
             <div className="center gap-2">
                 <h1 className="text-white text-center text-2xl font-bold">Cart</h1>
                 <button onClick={() => { dispatch({ type: "EMPTY_CART", value: null }) }}><Trash2Icon color="red" /></button>
