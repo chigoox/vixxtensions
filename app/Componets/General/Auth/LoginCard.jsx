@@ -9,7 +9,7 @@ import RegisterCard from './RegisterCard';
 
 
 
-function LoginCard() {
+function LoginCard({ toggleLogin }) {
   const [isVisible, setIsVisible] = useState(false)
   const [openRegister, setOpenRegister] = useState(false)
   const toggleVisibility = () => setIsVisible(!isVisible)
@@ -63,7 +63,7 @@ function LoginCard() {
 
       {openRegister && <RegisterCard toggleRegister={toggleRegister} />}
       <div className='center mt-2 fadeInBottom'>
-        <Button className='m-auto min-w-0'><AiOutlineCloseCircle size={32} /></Button>
+        <Button onPress={toggleLogin} className='m-auto min-w-0'><AiOutlineCloseCircle size={32} /></Button>
       </div>
     </div>
   )
