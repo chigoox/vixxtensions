@@ -8,7 +8,7 @@ import MenuButton from '../General/MobileMenuButton'
 import { Navigation, NavigationEvents } from "../NavigationEvents";
 import { category, siteName } from '@/app/META'
 import Image from 'next/image'
-import { BedSingle } from 'lucide-react'
+import { BedSingle, Calendar, HomeIcon, ShoppingBagIcon } from 'lucide-react'
 import Cart from './Cart'
 
 const jost = Jost({
@@ -74,9 +74,9 @@ function NavBar() {
                     {!showCart ? <AiOutlineShoppingCart size={32} /> : <AiOutlineClose size={32} />}
                 </button>
 
-                <Link className='' href={'/'}>Home</Link>
-                <Link href={'/Shop'}>Shop</Link>
-                <Link href={'/Book'}>Book</Link>
+                <Link className='' href={'/'}><HomeIcon /></Link>
+                <Link href={'/Shop'}><ShoppingBagIcon /></Link>
+                <Link href={'/Book'}><Calendar /></Link>
 
 
             </nav>

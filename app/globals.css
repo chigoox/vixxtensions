@@ -434,3 +434,15 @@ used for Carouse
   right: 0;
   bottom: 0;
 }
+
+/* Chrome, Safari, Edge, Opera  remove number arrow on input*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
