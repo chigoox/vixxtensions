@@ -5,6 +5,8 @@ import { Card, Spacer, Button, Text, Input, Row, Checkbox } from '@nextui-org/re
 import { EyeOffIcon, KeyIcon, MailCheckIcon } from 'lucide-react';
 import { AiFillEye, AiFillEyeInvisible, AiOutlineClose, AiOutlineCloseCircle, AiOutlineFacebook, AiOutlineGithub, AiOutlineGoogle } from 'react-icons/ai';
 import RegisterCard from './RegisterCard';
+import { checkLoggedinUser, logIn, loginWith } from '@/app/myCodes/Auth';
+
 
 
 
@@ -14,20 +16,59 @@ function LoginCard({ toggleLogin }) {
   const [openRegister, setOpenRegister] = useState(false)
   const toggleVisibility = () => setIsVisible(!isVisible)
   const toggleRegister = () => setOpenRegister(!openRegister)
+  const [credentials, setCredentials] = useState({ password: '', email: '' })
+
+  const signIn = async (provider) => {
+
+    switch (provider) {
+      case 'google':
+        await loginWith('google').then(() => {
+          toggleLogin()
+          return
+        })
+        break;
+
+      case 'facebook':
+        await loginWith('facebook').then(() => {
+          toggleLogin()
+          return
+        })
+        break;
+
+      default:
+        await logIn(credentials.email, credentials.password).then(() => {
+          checkLoggedinUser()
+          toggleLogin()
+
+        })
+        break;
+    }
+  }
+
+
+
 
 
   return (
     <div className='fixed z-[99999]  top-20  md:scale-100 scale-110 m-auto'>
       <Card className='w-64 border h-auto p-4 fadeInUp' variant="bordered">
         <div className='gap-1 mb-4 w-full center'>
-          <Button className='p-0 bg-black-800 text-white'><AiOutlineGoogle size={32} /></Button>
-          <Button className='p-0 bg-black-800 text-white'><AiOutlineFacebook size={32} /></Button>
-          <Button className='p-0 bg-black-800 text-white'><AiOutlineGithub size={32} /></Button>
+          <Button onClick={() => {
+            signIn("google")
+          }} className='p-0 bg-black-800 text-white'><AiOutlineGoogle size={32} /></Button>
+          <Button onClick={() => {
+            signIn("facebook")
+          }} className='p-0 bg-black-800 text-white'><AiOutlineFacebook size={32} /></Button>
+          <Button onClick={() => {
+            signIn("github")
+          }} className='p-0 bg-black-800 text-white'><AiOutlineGithub size={32} /></Button>
         </div>
 
 
 
         <Input
+
+          onChange={({ target }) => { setCredentials(prvState => ({ ...prvState, email: target.value })) }}
           className='w-full'
           type="email"
           label="Email"
@@ -36,6 +77,7 @@ function LoginCard({ toggleLogin }) {
         />
         <Spacer y={2} />
         <Input
+          onChange={({ target }) => { setCredentials(prvState => ({ ...prvState, password: target.value })) }}
           label="Password"
           placeholder="Enter your password"
           endContent={
@@ -52,7 +94,7 @@ function LoginCard({ toggleLogin }) {
         />
 
         <br />
-        <Button className='w-1/2 m-auto font-bold text-white bg-black-800'>Login</Button>
+        <Button onPress={signIn} className='w-1/2 m-auto font-bold text-white bg-black-800'>Login</Button>
         <div className='center gap-0.5 font-light'>
           <span className='text-xs'>Don't have an account? click</span><button onClick={toggleRegister} className='text-xs text-blue-600 font-bold'>here</button>
         </div>

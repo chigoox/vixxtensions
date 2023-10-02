@@ -12,6 +12,8 @@ import { BedSingle, Calendar, HomeIcon, ShoppingBagIcon, User } from 'lucide-rea
 import Cart from './Cart'
 import LoginCard from '../General/Auth/LoginCard'
 import { Button } from '@nextui-org/react'
+import AUTHListener from '@/StateManager/AUTHListener'
+import { useRouter } from 'next/navigation'
 
 const jost = Jost({
     weight: '400',
@@ -22,6 +24,7 @@ function NavBar() {
     const [showMobileMenu, setShowMobileMenu] = useState(false)
     const [showCart, setShowCart] = useState(false)
     const [showLogin, setShowLogin] = useState(false)
+    const { push } = useRouter()
     const toggleMobileMenu = () => {
         setShowMobileMenu(!showMobileMenu)
         return (!showMobileMenu)
@@ -31,9 +34,13 @@ function NavBar() {
         return (!showCart)
     }
 
-    const toggleLogin = () => setShowLogin(!showLogin)
+    const toggleLogin = () => {
+        setShowLogin(!showLogin)
+        if (user.uid) push(`/User/${user.uid}`)
+    }
 
     const [navRoute, setNavRoute] = useState([])
+    const [user, setUser] = useState({})
 
 
 
@@ -41,8 +48,10 @@ function NavBar() {
 
     return (
         <div className='h-22 bg-black w-full  center-col overflow-hidden'>
+            <AUTHListener set={setUser} />
+
             <Cart showCart={showCart} />
-            {showLogin && <LoginCard toggleLogin={toggleLogin} />}
+            {(showLogin && !user) && <LoginCard toggleLogin={toggleLogin} />}
 
             <Suspense>
                 <NavigationEvents setRoute={setNavRoute} />
@@ -73,7 +82,7 @@ function NavBar() {
 
                 </div>
             </div>
-            <nav className={`fixed  trans md:top-0 -bottom-3 items-center md:justify-evenly ${showCart ? 'justify-center' : 'justify-center'}  flex md:flex-row  gap-4 md:gap-0 ${showMobileMenu ? 'h-16 scale-100 ' : 'h-0 p-0 '} ${showCart ? 'h-16 scale-100 w-[50%] md:w-[100%] md:left-[0%]  left-[50%] ' : 'w-[100%] left-[0%] '}  rounded-t-2xl md:rounded-none  bg-black-900 text-white md:text-black md:bg-white group   md:h-8 z-[99999]`}>
+            <nav className={`fixed  trans md:top-0 -bottom-[1rem] items-center md:justify-evenly ${showCart ? 'justify-center' : 'justify-center'}  flex md:flex-row  gap-4 md:gap-0 ${showMobileMenu ? 'h-16 scale-100 ' : 'h-0 p-0 '} ${showCart ? 'h-16 scale-100 w-[50%] md:w-[100%] md:left-[0%]  left-[50%] ' : 'w-[100%] left-[0%] '}  rounded-t-2xl md:rounded-none  bg-black-900 text-white md:text-black md:bg-white group   md:h-8 z-[99999]`}>
                 {!showCart && <button onClick={toggleMobileMenu} className={`absolute -top-[4.7rem] bg-black rounded-full h-12 w-12 center p-2 ${showCart ? '' : ''}`}>
                     <MenuButton menuOpen={showMobileMenu} />
                 </button>}
@@ -114,4 +123,3 @@ shop/Luxury wigs , Luxury bundles , luxury lace , hot tools
 book/book appointments, book a class
 
 */
-

@@ -5,6 +5,7 @@ import { siteName } from './META'
 import './globals.css'
 import { Inter, Jost } from 'next/font/google'
 import {  UIProvider } from './UIProvider'
+import AUTHListener from '@/StateManager/AUTHListener'
 
 const inter = Inter({ subsets: ['latin'] })
 const jost = Jost({ subsets: ['latin'] })
@@ -14,15 +15,14 @@ export const metadata = {
   description: 'Luxury Raw Hair',
 }
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
         <link rel='icon' href='public/Images/371104266_1371705300076286_136258277339424492_n.jpeg' />
-        
       </head>
-
       <body className={jost.className}>
+        <AUTHListener add={true}/>
         <UIProvider>
           <CartWrapper>
             <NavBar />
@@ -30,8 +30,9 @@ export default function RootLayout({ children }) {
             <Footer />
           </CartWrapper>
         </UIProvider>
-        
         </body>
     </html>
   )
 }
+
+
