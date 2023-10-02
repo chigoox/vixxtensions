@@ -44,14 +44,15 @@ function NavBar() {
 
 
 
-
+    console.log((showLogin && !user?.uid))
 
     return (
         <div className='h-22 bg-black w-full  center-col overflow-hidden'>
             <AUTHListener set={setUser} />
 
             <Cart showCart={showCart} />
-            {(showLogin && !user) && <LoginCard toggleLogin={toggleLogin} />}
+
+            {(showLogin && !user?.uid) && <LoginCard toggleLogin={toggleLogin} />}
 
             <Suspense>
                 <NavigationEvents setRoute={setNavRoute} />

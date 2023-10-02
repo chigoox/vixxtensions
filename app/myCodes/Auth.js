@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, signInWithPopup, FacebookAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup, FacebookAuthProvider, signOut } from "firebase/auth";
 
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail } from "firebase/auth";
 import app, { AUTH } from "@/Firebase";
@@ -86,7 +86,7 @@ const logIn = async (email, password) => {
   });
 }
 
-const signOut = async () => {
+const logOut = async () => {
   signOut(auth).then(() => {
     // Sign-out successful.
   }).catch((error) => {
@@ -133,4 +133,4 @@ const sendPasswordReset = async () => {
 
 
 
-export {signUp, logIn, loginWith, checkLoggedinUser, sendVerification, sendPasswordReset, } 
+export {signUp, logIn, loginWith, logOut, checkLoggedinUser, sendVerification, sendPasswordReset, } 

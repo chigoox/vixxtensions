@@ -17,12 +17,10 @@ function AUTHListener({ add = false, set, protectedPage }) {
                 if (add) addToDatabase('Admin', 'Users', 'uid', [user.uid])
             } else {
                 // User is signed out
+                if (set) set()
                 if (protectedPage) push('/')
-
             }
         });
-
-
     }, [])
     return (
         <></>
