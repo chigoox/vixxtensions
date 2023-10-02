@@ -47,16 +47,19 @@ export default function ProtectedRoute() {
 
 
     return (
-        <div className="w- min-h-screen md:flex-row flex-col border-2 border-red-300">
-            <h1 className="">Welcome Back {user.uid}</h1>
-            <Card className="h-96 md:w-96 w-full my-12 p-2" variant={'bordered'}>
-                <h1 className="text-3xl font-bold">Orders</h1>
+        <div className="w- min-h-screen  border-2 border-red-300">
+            <h1 className="text-xl font-bold text-center">Welcome Back {user.uid}</h1>
+            <div className="flex md:flex-row flex-col">
+                <Card className="h-96 md:w-96 w-full my-12 p-2" variant={'bordered'}>
+                    <h1 className="text-3xl font-bold">Orders</h1>
 
-            </Card>
-            <Card className="h-96 md:w-96 w-full my-12 p-2" variant={'bordered'}>
-                <h1 className="text-3xl font-bold">Reservations</h1>
+                </Card>
+                <Card className="h-96 md:w-96 w-full my-12 p-2" variant={'bordered'}>
+                    <h1 className="text-3xl font-bold">Reservations</h1>
 
-            </Card>
+                </Card>
+
+            </div>
 
 
 
