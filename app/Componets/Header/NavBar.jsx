@@ -36,7 +36,7 @@ function NavBar() {
 
     const toggleLogin = () => {
         setShowLogin(!showLogin)
-        if (user.uid) push(`/User/${user.uid}`)
+        if (user?.uid) push(`/User/${user.uid}`)
     }
 
     const [navRoute, setNavRoute] = useState([])
@@ -44,7 +44,6 @@ function NavBar() {
 
 
 
-    console.log((showLogin && !user?.uid))
 
     return (
         <div className='h-22 bg-black w-full  center-col overflow-hidden'>

@@ -29,7 +29,20 @@ export async function generateStaticParams() {
 
 export default function ProtectedRoute({ params }) {
     const [user, setUser] = useState({})
+    const mockOrders = [
+        { name: 'test', price: 125, qty: 4 },
+        { name: 'tes2', price: 153, qty: 1 },
+        { name: 'tes3', price: 500, qty: 9 }
 
+
+    ]
+    const OrderItem = () => {
+        return (
+            <div className="h-12 w-12 bg-black-800">
+
+            </div>
+        )
+    }
 
 
 
@@ -39,9 +52,12 @@ export default function ProtectedRoute({ params }) {
             <h1 className="text-xl font-bold text-center">Welcome Back </h1>
             <h1 className="font-extrabold text-center">{user?.uid}</h1>
             <div className="center"><Button onPress={logOut} className="bg-black-800 text-white w-3/4">LogOut</Button></div>
-            <div className="flex md:flex-row flex-col">
-                <Card className="h-96 md:w-96 w-full my-12 p-2" variant={'bordered'}>
-                    <h1 className="text-3xl font-bold">Orders</h1>
+            <div className="flex md:flex-row flex-col p-2">
+                <Card className="h-auto  md:w-96 w-full my-12 p-2" variant={'bordered'}>
+                    <Card className="text-3xl  font-bold text-center bg-black mb-4 text-white p-2">Orders</Card>
+                    <div className="w-full h-full gird grid-col-4 grid-flow-row">
+                        {mockOrders.map(order => <OrderItem />)}
+                    </div>
 
                 </Card>
                 <Card className="h-96 md:w-96 w-full my-12 p-2" variant={'bordered'}>
