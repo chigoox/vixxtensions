@@ -37,7 +37,7 @@ export default function ProtectedRoute({ params }) {
         <div className="w- min-h-screen ">
             <AUTHListener protectedPage={true} set={setUser} />
             <h1 className="text-xl font-bold text-center">Welcome Back </h1>
-            <h1 className="font-extrabold text-center">{user.uid}</h1>
+            <h1 className="font-extrabold text-center">{user?.uid}</h1>
             <div className="center"><Button onPress={logOut} className="bg-black-800 text-white w-3/4">LogOut</Button></div>
             <div className="flex md:flex-row flex-col">
                 <Card className="h-96 md:w-96 w-full my-12 p-2" variant={'bordered'}>
