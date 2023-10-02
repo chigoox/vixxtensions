@@ -57,7 +57,7 @@ export default function ProtectedRoute({ params }) {
             <div className="flex md:flex-row flex-col p-2">
                 <Card className="h-auto  md:w-96 w-full my-12 p-2" variant={'bordered'}>
                     <Card className="text-3xl  font-bold text-center bg-black mb-4 text-white p-2">Orders</Card>
-                    <div className="w-full h-full gird grid-cols-4 grid-rows-2">
+                    <div className="w-full h-full gird gap-4 grid-cols-4 grid-rows-2">
                         {mockOrders.map(order => <OrderItem />)}
                     </div>
 
