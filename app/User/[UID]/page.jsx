@@ -5,28 +5,30 @@ import app, { AUTH } from "@/Firebase";
 import { useEffect, useState } from "react";
 import { Card } from "@nextui-org/react";
 import AUTHListener from "@/StateManager/AUTHListener";
+import { fetchDocument } from "@/app/myCodes/Database";
 
 
 
 
 
 const fetchData = async () => {
-    const data = await fetchUsers()
+    const data = await fetchDocument('Admin', 'Users')
     return data
 }
 
 
 export async function generateStaticParams() {
-    // const data = await fetchData()
-    // return (data.map(uid => ({ UID: uid })))
-    return [{ UID: '2wW1W8alk0c9RtR0M9mbHJ7mql33' }]
+    const data = await fetchData()
+    return (data.map(uid => ({ UID: uid })))
+    //return [{ UID: '2wW1W8alk0c9RtR0M9mbHJ7mql33' }]
 }
 
 
 
 
-export default function ProtectedRoute() {
+export default function ProtectedRoute({ params }) {
     const [user, setUser] = useState({})
+
 
 
 

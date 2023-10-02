@@ -27,7 +27,8 @@ export async function fetchDocument(collection, document, setterfunction) {
     const docRef = doc(DATABASE, collection, document ? document : null);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
-        setterfunction(docSnap.data());
+       if(setterfunction) setterfunction(docSnap.data());
+       return docSnap.data()
     } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");

@@ -8,7 +8,6 @@ import React, { useState, useEffect } from 'react'
 
 function AUTHListener({ add = false, set, protectedPage }) {
     const { push } = useRouter()
-    console.log(useRouter())
 
     useEffect(() => {
         const auth = AUTH
