@@ -5,8 +5,10 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
 import React, { useState, useEffect } from 'react'
 
-function AUTHListener({ add = false, set }) {
+
+function AUTHListener({ add = false, set, protectedPage }) {
     const { push } = useRouter()
+    console.log(useRouter())
 
     useEffect(() => {
         const auth = AUTH
@@ -16,7 +18,7 @@ function AUTHListener({ add = false, set }) {
                 if (add) addToDatabase('Admin', 'Users', 'uid', [user.uid])
             } else {
                 // User is signed out
-                push('/')
+                if (protectedPage) push('/')
 
             }
         });

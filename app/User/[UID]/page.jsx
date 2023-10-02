@@ -4,6 +4,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import app, { AUTH } from "@/Firebase";
 import { useEffect, useState } from "react";
 import { Card } from "@nextui-org/react";
+import AUTHListener from "@/StateManager/AUTHListener";
 
 
 
@@ -26,28 +27,12 @@ export async function generateStaticParams() {
 
 export default function ProtectedRoute() {
     const [user, setUser] = useState({})
-    console.log(user)
-    const { push } = useRouter()
-
-    useEffect(() => {
-        const auth = AUTH
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setUser(user)
-            } else {
-                // User is signed out
-                push('/')
-
-            }
-        });
-
-
-    }, [])
 
 
 
     return (
         <div className="w- min-h-screen  border-2 border-red-300">
+            <AUTHListener protectedPage={true} set={setUser} />
             <h1 className="text-xl font-bold text-center">Welcome Back {user.uid}</h1>
             <div className="flex md:flex-row flex-col">
                 <Card className="h-96 md:w-96 w-full my-12 p-2" variant={'bordered'}>
