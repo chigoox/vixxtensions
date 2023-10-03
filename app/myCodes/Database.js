@@ -3,7 +3,7 @@ import { DATABASE } from '../../Firebase'
 
 
 export async function addToDatabase(collection, Doc, field, data) {
-
+console.log(field, data)
 
     await setDoc(doc(DATABASE, collection, Doc), {
         [field]: data,
@@ -17,9 +17,9 @@ export async function updateDatabaseItem(collection, Doc, Field, Value) {
     });
 }
 
-export async function updateArrayDatabaseItem(collection, Doc, Field, Value) {
+export async function updateArrayDatabaseItem(collection, Doc, Field, Value, remove) {
     await updateDoc(doc(DATABASE, collection, Doc), {
-        [Field]: remove ? arrayUnion(Value) : arrayRemove(Value)
+        [Field]: !remove ? arrayUnion(Value) : arrayRemove(Value)
     });
 }
 

@@ -1,6 +1,7 @@
 'use client'
 import { AUTH } from '@/Firebase'
 import { addToDatabase } from '@/app/myCodes/Database'
+import { addEmailToList, addUIDToList } from '@/app/myCodes/DatabaseUtils'
 import { onAuthStateChanged } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
 import React, { useState, useEffect } from 'react'
@@ -14,7 +15,8 @@ function AUTHListener({ add = false, set, protectedPage }) {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 if (set) set(user)
-                if (add) addToDatabase('Admin', 'Users', 'uid', [user.uid])
+                if (add) addUIDToList(user.uid)
+                if (add) addEmailToList(user.email)
             } else {
                 // User is signed out
                 if (set) set()

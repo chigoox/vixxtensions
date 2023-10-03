@@ -47,7 +47,7 @@ function NavBar() {
 
     return (
         <div className='h-22 bg-black w-full  center-col overflow-hidden'>
-            <AUTHListener set={setUser} />
+            <AUTHListener set={setUser} add={true} />
 
             <Cart showCart={showCart} />
 

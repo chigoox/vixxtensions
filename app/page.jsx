@@ -17,6 +17,7 @@ import RawWig from '../public/Images/RawWig.jpeg'
 import RawTools from '../public/Images/RawTools.jpeg'
 import Link from "next/link";
 import ProductsList from "./Shop/Componets/ProductsList";
+import Email from "./Componets/General/Email";
 
 
 
@@ -24,11 +25,10 @@ import ProductsList from "./Shop/Componets/ProductsList";
 export default async function Home() {
   revalidatePath('/')
 
-  //await fetch("/api/revalidate?secret=5isthegoat");
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-evenly">
-
+      <Email />
       <EmblaCarousel
         img1={VIXBAN2}
         img2={VIXBAN1}

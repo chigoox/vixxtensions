@@ -1,4 +1,6 @@
 export const siteName = 'ViHair'
+export const siteTag = 'Raw Luxury Hair'
+
 
 const shopItem = (title, img, price) =>{
     return {name: title, images:[img], metadata:{salePrice: price}}

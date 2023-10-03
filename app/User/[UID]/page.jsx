@@ -3,11 +3,12 @@ import { useRouter } from "next/navigation"
 import { onAuthStateChanged } from "firebase/auth";
 import app, { AUTH } from "@/Firebase";
 import { useEffect, useState } from "react";
-import { Button, Card } from "@nextui-org/react";
+import { Button, Card, CardBody, CardFooter, CardHeader } from "@nextui-org/react";
 import AUTHListener from "@/StateManager/AUTHListener";
-import { fetchDocument } from "@/app/myCodes/Database";
+import { addToDatabase, fetchDocument } from "@/app/myCodes/Database";
 import { logOut } from "@/app/myCodes/Auth";
-
+import { Input } from "@nextui-org/react";
+import ShippinInfo from "@/app/Componets/User/ShippinInfo";
 
 
 
@@ -30,22 +31,44 @@ export async function generateStaticParams() {
 export default function ProtectedRoute({ params }) {
     const [user, setUser] = useState({})
     const mockOrders = [
-        { name: 'test', price: 125, qty: 4 },
-        { name: 'tes2', price: 153, qty: 1 },
-        { name: 'tes3', price: 500, qty: 9 },
-        { name: 'tes3', price: 500, qty: 9 },
-        { name: 'tes3', price: 500, qty: 9 },
+        { id: 123, total: 125, qty: 4 },
+        { id: 124, total: 153, qty: 1 },
+        { id: 125, total: 500, qty: 1 },
+        { id: 126, total: 500, qty: 2 },
+        { id: 127, total: 500, qty: 9 },
 
 
     ]
-    const OrderItem = () => {
-        return (
-            <div className="h-12 w-12 bg-black-800">
+    const mockReservations = [
+        { name: 'bob john', time: '11:00am', type: 'wig class' },
+        { name: 'cindy block', time: '12:30pm', type: 'wig class' },
+        { name: 'rol roice', time: '5:00pm', type: 'wig construction' },
+        { name: 'cool jack', time: '2:00pm', type: 'wig construction' },
+        { name: 'const let', time: '3:00pm', type: 'wig class' },
 
-            </div>
+
+    ]
+    const OrderItem = ({ orderInfo }) => {
+        const { id, total, qty } = orderInfo
+        return (
+            <Card shadow="md" variant={'bordered'} className="h-32 w-full m-auto bg-black center-col">
+                <CardBody className="bg-white center-col">{[1, 2, 3]}</CardBody>
+                <CardFooter className={'text-white text-xs bg-black-800 bg-opacity-25 p-2'}>ID: {id} QTY: {qty} Total: ${total}</CardFooter>
+            </Card>
         )
     }
 
+    const ReservationItem = ({ reservationInfo }) => {
+        const { name, time, type } = reservationInfo
+        return (
+            <Card shadow="md" variant={'bordered'} className="h-16 w-full text-white m-auto bg-black-900 first:bg-gray-100 first:text-black">
+                <div className="center-col h-fit  w-72 m-auto ">
+                    <h1>{time}</h1>
+                    <h1>{type}</h1>
+                </div>
+            </Card>
+        )
+    }
 
 
     return (
@@ -54,20 +77,24 @@ export default function ProtectedRoute({ params }) {
             <h1 className="text-xl font-bold text-center">Welcome Back </h1>
             <h1 className="font-extrabold text-center">{user?.uid}</h1>
             <div className="center"><Button onPress={logOut} className="bg-black-800 text-white w-3/4">LogOut</Button></div>
-            <div className="flex md:flex-row flex-col p-2">
-                <Card className="h-auto  md:w-96 w-full my-12 p-2" variant={'bordered'}>
-                    <Card className="text-3xl  font-bold text-center bg-black mb-4 text-white p-2">Orders</Card>
-                    <div className="w-full h-full gird gap-4 grid-cols-4 grid-rows-2">
-                        {mockOrders.map(order => <OrderItem />)}
-                    </div>
+
+            <div className="flex md:flex-row flex-col w-full border justify-center gap-4 p-2">
+                <Card className="h-auto  md:w-96 w-full my-12" variant={'bordered'}>
+                    <CardHeader className="text-3xl  font-bold text-center bg-black mb-4 text-white p-2">Orders</CardHeader>
+                    <CardBody className="w-full overflow-y-scroll hidescroll h-full grid grid-cols-2  p-2 gap-2 items-center justify-center">
+                        {mockOrders.map(order => <OrderItem orderInfo={order} />)}
+                    </CardBody>
+                </Card>
+                <Card className="h-auto md:w-96 w-full my-12" variant={'bordered'}>
+                    <CardHeader className="text-3xl  font-bold text-center bg-black mb-4 text-white p-2">Reservations</CardHeader>
+                    <CardBody className="w-full overflow-y-scroll hidescroll h-full grid grid-cols-1  p-2 gap-2 items-center justify-center">
+                        {mockReservations.map(reservation => <ReservationItem reservationInfo={reservation} />)}
+                    </CardBody>
 
                 </Card>
-                <Card className="h-96 md:w-96 w-full my-12 p-2" variant={'bordered'}>
-                    <h1 className="text-3xl font-bold">Reservations</h1>
-
-                </Card>
-
             </div>
+
+            <ShippinInfo />
 
 
 

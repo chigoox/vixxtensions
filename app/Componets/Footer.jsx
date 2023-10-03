@@ -1,14 +1,18 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
 import { AiFillFacebook, AiFillInstagram, AiFillTwitterSquare, AiFillYoutube } from 'react-icons/ai'
 import { siteName } from '../META'
 import Link from 'next/link'
 import { Jost } from 'next/font/google'
+import { Button, Input } from '@nextui-org/react'
+import { collectAndSendEmail } from './General/EmailCollector'
 
 const jost = Jost({
     weight: '400',
     subsets: ['latin'],
 })
 function Footer() {
+    const [Email, setEmail] = useState('')
     const date = new Date()
     return (
         <div className=' w-full bg-pink-50'>
@@ -56,9 +60,11 @@ function Footer() {
                     <h1 className='m-1 '>Be the first to hear
                         the latest news from {siteName}, and much more!
                     </h1>
-                    <input className='w-[90%] m-auto text-black h-8 trans p-2 focus:scale-110 hover:scale-105' type="text" placeholder='Email' />
-                    <h1>By subscribing you agree to our privacy policy</h1>
-                    <button className='h-12 w-32 p-2 bg-black text-white trans-slow hover:bg-black hover:scale-110 my-8'>Subscribe</button>
+                    <Input onValueChange={(text) => setEmail(text)} label={'Enter email for 10% off'} placement={'inside'} className='w-[90%] m-auto text-black  trans p-2 focus:scale-110 hover:scale-105' type="text" />
+
+
+                    <h1 className='mt-4'>By subscribing you agree to our privacy policy</h1>
+                    <Button onPress={() => { collectAndSendEmail(Email) }} className='h-12 w-32 p-2 bg-black text-white trans-slow hover:bg-black hover:scale-110 my-8'>Subscribe</Button>
                 </div>
 
             </div>
