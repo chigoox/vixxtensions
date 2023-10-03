@@ -10,6 +10,7 @@ const CartContext = createContext()
 export const CartWrapper = ({ children }) => {
 
     const [state, dispatch] = useReducer(CartReducer, initialCartState);
+    const [user, setUser] = useState({})
 
     const contextValue = useMemo(() => {
         return { state, dispatch };

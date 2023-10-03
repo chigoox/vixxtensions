@@ -1,8 +1,9 @@
 'use client'
+import { addToDatabase } from '@/app/myCodes/Database'
 import { Button, Card, CardBody, CardFooter, CardHeader, Input } from '@nextui-org/react'
 import React, { useState } from 'react'
 
-function ShippinInfo() {
+function ShippinInfo({ user }) {
     const [shippingInfo, setShippingInfo] = useState({})
 
     const updateShippingInfo = async ({ target }) => {
@@ -33,16 +34,22 @@ function ShippinInfo() {
                         variant="flat"
                         name="lastName"
                         label={'Last Name'}
-
                         className="w-64 m-auto"
                     />
                     <Input type="text"
                         onChange={updateShippingInfo}
                         placements={'inside'}
                         variant="flat"
-                        name="Address"
+                        name="address"
                         label={'Address'}
-
+                        className="w-64 m-auto"
+                    />
+                    <Input type="text"
+                        onChange={updateShippingInfo}
+                        placements={'inside'}
+                        variant="flat"
+                        name="apt"
+                        label={'APT'}
                         className="w-64 m-auto"
                     />
                     <Input type="number"
@@ -51,7 +58,6 @@ function ShippinInfo() {
                         variant="flat"
                         name="zipcode"
                         label={'Zip Code'}
-
                         className="w-64 m-auto"
                     />
                     <Input type="number"

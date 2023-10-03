@@ -94,7 +94,14 @@ function NavBar() {
                 <Link className='' href={'/'}><HomeIcon size={showCart ? 24 : 32} /></Link>
                 <Link href={'/Shop'}><ShoppingBagIcon size={showCart ? 24 : 32} /></Link>
                 <Link href={'/Book'}><Calendar size={showCart ? 24 : 32} /></Link>
-                {<div className={` w-[20%] ${showCart ? 'right-2 ' : 'right-4'} ${showMobileMenu ? 'absolute' : '-bottom-8 md:bottom-0'}  flex items-end justify-end`}><Button onPress={toggleLogin} className={'min-w-0 h-fit w-fit p-1 center bg-none'}><User size={24} /></Button></div>}
+                {<div className={` gap-2 w-[20%] ${showCart ? 'right-2 ' : 'right-4'} ${showMobileMenu ? 'absolute' : '-bottom-8 md:bottom-0'}  flex items-end justify-end`}>
+                    <Button onPress={toggleLogin} className={'min-w-0 h-fit w-fit p-1 center bg-none'}>
+                        <User size={24} />
+                    </Button>
+                    {<Button onClick={toggleCart} className={`trans min-w-0 h-0 w-0 md:h-fit md:w-fit p-1 center bg-none scale-0 md:scale-100`}>
+                        {!showCart ? <AiOutlineShoppingCart size={24} /> : <AiOutlineClose size={24} />}
+                    </Button>}
+                </div>}
 
 
             </nav>

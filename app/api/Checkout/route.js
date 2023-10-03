@@ -12,8 +12,8 @@ export async function POST (request) {
     const session = await stripe.checkout.sessions.create({
         line_items: cart,
       mode: 'payment',
-      success_url: `http://${ !isDev() ? siteName + '.netlify.app':'localhost:3000'}/success`,
-      cancel_url: `http://${ !isDev() ? siteName + '.netlify.app':'localhost:3000'}/canceled`,
+      success_url: `http://${ !isDev() ? siteName + '.netlify.app':'localhost:3000'}/Checkout/success`,
+      cancel_url: `http://${ !isDev() ? siteName + '.netlify.app':'localhost:3000'}/Checkout/canceled`,
     })
 
     return NextResponse.json(session.url)

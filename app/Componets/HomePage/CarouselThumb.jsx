@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import { Thumb } from './EmblaCarouselThumbsButton'
 import { imageByIndex } from './imageByIndex'
+import { Card } from '@nextui-org/react'
 
 const EmblaCarouselThumb = ({ slides, options }) => {
     const [selectedIndex, setSelectedIndex] = useState(0)
@@ -34,7 +35,7 @@ const EmblaCarouselThumb = ({ slides, options }) => {
     return (
         <div className="emblathumb ">
             <div className="emblathumb__viewport overflow-hidden rounded-lg w-full md:w-[30rem] shadow-md shadow-gray-300" ref={emblaMainRef}>
-                <div className="emblathumb__container">
+                <Card className="emblathumb__container">
                     {slides?.map((value, index) => (
                         <div className="emblathumb__slide" key={index}>
                             <div className="emblathumb__slide__number">
@@ -47,7 +48,7 @@ const EmblaCarouselThumb = ({ slides, options }) => {
                             />
                         </div>
                     ))}
-                </div>
+                </Card>
             </div>
 
             <div className="emblathumb-thumbs border-y p-2 w-full md:w-96 m-auto">

@@ -6,7 +6,7 @@ import EmblaCarouselThumb from '@/app/Componets/HomePage/CarouselThumb'
 import { Red_Hat_Text } from 'next/font/google'
 import { fetchPricesFor } from '@/app/myCodes/Stripe'
 import ItemQTYButton from '@/app/Shop/Componets/ItemQTYButton'
-import { Select, SelectItem, Skeleton } from "@nextui-org/react";
+import { Button, Select, SelectItem, Skeleton } from "@nextui-org/react";
 import { useCartContext } from '@/StateManager/CartContext'
 import { AfterpayClearpayMessageElement } from '@stripe/react-stripe-js'
 
@@ -115,7 +115,7 @@ const Product = ({ forThis, itemData }) => {
                             <h1 className='text-center md:text-left font-light'>Quntity</h1>
                             <div className=' gap-4 items-center  flex md:flex-row flex-col'>
                                 <ItemQTYButton state={itemToCheckOut} setState={setItemToCheckOut} />
-                                <button onClick={addToCart} className='h-12 w-48 bg-gray-500'>ADD TO CART</button>
+                                <Button onClick={addToCart} className='h-12 rounded-md w-48 bg-gray-500 mb-2'>ADD TO CART</Button>
                             </div>
                         </div>
 

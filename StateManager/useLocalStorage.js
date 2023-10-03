@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react'
+import { useAUTHListener } from './AUTHListener';
+import { addToDatabase } from '@/app/myCodes/Database';
 
 function useLocalStorage(state, dispatch, initialCartState) {
+  const {uid} = useAUTHListener() 
+
      useEffect(() => {
     if (JSON.parse(localStorage.getItem("Cart"))) { 
       //checking if there already is a state in localstorage
@@ -14,7 +18,11 @@ function useLocalStorage(state, dispatch, initialCartState) {
 
   useEffect(() => {
     if (state !== initialCartState) {
-      localStorage.setItem("Cart", JSON.stringify(state)); 
+      localStorage.setItem("Cart", JSON.stringify(state));
+      
+
+        addToDatabase('User', uid, 'cart', { state })
+
       //create and/or set a new localstorage variable called "state"
     }
   }, [state]);
