@@ -5,33 +5,34 @@ import IMG from "public/Images/0A90A7F5-E6FC-421A-8A5D-9383ED7A1868.JPG";
 import Image from "next/image";
 import { siteName, siteTag } from "@/app/META";
 import { addEmailToList } from "@/app/myCodes/DatabaseUtils";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 
-export const collectAndSendEmail = (email) => {
+export const collectAndSendEmail = (email, setOpen) => {
     addEmailToList(email)
     //function to send email code
     if (setOpen) setOpen(false)
 
 }
 
-function EmailCollector({ isopen, setOpen }) {
+function EmailCollector({ isopen5, setOpen }) {
     const [email, setEmail] = useState()
     console.log(email)
-
-
+    const { isOpen, onOpen, onOpenChange } = useDisclosure();
     return (
         <Modal
-            className="z-[999999]"
-            isOpen={isopen}
+            closeButton={<></>}
+            className=""
+            isOpen={isopen5}
             placement={'auto'}
-            onOpenChange={'onOpenChange'}
+            onOpenChange={onOpenChange}
             size={'2xl'}
             classNames={'h-fit'}
         >
             <ModalContent className="h-[30rem] md:h-[35rem] ">
                 {(onClose) => (
                     <>
-                        <ModalBody className="relative flex z-50 ">
+                        <ModalBody className="relative flex ">
                             <div className="self-end h-auto  center ">
                                 <div className=" absolute center-col p-2 gap-4 w-1/2 h-auto right-0 top-0 text-center">
                                     <div>
@@ -39,21 +40,21 @@ function EmailCollector({ isopen, setOpen }) {
                                         <h1 className="font-light text-xl">{siteTag}</h1>
                                     </div>
 
-                                    <h1 className="font-semibold text-2xl text-center">Become a Luxury Insider</h1>
-                                    <h1 className="font-extrabold text-3xl md:text-5xl text-center">10% OFF</h1>
-                                    <h1 className="text-sm font-light ">Your first purchase. Plus receive exclusive access to promotions and product launches</h1>
+                                    <h1 className="font-semibold text-2xl text-center">Subscribe to our mailing list</h1>
+                                    <h1 className="font-extrabold text-3xl md:text-5xl text-center">Join Now</h1>
+                                    <h1 className="text-sm font-light ">to receive exclusive access to promotions and product launches</h1>
 
                                     <Input
                                         onValueChange={(text) => setEmail(text)}
                                         className="text-center"
                                         placeholder=""
                                         placement={'inside'}
-                                        label={'Enter email for 10% off'}
+                                        label={'Enter email to join'}
 
 
                                     />
                                     <div className="center-col">
-                                        <Button className="bg-black-900 text-white" onPress={() => { collectAndSendEmail(email) }}>
+                                        <Button className="bg-black-900 text-white" onPress={() => { collectAndSendEmail(email, setOpen) }}>
                                             SignUp
                                         </Button>
                                         <Button onPress={() => {
@@ -82,3 +83,5 @@ function EmailCollector({ isopen, setOpen }) {
 }
 
 export default EmailCollector
+
+

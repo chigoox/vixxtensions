@@ -7,17 +7,16 @@ import ShopItem from "./Shop/Componets/ShopItem";
 import { bestseller, category } from "./META";
 import IGFeed from "./Componets/HomePage/IGFeed";
 import { revalidatePath } from "next/cache";
-import VIXBAN1 from "../public/Images/BAN1.JPG";
-import VIXBAN4 from "../public/Images/BAN2.JPG";
-import VIXBAN3 from "../public/Images/BAN3.JPG";
-import VIXBAN2 from "../public/Images/VIXBAN2.webp";
+import VIXBAN1 from "../public/Images/Banners/Banner3.webp";
+import VIXBAN2 from "../public/Images/Banners/Banner1.png";
+import VIXBAN3 from "../public/Images/Banners/Banner2.png";
 import RawBundlesImage from '../public/Images/RawBundles.jpeg'
 import RawLace from '../public/Images/RawLace.jpeg'
 import RawWig from '../public/Images/RawWig.jpeg'
 import RawTools from '../public/Images/RawTools.jpeg'
 import Link from "next/link";
 import ProductsList from "./Shop/Componets/ProductsList";
-import Email from "./Componets/General/Email";
+import EmailCollectorMain from "./Componets/General/EmailCollectorMain";
 
 
 
@@ -28,12 +27,11 @@ export default async function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-evenly">
-      <Email />
+      <EmailCollectorMain />
       <EmblaCarousel
-        img1={VIXBAN2}
-        img2={VIXBAN1}
+        img1={VIXBAN1}
+        img2={VIXBAN2}
         img3={VIXBAN3}
-        img4={VIXBAN4}
       />
 
 

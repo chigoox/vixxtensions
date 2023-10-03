@@ -2,20 +2,20 @@
 import React, { useEffect, useState } from 'react'
 import EmailCollector from './EmailCollector';
 
-function Email() {
+function EmailCollectorMain() {
     const [openEmailCollect, setOpenEmailCollect] = useState(false)
 
     useEffect(() => {
         setTimeout(() => {
             setOpenEmailCollect(true)
-        }, 10000);
+        }, 6000);
 
 
     }, [])
 
     return (
-        < EmailCollector isopen={openEmailCollect} setOpen={setOpenEmailCollect} />
+        < EmailCollector isopen5={openEmailCollect} setOpen={setOpenEmailCollect} />
     )
 }
 
-export default Email
+export default EmailCollectorMain
