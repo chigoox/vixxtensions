@@ -3,39 +3,41 @@ import React, { useEffect, useState } from 'react'
 import { useAUTHListener } from '@/StateManager/AUTHListener'
 import { addToDatabase, fetchDocument } from '@/app/myCodes/Database'
 import { getDate } from 'date-fns'
+import { useRouter } from "next/navigation"
 
 
 function OrderItemPage({ orderID }) {
     const [data, setData] = useState({})
+    const { push } = useRouter()
+
     const getData = async () => {
         const { ShippingInfo } = await fetchDocument('User', uid)
         const { cart } = await fetchDocument('User', uid)
         console.log(ShippingInfo, cart)
-        setData({ shippingInfo: ShippingInfo, cart: cart })
+        setData({ shipping: ShippingInfo, cart: cart })
 
     }
     const { uid } = useAUTHListener()
-    console.log(uid)
-    const ordered = () => {
-        addToDatabase('User', uid, 'orders', { [`Vi-${orderID}`]: { shippingInfo: data?.shipping, order: data?.cart } })
-        addToDatabase('Admin', 'Manage', 'orders', { [`Vi-${orderID}`]: { shippingInfo: data?.shipping, order: data?.cart } })
-
+    const ordered = async () => {
+        console.log(uid)
+        await addToDatabase('User', uid, 'orders', { [`Vi-${orderID}`]: { shippingInfo: data?.shipping ? data?.shipping : '', order: data?.cart ? data?.cart : '' } })
+        await addToDatabase('Admin', 'Manage', 'orders', { [`Vi-${orderID}`]: { shippingInfo: data?.shipping ? data?.shipping : '', order: data?.cart ? data?.cart : '' } })
+        const { orders } = await fetchDocument('User', uid)
+        if (orders) push('/')
     }
 
 
-    useEffect(() => {
-        const run = async () => {
-            await getData().then(() => {
+    const run = async () => {
+        await getData().then(() => {
+            setTimeout(() => {
                 ordered()
-            })
+            }, 9000);
 
-        }
-        run()
-
+        })
 
 
-    }, [])
-
+    }
+    run()
 
     return (
         <div>OrderItemPage</div>
