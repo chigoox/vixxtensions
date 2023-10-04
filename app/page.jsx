@@ -29,7 +29,6 @@ export default async function Home() {
     <main className="flex min-h-screen flex-col items-center justify-evenly">
       <EmailCollectorMain />
       <EmblaCarousel
-        img1={VIXBAN1}
         img2={VIXBAN2}
         img3={VIXBAN3}
       />

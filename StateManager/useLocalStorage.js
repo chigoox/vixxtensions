@@ -3,7 +3,9 @@ import { useAUTHListener } from './AUTHListener';
 import { addToDatabase } from '@/app/myCodes/Database';
 
 function useLocalStorage(state, dispatch, initialCartState) {
-  const {uid} = useAUTHListener() 
+  const _uid = useAUTHListener() 
+  const uid = _uid ? _uid.uid : 'noUser'
+
 
      useEffect(() => {
     if (JSON.parse(localStorage.getItem("Cart"))) { 
