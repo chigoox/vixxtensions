@@ -20,10 +20,14 @@ function OrderItemPage({ orderID }) {
     const { uid } = useAUTHListener()
     const ordered = async () => {
         console.log(uid)
-        await addToDatabase('User', uid, 'orders', { [`Vi-${orderID}`]: { shippingInfo: data?.shipping ? data?.shipping : '', order: data?.cart ? data?.cart : '' } })
-        await addToDatabase('Admin', 'Manage', 'orders', { [`Vi-${orderID}`]: { shippingInfo: data?.shipping ? data?.shipping : '', order: data?.cart ? data?.cart : '' } })
-        const { orders } = await fetchDocument('User', uid)
-        if (orders) push('/')
+        try {
+            await addToDatabase('User', uid, 'orders', { [`Vi-${orderID}`]: { shippingInfo: data?.shipping ? data?.shipping : '', order: data?.cart ? data?.cart : '' } })
+            await addToDatabase('Admin', 'Manage', 'orders', { [`Vi-${orderID}`]: { shippingInfo: data?.shipping ? data?.shipping : '', order: data?.cart ? data?.cart : '' } })
+            const { orders } = await fetchDocument('User', uid)
+            if (orders) push('/')
+        } catch (error) {
+            console.log(error.message)
+        }
     }
 
 
@@ -31,7 +35,7 @@ function OrderItemPage({ orderID }) {
         await getData().then(() => {
             setTimeout(() => {
                 ordered()
-            }, 9000);
+            }, 15000);
 
         })
 
