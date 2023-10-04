@@ -3,7 +3,6 @@ import { DATABASE } from '../../Firebase'
 
 
 export async function addToDatabase(collection, Doc, field, data) {
-console.log(field, data)
 
     await setDoc(doc(DATABASE, collection, Doc), {
         [field]: data,
@@ -24,7 +23,7 @@ export async function updateArrayDatabaseItem(collection, Doc, Field, Value, rem
 }
 
 export async function fetchDocument(collection, document, setterfunction) {
-    const docRef = doc(DATABASE, collection, document ? document : null);
+    const docRef = doc(DATABASE, collection, document ? document : '');
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
        if(setterfunction) setterfunction(docSnap.data());

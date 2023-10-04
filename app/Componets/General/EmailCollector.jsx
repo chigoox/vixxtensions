@@ -17,7 +17,6 @@ export const collectAndSendEmail = (email, setOpen) => {
 
 function EmailCollector({ isopen5, setOpen }) {
     const [email, setEmail] = useState()
-    console.log(email)
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     return (
         <Modal
