@@ -4,9 +4,13 @@ import { DATABASE } from '../../Firebase'
 
 export async function addToDatabase(collection, Doc, field, data) {
 
-    await setDoc(doc(DATABASE, collection, Doc), {
+   try {
+     await setDoc(doc(DATABASE, collection, Doc), {
         [field]: data,
     }, { merge: true });
+   } catch (error) {
+    console.log(error.message)
+   }
 
 }
 
@@ -24,7 +28,10 @@ export async function updateArrayDatabaseItem(collection, Doc, Field, Value, rem
 
 export async function fetchDocument(collection, document, setterfunction) {
     const docRef = doc(DATABASE, collection, document ? document : '');
-    const docSnap = await getDoc(docRef);
+   try {
+    console.log(docRef)
+     const docSnap = await getDoc(docRef);
+  
     if (docSnap.exists()) {
        if(setterfunction) setterfunction(docSnap.data());
        return docSnap.data()
@@ -32,4 +39,7 @@ export async function fetchDocument(collection, document, setterfunction) {
         // doc.data() will be undefined in this case
         console.log("No such document!");
     }
+     } catch (error) {
+    console.log(error.message)
+   }
 }

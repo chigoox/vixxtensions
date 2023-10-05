@@ -46,7 +46,9 @@ export function useAUTHListener(add = false, set, protectedPage) {
                 // User is signed out
                 if (set) set()
                 if (protectedPage) push('/')
-                setUser(null)
+                setUser('noUser')
+                return { uid: 'noUser' }
+
             }
         });
     }, [])

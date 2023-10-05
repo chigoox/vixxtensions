@@ -12,7 +12,6 @@ export const CartReducer = (state, action) => {
       case "ADD_TO_CART": {
           const stateQTY = state?.lineItems[action.value.priceID]?.Qty ? state?.lineItems[action.value.priceID].Qty : 0
           const actionQTY = action?.value?.Qty 
-          console.log(state?.lineItems[action.value.priceID])
          return {
             ...state,
             lineItems: {...state.lineItems,  [action.value.priceID]:{...action.value, Qty: Number(actionQTY) + Number(stateQTY)}},
@@ -21,7 +20,6 @@ export const CartReducer = (state, action) => {
       case "SUB_FROM_CART": {
           const stateQTY = state?.lineItems[action.value.priceID]?.Qty ? state?.lineItems[action.value.priceID].Qty : 0
           const actionQTY = action?.value?.Qty 
-          console.log(state?.lineItems[action.value.priceID])
          return {
             ...state,
             lineItems: {...state.lineItems,  [action.value.priceID]:{...action.value, Qty: (stateQTY - actionQTY < 0) ? 0 : stateQTY - actionQTY  }},
