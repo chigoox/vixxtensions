@@ -30,7 +30,8 @@ function Cart({ showCart }) {
     }
 
     const getShippingInfo = (shippinginfo) => {
-        checkout(event, checkOutItems)
+        setGetShippingWindow(false)
+        if (checkOutItems) checkout(event, checkOutItems)
     }
 
     const checkShippingInfo = async (_event) => {
@@ -53,7 +54,7 @@ function Cart({ showCart }) {
                 <ShippinInfo user={user} forCheckOut={getShippingInfo} />
             </div>}
             <div className="center gap-2">
-                <h1 className="text-white text-center text-2xl font-bold">Cart</h1>
+                <h1 className={`${showCart ? '' : 'left-20 relative'} text-white text-center text-2xl font-bold`}>Cart</h1>
                 <button onClick={() => { dispatch({ type: "EMPTY_CART", value: null }) }}><Trash2Icon color="red" /></button>
 
             </div>
