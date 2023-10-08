@@ -106,7 +106,9 @@ function OrderItemPage({ orderID }) {
     run()
     useEffect(() => {
         if (data.shipping && data.cart && UID) ordered().then((d) => {
+            console.log(d)
         }).catch((e) => {
+            console.log(e.message)
         })
 
 
