@@ -1,3 +1,4 @@
+'use client'
 import { fetchProducts } from "@/app/myCodes/Stripe"
 import { useEffect, useState } from "react"
 

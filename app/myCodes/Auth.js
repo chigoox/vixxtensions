@@ -1,3 +1,4 @@
+'use client'
 import { GoogleAuthProvider, signInWithPopup, FacebookAuthProvider, signOut, signInAnonymously } from "firebase/auth";
 
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail } from "firebase/auth";

@@ -1,12 +1,7 @@
-'use client'
-import { onAuthStateChanged } from "firebase/auth";
-import app, { AUTH } from "@/Firebase";
-import { useEffect, useState } from "react";
 import { Button, Card, CardBody, CardFooter, CardHeader } from "@nextui-org/react";
-import AUTHListener from "@/StateManager/AUTHListener";
+import AUTHListener, { useAUTHListener } from "@/StateManager/AUTHListener";
 import { fetchDocument } from "@/app/myCodes/Database";
 import { logOut } from "@/app/myCodes/Auth";
-import { Input } from "@nextui-org/react";
 import ShippinInfo from "@/app/Componets/User/ShippinInfo";
 import Image from "next/image";
 
@@ -31,17 +26,19 @@ const getUID = (user) => {
 }
 
 
-export default function ProtectedRoute({ params }) {
-    const [user, setUser] = useState({})
-    const [userData, setUserData] = useState()
+export default async function ProtectedRoute({ params }) {
+    const user = useAUTHListener()
+    let userData;
     //  const fetchUserData = async () => {
     //    const data = await fetchDocument('User', getUID(user))
     //  return data
     //}
 
     !userData?.orders ? fetchDocument('User', getUID(user)).then((data) => {
-        if (data) setUserData(data)
+        userData = data
     }) : null
+
+    console.log(userData)
 
 
     const mockReservations = [
@@ -55,10 +52,7 @@ export default function ProtectedRoute({ params }) {
     ]
 
 
-    useEffect(() => {
 
-
-    }, [user])
 
 
     const menu = ['Orders', 'Reservations', 'Update Shipping Info']
@@ -90,7 +84,7 @@ export default function ProtectedRoute({ params }) {
 
     return (
         <div className="w- min-h-screen ">
-            <AUTHListener protectedPage={true} set={setUser} />
+            <AUTHListener protectedPage={true} />
             <h1 className="text-xl font-bold text-center">Welcome Back </h1>
             <h1 className="font-extrabold text-center">{user?.displayName}</h1>
             <div className="center"><Button onPress={logOut} className="bg-black-800 text-white w-3/4">LogOut</Button></div>
