@@ -38,7 +38,6 @@ export default function ProtectedRoute({ params }) {
     //    const data = await fetchDocument('User', getUID(user))
     //  return data
     //}
-    console.log(userData)
 
     !userData?.orders ? fetchDocument('User', getUID(user)).then((data) => {
         if (data) setUserData(data)
