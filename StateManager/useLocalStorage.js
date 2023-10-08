@@ -18,10 +18,10 @@ function useLocalStorage(state, dispatch, initialCartState) {
     }
   }, []);
 
-  addToDatabase('User', user?.uid ? user?.uid : user?.gid , 'cart', { state })
   useEffect(() => {
     if (state !== initialCartState) {
       localStorage.setItem("Cart", JSON.stringify(state));
+      if (user.uid || user.gid) addToDatabase('User', user?.uid ? user?.uid : user?.gid , 'cart', { state })
       
 
 

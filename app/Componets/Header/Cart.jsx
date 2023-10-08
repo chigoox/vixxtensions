@@ -29,7 +29,6 @@ function Cart({ showCart }) {
     }
 
     const getShippingInfo = (shippinginfo) => {
-        console.log('second')
         checkout(event, checkOutItems)
     }
 
@@ -37,10 +36,8 @@ function Cart({ showCart }) {
         await fetchDocument('User', user?.uid ? user?.uid : user?.gid)
             .then((data) => {
                 if (data?.ShippingInfo) {
-                    console.log('first')
                     checkout(_event, checkOutItems)
                 } else {
-                    console.log('first')
                     setEvent(_event)
                     setGetShippingWindow(true)
 
