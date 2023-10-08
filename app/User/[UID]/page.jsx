@@ -1,3 +1,5 @@
+'use client'
+import { onAuthStateChanged } from "firebase/auth";
 import app, { AUTH } from "@/Firebase";
 import { useEffect, useState } from "react";
 import { Button, Card, CardBody, CardFooter, CardHeader } from "@nextui-org/react";
