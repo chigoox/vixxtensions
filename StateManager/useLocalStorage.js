@@ -3,8 +3,8 @@ import { useAUTHListener } from './AUTHListener';
 import { addToDatabase } from '@/app/myCodes/Database';
 
 function useLocalStorage(state, dispatch, initialCartState) {
-  const _uid = useAUTHListener() 
-  const uid = _uid ? _uid.uid : 'noUser'
+  const user = useAUTHListener() 
+  
 
 
      useEffect(() => {
@@ -18,12 +18,12 @@ function useLocalStorage(state, dispatch, initialCartState) {
     }
   }, []);
 
+  addToDatabase('User', user?.uid ? user?.uid : user?.gid , 'cart', { state })
   useEffect(() => {
     if (state !== initialCartState) {
       localStorage.setItem("Cart", JSON.stringify(state));
       
 
-        addToDatabase('User', uid, 'cart', { state })
 
       //create and/or set a new localstorage variable called "state"
     }

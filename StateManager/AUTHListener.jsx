@@ -1,8 +1,11 @@
 'use client'
-import { AUTH } from '@/Firebase'
+import app, { AUTH } from '@/Firebase'
+import { useGuest, useSignInGuest } from '@/app/Hooks/useGuest'
+import { logOut } from '@/app/myCodes/Auth'
 import { addToDatabase } from '@/app/myCodes/Database'
 import { addEmailToList, addUIDToList } from '@/app/myCodes/DatabaseUtils'
-import { onAuthStateChanged } from 'firebase/auth'
+import { getRand } from '@/app/myCodes/Util'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
 import React, { useState, useEffect } from 'react'
 
@@ -32,6 +35,13 @@ function AUTHListener({ add = false, set, protectedPage }) {
 export function useAUTHListener(add = false, set, protectedPage) {
     const { push } = useRouter()
     const [user, setUser] = useState({})
+    const auth = getAuth(app)
+    const GID = useGuest()
+
+
+
+
+
 
     useEffect(() => {
         const auth = AUTH
@@ -41,13 +51,13 @@ export function useAUTHListener(add = false, set, protectedPage) {
                 if (add) addUIDToList(user.uid)
                 if (add) addEmailToList(user.email)
                 setUser(user)
-                return user
             } else {
                 // User is signed out
                 if (set) set()
                 if (protectedPage) push('/')
-                setUser('noUser')
-                return { uid: 'noUser' }
+                //initNoUser()
+
+                setUser({ gid: GID })
 
             }
         });

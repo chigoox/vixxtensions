@@ -50,7 +50,13 @@ export function disableScroll(enable = true, name = "scroll-able") {
     console.log(enable)
 }
 
-export const getRand = (max) => { return Math.floor(Math.random() * max) + 1; }
+export const getRand = (max=99999) => { return Math.floor(Math.random() * max) + 1; }
+
+export function getRandTN(size = 7) {
+const result = Math.random().toString(36).substring(2,size < 7 ? 7 : size);
+return result;
+
+}
 
 export const filterObject = (obj, filterFunc) => {
     Object.filter = (obj, predicate) => 

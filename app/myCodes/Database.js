@@ -29,6 +29,22 @@ export async function updateArrayDatabaseItem(collection, Doc, Field, Value, rem
 export async function fetchDocument(collection, document, setterfunction) {
     const docRef = doc(DATABASE, collection, document ? document : '');
    try {
+     const docSnap = await getDoc(docRef);
+  
+    if (docSnap.exists()) {
+       if(setterfunction) setterfunction(docSnap.data());
+       return docSnap.data()
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+    }
+     } catch (error) {
+    console.log(error.message)
+   }
+}
+export async function fetchDocument2(collection, document, setterfunction) {
+    const docRef = doc(DATABASE,'User', collection, document ? document : '');
+   try {
     console.log(docRef)
      const docSnap = await getDoc(docRef);
   
@@ -38,6 +54,7 @@ export async function fetchDocument(collection, document, setterfunction) {
     } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");
+        return("No such document!");
     }
      } catch (error) {
     console.log(error.message)

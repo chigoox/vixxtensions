@@ -3,7 +3,7 @@ import { addToDatabase } from '@/app/myCodes/Database'
 import { Button, Card, CardBody, CardFooter, CardHeader, Input } from '@nextui-org/react'
 import React, { useState } from 'react'
 
-function ShippinInfo({ user }) {
+function ShippinInfo({ user, forCheckOut, event }) {
     const [shippingInfo, setShippingInfo] = useState({})
 
     const updateShippingInfo = async ({ target }) => {
@@ -13,12 +13,15 @@ function ShippinInfo({ user }) {
 
 
     const updateDatabase = (() => {
-        addToDatabase('User', user?.uid, 'ShippingInfo', shippingInfo)
+        addToDatabase('User', user?.uid ? user?.uid : user?.gid, 'ShippingInfo', shippingInfo)
+        if (forCheckOut) forCheckOut(shippingInfo, event)
     })
     return (
-        <div className="center-col h-auto">
-            <Card className="w-3/4  h-full bg-black center-col">
-                <CardHeader className="font-bold text-white bg-black-800 mb-4"><h1 className="text-center w-full">Shipping Info</h1></CardHeader>
+        <div className="center-col w-full h-auto z-[9999]">
+            <Card className={`${forCheckOut ? 'w-full' : 'w=3/4'}  h-full bg-black center-col`}>
+                <CardHeader className="font-bold text-white bg-black-800 mb-4">
+                    <h1 className="text-center w-full">Add shipping Info</h1>
+                </CardHeader>
                 <CardBody className="center-col gap-2 text-black">
                     <Input type="text"
                         onChange={updateShippingInfo}

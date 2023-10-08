@@ -12,8 +12,10 @@ import { BedSingle, Calendar, HomeIcon, ShoppingBagIcon, User } from 'lucide-rea
 import Cart from './Cart'
 import LoginCard from '../General/Auth/LoginCard'
 import { Button } from '@nextui-org/react'
-import AUTHListener from '@/StateManager/AUTHListener'
+import AUTHListener, { useAUTHListener } from '@/StateManager/AUTHListener'
 import { useRouter } from 'next/navigation'
+import { useGuest, useSignInGuest } from '@/app/Hooks/useGuest'
+import { getRandTN } from '@/app/myCodes/Util'
 
 const jost = Jost({
     weight: '400',
@@ -24,7 +26,12 @@ function NavBar() {
     const [showMobileMenu, setShowMobileMenu] = useState(false)
     const [showCart, setShowCart] = useState(false)
     const [showLogin, setShowLogin] = useState(false)
+    const [navRoute, setNavRoute] = useState([])
+    const user = useAUTHListener()
     const { push } = useRouter()
+
+
+
     const toggleMobileMenu = () => {
         setShowMobileMenu(!showMobileMenu)
         return (!showMobileMenu)
@@ -33,25 +40,26 @@ function NavBar() {
         setShowCart(!showCart)
         return (!showCart)
     }
-
     const toggleLogin = () => {
-        setShowLogin(!showLogin)
-        if (user?.uid) push(`/User/${user.uid}`)
+        if (user?.uid) {
+            push(`/User/${user.uid}`)
+        } else {
+            setShowLogin(!showLogin)
+
+        }
     }
 
-    const [navRoute, setNavRoute] = useState([])
-    const [user, setUser] = useState({})
+
+
 
 
 
 
     return (
         <div className='h-22 bg-black w-full  center-col overflow-hidden'>
-            <AUTHListener set={setUser} add={true} />
 
             <Cart showCart={showCart} />
-
-            {(showLogin && !user?.uid) && <LoginCard toggleLogin={toggleLogin} />}
+            {(showLogin && (!user?.uid)) && <LoginCard toggleLogin={toggleLogin} />}
 
             <Suspense>
                 <NavigationEvents setRoute={setNavRoute} />

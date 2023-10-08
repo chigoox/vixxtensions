@@ -24,19 +24,26 @@ export async function generateStaticParams() {
 }
 
 
+const getUID = (user) => {
+    console.log(user.uid ? user.uid : user.gid)
+    return user.uid ? user.uid : user.gid
+}
 
 
 export default function ProtectedRoute({ params }) {
     const [user, setUser] = useState({})
-    const mockOrders = [
-        { id: 123, total: 125, qty: 4 },
-        { id: 124, total: 153, qty: 1 },
-        { id: 125, total: 500, qty: 1 },
-        { id: 126, total: 500, qty: 2 },
-        { id: 127, total: 500, qty: 9 },
+    const [userData, setUserData] = useState()
+    //  const fetchUserData = async () => {
+    //    const data = await fetchDocument('User', getUID(user))
+    //  return data
+    //}
+    console.log(userData)
+
+    !userData?.orders ? fetchDocument('User', getUID(user)).then((data) => {
+        if (data) setUserData(data)
+    }) : null
 
 
-    ]
     const mockReservations = [
         { name: 'bob john', time: '11:00am', type: 'wig class' },
         { name: 'cindy block', time: '12:30pm', type: 'wig class' },
@@ -47,13 +54,21 @@ export default function ProtectedRoute({ params }) {
 
     ]
 
+
+    useEffect(() => {
+
+
+    }, [user])
+
+
     const menu = ['Orders', 'Reservations', 'Update Shipping Info']
     const OrderItem = ({ orderInfo }) => {
-        const { id, total, qty } = orderInfo
+        const { order, shippingInfo, id } = orderInfo
+        console.log(Object.values(order?.state?.lineItems ? order?.state?.lineItems : {}))
         return (
             <Card shadow="md" variant={'bordered'} className="h-32 w-full m-auto bg-black center-col">
                 <CardBody className="bg-white center-col">{[1, 2, 3]}</CardBody>
-                <CardFooter className={'text-white text-xs bg-black-800 bg-opacity-25 p-2'}>ID: {id} QTY: {qty} Total: ${total}</CardFooter>
+                <CardFooter className={'text-white text-xs bg-black-800 bg-opacity-25 p-2'}>ID: {id} QTY: {'qty'} Total: ${'total'}</CardFooter>
             </Card>
         )
     }
@@ -81,7 +96,7 @@ export default function ProtectedRoute({ params }) {
                 <Card className="h-auto  md:w-96 w-full my-12" variant={'bordered'}>
                     <CardHeader className="text-3xl  font-bold text-center bg-black mb-4 text-white p-2">Orders</CardHeader>
                     <CardBody className="w-full overflow-y-scroll hidescroll h-full grid grid-cols-2  p-2 gap-2 items-center justify-center">
-                        {mockOrders.map(order => <OrderItem orderInfo={order} />)}
+                        {Object.values(userData?.orders ? userData?.orders : {}).map((order) => <OrderItem orderInfo={order} />)}
                     </CardBody>
                 </Card>
                 <Card className="h-auto md:w-96 w-full my-12" variant={'bordered'}>
