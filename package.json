@@ -21,6 +21,7 @@
     "firebase": "^10.3.1",
     "framer-motion": "^10.16.4",
     "lucide-react": "^0.263.1",
+    "micro": "^10.0.1",
     "micro-cors": "^0.1.1",
     "next": "13.4.19",
     "postcss": "8.4.29",
