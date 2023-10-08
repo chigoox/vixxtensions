@@ -2,10 +2,8 @@
 import React, { useEffect, useState } from 'react'
 import { useAUTHListener } from '@/StateManager/AUTHListener'
 import { addToDatabase, fetchDocument, updateDatabaseItem } from '@/app/myCodes/Database'
-import { getDate } from 'date-fns'
 import { useRouter } from "next/navigation"
 import { useCartContext } from '@/StateManager/CartContext'
-import { ar } from 'date-fns/locale'
 
 
 function OrderItemPage({ orderID }) {
@@ -18,8 +16,8 @@ function OrderItemPage({ orderID }) {
 
     const getData = async () => {
 
-        const orderInfo = await fetchDocument('User', UID)
-        setData({ shipping: orderInfo?.ShippingInfo, cart: orderInfo?.cart ? orderInfo?.cart : state.lineItems })
+        const orderInfo = UID ? await fetchDocument('User', UID) : null
+        if (orderInfo) setData({ shipping: orderInfo?.ShippingInfo, cart: orderInfo?.cart ? orderInfo?.cart : state.lineItems })
 
     }
     const addArray = (array) => {
@@ -60,14 +58,12 @@ function OrderItemPage({ orderID }) {
 
         })
     }
-    console.log(arrayPrice, arrayQTY)
 
     if (!arrayQTY) getArrayToAddQTY()
     if (!arrayPrice) getArrayToAddPrice()
     if (!arrayImages) getArrayToAddImages()
     const orderQTY = addArray(arrayQTY)
     const orderPrice = addArray(arrayPrice)
-    console.log(orderQTY, orderPrice)
     const ordered = async () => {
         await addToDatabase('User', UID, 'orders', {
             [`Vi-${orderID}`]: {
@@ -92,7 +88,7 @@ function OrderItemPage({ orderID }) {
             }
         })
 
-        const { orders } = await fetchDocument('User', UID)
+        const { orders } = UID ? await fetchDocument('User', UID) : { orders: {} }
         if (Object.keys(orders).includes(`Vi-${orderID}`)) {
             setTimeout(() => {
                 dispatch({ type: "EMPTY_CART", value: null })
@@ -105,14 +101,13 @@ function OrderItemPage({ orderID }) {
 
 
     const run = async () => {
-
         await getData()
-
-
     }
     run()
     useEffect(() => {
-        if (data.shipping && data.cart) ordered()
+        if (data.shipping && data.cart && UID) ordered().then((d) => {
+        }).catch((e) => {
+        })
 
 
     }, [data])

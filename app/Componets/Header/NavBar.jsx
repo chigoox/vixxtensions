@@ -7,7 +7,6 @@ import { AiOutlineClose, AiOutlineShoppingCart, } from 'react-icons/ai'
 import MenuButton from '../General/MobileMenuButton'
 import { NavigationEvents } from "../NavigationEvents";
 import { category, siteName } from '@/app/META'
-import Image from 'next/image'
 import { Calendar, HomeIcon, ShoppingBagIcon, User } from 'lucide-react'
 import Cart from './Cart'
 import LoginCard from '../General/Auth/LoginCard'

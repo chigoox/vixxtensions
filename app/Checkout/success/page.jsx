@@ -1,7 +1,5 @@
 
-import app, { AUTH } from '@/Firebase'
-import { addToDatabase, fetchDocument } from '@/app/myCodes/Database'
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { fetchDocument } from '@/app/myCodes/Database'
 import React from 'react'
 import OrderItemPage from './OrderItemPage'
 

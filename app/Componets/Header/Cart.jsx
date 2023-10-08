@@ -9,6 +9,7 @@ import { fetchDocument } from "@/app/myCodes/Database";
 import { useState } from "react";
 import ShippinInfo from "../User/ShippinInfo";
 import { Card } from "@nextui-org/react";
+import { getRand } from "@/app/myCodes/Util";
 
 
 function Cart({ showCart }) {
@@ -18,7 +19,7 @@ function Cart({ showCart }) {
     const user = useAUTHListener()
     const [event, setEvent] = useState()
 
-    const checkOutItems = Object.values(lineItems).map(item => ({ price: item.priceID, quantity: item.Qty }))
+    const checkOutItems = Object.values(lineItems).map(item => ({ key: item.priceID, price: item.priceID, quantity: item.Qty }))
     const RemoveFromCart = (itemRemove) => {
         dispatch({ type: "REMOVE_FROM_CART", value: itemRemove })
     }
@@ -59,7 +60,7 @@ function Cart({ showCart }) {
             <div className=" h-[80%] mb-4 m-auto  hidescroll overflow-y-scroll py-2 start-col gap-1">
                 {Object.values(lineItems).map(item => {
                     return (
-                        <div key={item.priceId} className="h-52 md:h-48  flex-shrink-0 border-b-2 text-white relative">
+                        <div key={item.priceId + getRand()} className="h-52 md:h-48  flex-shrink-0 border-b-2 text-white relative">
                             <div className="evenly gap-2 relative h-1/2 top-4 ">
                                 <Card shadow="true" className={'w-24 h-full relative overflow-hidden'}>
                                     <Image fill src={item.images ? item.images[0] : ''} alt="" />

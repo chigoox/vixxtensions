@@ -17,6 +17,7 @@ console.log(collection, Doc, field, data)
 }
 
 export async function updateDatabaseItem(collection, Doc, Field, Value) {
+    
     await updateDoc(doc(DATABASE, collection, Doc), {
         [Field]: Value ? Value : deleteField()
     });
@@ -29,7 +30,8 @@ export async function updateArrayDatabaseItem(collection, Doc, Field, Value, rem
 }
 
 export async function fetchDocument(collection, document, setterfunction) {
-    const docRef = doc(DATABASE, collection, document ? document : '');
+    console.log('document', document)
+    const docRef = doc(DATABASE, collection, document);
    try {
      const docSnap = await getDoc(docRef);
   
