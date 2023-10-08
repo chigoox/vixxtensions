@@ -3,13 +3,15 @@ import { DATABASE } from '../../Firebase'
 
 
 export async function addToDatabase(collection, Doc, field, data) {
-
-   try {
+console.log(collection, Doc, field, data)
+   if (Doc){
+    try {
      await setDoc(doc(DATABASE, collection, Doc), {
         [field]: data,
     }, { merge: true });
    } catch (error) {
     console.log(error.message)
+   }
    }
 
 }
