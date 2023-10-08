@@ -3,19 +3,17 @@ import Link from 'next/link'
 import React, { Suspense, useState } from 'react'
 import Banner from './Componets/Banner'
 import { Jost } from 'next/font/google'
-import { AiOutlineClose, AiOutlineSearch, AiOutlineShoppingCart, AiOutlineUser } from 'react-icons/ai'
+import { AiOutlineClose, AiOutlineShoppingCart, } from 'react-icons/ai'
 import MenuButton from '../General/MobileMenuButton'
-import { Navigation, NavigationEvents } from "../NavigationEvents";
+import { NavigationEvents } from "../NavigationEvents";
 import { category, siteName } from '@/app/META'
 import Image from 'next/image'
-import { BedSingle, Calendar, HomeIcon, ShoppingBagIcon, User } from 'lucide-react'
+import { Calendar, HomeIcon, ShoppingBagIcon, User } from 'lucide-react'
 import Cart from './Cart'
 import LoginCard from '../General/Auth/LoginCard'
 import { Button } from '@nextui-org/react'
-import AUTHListener, { useAUTHListener } from '@/StateManager/AUTHListener'
+import { useAUTHListener } from '@/StateManager/AUTHListener'
 import { useRouter } from 'next/navigation'
-import { useGuest, useSignInGuest } from '@/app/Hooks/useGuest'
-import { getRandTN } from '@/app/myCodes/Util'
 
 const jost = Jost({
     weight: '400',

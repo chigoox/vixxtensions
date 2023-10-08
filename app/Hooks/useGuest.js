@@ -15,7 +15,7 @@ import { fetchDocument } from "../myCodes/Database"
     await fetchDocument('User', GID)
     .then((data) => {
         if(data == undefined){
-            localStorage.setItem("GuestID", JSON.stringify(GID));
+          typeof window !== "undefined" ?  localStorage.setItem("GuestID", JSON.stringify(GID)) : null;
             
 
         }
@@ -25,13 +25,15 @@ import { fetchDocument } from "../myCodes/Database"
 
 
    useEffect(()=>{
-    if (JSON.parse(localStorage.getItem("GuestID"))) { 
+    if(typeof window !== "undefined"){
+        if (JSON.parse(localStorage.getItem("GuestID"))) { 
         
     } else{
      checkGID()
     }
+    }
+    
    }, []) 
-
-    return JSON.parse(localStorage.getItem("GuestID"))
+    return typeof window !== "undefined" ? JSON.parse(localStorage.getItem("GuestID")) : null
 }
 
