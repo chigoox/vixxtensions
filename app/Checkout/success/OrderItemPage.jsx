@@ -29,6 +29,7 @@ function OrderItemPage({ orderID }) {
     }
     const [arrayQTY, setArrayQTY] = useState()
     const [arrayPrice, setArrayPrice] = useState()
+    const [arrayImages, setArrayImages] = useState()
     const getArrayToAddQTY = () => {
         Object.values(data?.cart ? data?.cart : {}).map((order) => {
             const total = Object.values(order.lineItems ? order.lineItems : {}).map((orderInfo) => {
@@ -48,16 +49,49 @@ function OrderItemPage({ orderID }) {
 
         })
     }
+
+    const getArrayToAddImages = () => {
+        Object.values(data?.cart ? data?.cart : {}).map((order) => {
+            const total = Object.values(order.lineItems ? order.lineItems : {}).map((orderInfo) => {
+                console.log(orderInfo.price)
+                return orderInfo.images[0]
+            })
+            setArrayImages(total)
+
+        })
+    }
     console.log(arrayPrice, arrayQTY)
 
     if (!arrayQTY) getArrayToAddQTY()
     if (!arrayPrice) getArrayToAddPrice()
+    if (!arrayImages) getArrayToAddImages()
     const orderQTY = addArray(arrayQTY)
     const orderPrice = addArray(arrayPrice)
     console.log(orderQTY, orderPrice)
     const ordered = async () => {
-        await addToDatabase('User', UID, 'orders', { [`Vi-${orderID}`]: { shippingInfo: data?.shipping ? data?.shipping : '', order: data?.cart.state, id: `Vi-${orderID}`, qty: orderQTY, total: orderPrice } })
-        await addToDatabase('Admin', 'Manage', 'orders', { [`Vi-${orderID}`]: { shippingInfo: data?.shipping ? data?.shipping : '', order: data?.cart.state, id: `Vi-${orderID}`, qty: orderQTY, total: orderPrice } })
+        await addToDatabase('User', UID, 'orders', {
+            [`Vi-${orderID}`]: {
+                shippingInfo: data?.shipping ? data?.shipping : '',
+                order: data?.cart.state, id: `Vi-${orderID}`,
+                qty: orderQTY,
+                total: orderPrice,
+                images: arrayImages
+            }
+        })
+
+
+
+        await addToDatabase('Admin', 'Manage', 'orders', {
+            [`Vi-${orderID}`]: {
+                shippingInfo: data?.shipping ? data?.shipping : '',
+                order: data?.cart.state,
+                id: `Vi-${orderID}`,
+                qty: orderQTY,
+                total: orderPrice,
+                images: arrayImages
+            }
+        })
+
         const { orders } = await fetchDocument('User', UID)
         if (Object.keys(orders).includes(`Vi-${orderID}`)) {
             setTimeout(() => {

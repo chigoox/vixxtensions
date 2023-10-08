@@ -8,6 +8,7 @@ import { addToDatabase, fetchDocument } from "@/app/myCodes/Database";
 import { logOut } from "@/app/myCodes/Auth";
 import { Input } from "@nextui-org/react";
 import ShippinInfo from "@/app/Componets/User/ShippinInfo";
+import Image from "next/image";
 
 
 
@@ -63,12 +64,15 @@ export default function ProtectedRoute({ params }) {
 
     const menu = ['Orders', 'Reservations', 'Update Shipping Info']
     const OrderItem = ({ orderInfo }) => {
-        const { order, shippingInfo, id } = orderInfo
+        const { order, shippingInfo, id, total, qty, images } = orderInfo
         console.log(Object.values(order?.state?.lineItems ? order?.state?.lineItems : {}))
         return (
-            <Card shadow="md" variant={'bordered'} className="h-32 w-full m-auto bg-black center-col">
-                <CardBody className="bg-white center-col">{[1, 2, 3]}</CardBody>
-                <CardFooter className={'text-white text-xs bg-black-800 bg-opacity-25 p-2'}>ID: {id} QTY: {'qty'} Total: ${'total'}</CardFooter>
+            <Card shadow="md" variant={'bordered'} className="h-36 w-full m-auto bg-black center-col">
+                <CardBody className="bg-white center-col relative">
+                    <h1 className="abolute top-0 z-10 text-white bg-black">{id}</h1>
+                    <Image src={images[0]} objectFit="cover" fill />
+                </CardBody>
+                <CardFooter className={'text-white text-center text-xs  m-auto center bg-black-800 bg-opacity-25 p-2'}>QTY: {qty} Total: ${total}</CardFooter>
             </Card>
         )
     }
