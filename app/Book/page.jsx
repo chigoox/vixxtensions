@@ -1,12 +1,11 @@
 'use client'
 import { add, addDays, addHours, eachDayOfInterval, eachMinuteOfInterval, endOfDay, endOfMonth, endOfWeek, format, getDay, isAfter, isBefore, isEqual, isSameMonth, isThisMonth, isToday, parse, parseISO, set, startOfDay, startOfToday, startOfWeek, startOfYesterday } from "date-fns";
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect } from 'react'
 import { useMemo, useState } from "react"
 import { cn, dayNames } from "../../lib/utils"
 import { CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react"
 import AvailableHours from "./Componets/AvailableHours"
 import TimesBar from './Componets/TimesBar'
-import { AiFillBackward, AiOutlineArrowDown, AiOutlineArrowLeft, AiOutlineArrowUp } from 'react-icons/ai'
 import { addToDatabase, fetchDocument } from '../../app/myCodes/Database'
 import { checkColor, monthColor, weekDayColor, weekendColor } from "./Meta";
 import BookingOptions from "./Componets/BookingOptions";
@@ -25,6 +24,7 @@ function Booking({ myPackage }) {
     const [adminDATA, setAdminDATA] = useState({})
     const reservations = adminDATA?.allRes ? adminDATA?.allRes : []
     const [booktype, setBooktype] = useState()
+    console.log(booktype)
 
 
     const [bookingInfo, setBookingInfo] = useState({})
@@ -144,24 +144,18 @@ function Booking({ myPackage }) {
     }
     return (
         <div className=' bg-white  m-auto w-full text-black h-full '>
-            <h1 className='text-5xl text-center mb-6 '>Bookings</h1>
+            <h1 className='text-5xl text-center mb-6 '>Services</h1>
             <BookingOptions booktype={booktype} setBooktype={setBooktype} />
 
 
-            {
-                <div className='center flex-col mb-20'>
 
-
-
-
-                </div>}
-            {true &&
+            {booktype == "Wig Class" &&
                 <div>
                     <h1 className='text-center'>Select your reservation</h1>
                 </div>
             }
             {
-                <div className={`${true ? 'opacity-100' : 'opacity-0 z-0'} trans flex flex-col  md:flex-row   md:items-start  lg:justify-center    mb-10 md:mb-24`}>
+                <div className={`${booktype == "Wig Class" ? 'opacity-100' : 'opacity-0 z-0'} trans flex flex-col  md:flex-row   md:items-start  lg:justify-center    mb-10 md:mb-24`}>
 
 
                     {/* calendar implementation */}
@@ -310,6 +304,14 @@ function Booking({ myPackage }) {
                 </div>
 
             }
+
+            {booktype == "Bundle Construction" &&
+                <div>
+                    <h1 className='text-center'>Select your reservation</h1>
+                </div>
+            }
+
+
             {bookingInfo.apointment && <div className=' mb-96  center flex-col text-white p-2'>
                 <h1 className='text-xl text-center'>{`Your reservation is on ${bookingInfo.apointment}`}</h1>
                 <h1 className='text-center text-pink-700'>depoit $200 to comfirm booking</h1>

@@ -1,4 +1,4 @@
-/* import { buffer } from "micro";
+ import { buffer } from "micro";
 import Stripe from "stripe";
 import Cors from 'micro-cors';
 
@@ -33,4 +33,4 @@ const handler = async (req, res) => {
   }
 
 };
-export default handler; */
+export default handler; 

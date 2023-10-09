@@ -3,11 +3,14 @@ import { CheckCircle2 } from "lucide-react"
 import React, { memo, useState } from "react"
 import { cn } from "../../../lib/utils"
 import { addToDatabase, updateArrayDatabaseItem } from "../../myCodes/Database"
+import { useAUTHListener } from "@/StateManager/AUTHListener"
+import { getUID } from "@/app/myCodes/Auth"
 
 // eslint-disable-next-line react/display-name
 const AvailableHours = memo(({ freeTimes, setBookingInfo, setReload, reload }) => {
     const [selectedTime, setSelectedTime] = useState()
-    const user = 'uID'
+    const user = useAUTHListener()
+    const UID = getUID(user)
 
     const bookTime = () => {
         const fullDate = format(selectedTime, "MM-dd-yy hh:mm aaaaa'm'")
@@ -22,14 +25,16 @@ const AvailableHours = memo(({ freeTimes, setBookingInfo, setReload, reload }) =
 
         setBookingInfo(old => {
             const data = { ...old, apointment: fullDate, date: date, time12: time12, time24: time24, dateMain: addHours(startOfDay(selectedTime), conTime(time12)).toString() }
-            if (user.uid) addToDatabase('Users', user.uid, 'willBook', data)
-            if (user.uid) addToDatabase('Admin', 'onHold', user.uid, addHours(startOfDay(selectedTime), conTime(time12)).toString())
+            if (UID) addToDatabase('User', UID, 'willBook', data)
+            if (UID) addToDatabase('Admin', 'onHold', UID, addHours(startOfDay(selectedTime), conTime(time12)).toString())
             return ({ ...old, apointment: fullDate, date: date, time12: time12 })
         })
 
         setTimeout(() => {
             setReload(!reload)
         }, 300);
+
+
 
     }
 
@@ -47,7 +52,7 @@ const AvailableHours = memo(({ freeTimes, setBookingInfo, setReload, reload }) =
                         <button
                             type="button"
                             className={cn(
-                                "bg-gray-800 trans-slow rounded-lg px-2 text-purple-300 relative hover:border hover:border-gray-900 w-[64px] h-[64px]",
+                                "bg-gray-800 trans-slow rounded-lg px-2 text-purple-300 relative hover:border hover:border-gray-900 w-[64px] h-40",
                                 selectedTime &&
                                 isSameMinute(selectedTime, hour) &&
                                 "bg-purple-300 text-gray-800"

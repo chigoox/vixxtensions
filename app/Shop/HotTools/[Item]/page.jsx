@@ -2,7 +2,6 @@
 
 import { fetchProducts } from '@/app/myCodes/Stripe'
 import Product from '../../Componets/Product'
-import { useEffect, useState } from 'react'
 import { useGetItemData } from '@/app/Hooks/useGetItemData'
 
 const fetchData = async () => {

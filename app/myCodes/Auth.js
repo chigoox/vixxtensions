@@ -10,7 +10,10 @@ const auth = getAuth(app)
 
 
 
-
+const getUID = (user) => {
+    console.log(user.uid ? user.uid : user.gid)
+    return user.uid ? user.uid : user.gid
+}
 
 
 const signUp = async (email, password) => {
@@ -135,4 +138,4 @@ const sendPasswordReset = async () => {
 
 
 
-export {signUp, logIn, loginWith, logOut, checkLoggedinUser, sendVerification, sendPasswordReset, } 
+export {signUp,getUID, logIn, loginWith, logOut, checkLoggedinUser, sendVerification, sendPasswordReset, } 

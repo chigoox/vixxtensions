@@ -13,7 +13,8 @@ module.exports = {
         'files.stripe.com',
         'www.asteriahair.com',
         'media.freestocktextures.com',
-        'img.freepik.com'
+        'img.freepik.com',
+        'cdn-s.acuityscheduling.com'
       ],
   },
 }

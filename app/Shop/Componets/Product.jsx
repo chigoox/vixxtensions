@@ -80,14 +80,14 @@ const Product = ({ forThis, itemData }) => {
             <div>
 
                 <div className='flex md:flex-row flex-col gap-2'>
-                    <Skeleton className='h-fit' isLoaded={thisProduct}>
+                    <Skeleton className='h-[44rem]' isLoaded={thisProduct}>
                         <EmblaCarouselThumb options={{}} slides={slides} />
                     </Skeleton>
 
 
 
                     <div className='h-fit md:w-1/2 p-2 pt-8'>
-                        <Skeleton isLoaded={name} className='rounded'>
+                        <Skeleton isLoaded={name} className='rounded h-12'>
                             <h1 className='text-3xl md:text-6xl font-bold'>{name}</h1>
                         </Skeleton>
                         <span className='font-thin'>from</span>

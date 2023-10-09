@@ -50,7 +50,7 @@ function NavBar() {
 
 
 
-
+    const url = 'QWHjHFtDfV8'
 
     return (
         <div className='h-22 bg-black w-full  center-col overflow-hidden'>
@@ -79,7 +79,7 @@ function NavBar() {
                     </div>
                     <div className=''>
                         <iframe className='w-[100vw] aspect-video video ytplayer'
-                            src="https://www.youtube.com/embed/83h5XA6LYa4?autoplay=1&mute=1&controls=0&loop=1playlist=83h5XA6LYa4">
+                            src={`https://www.youtube.com/embed/${url}?autoplay=1&mute=1&controls=0&loop=1playlist=${url}`}>
                         </iframe>
                     </div>
                     {/* <Image height={30} width={2000} src={'https://img.freepik.com/free-photo/white-painted-wall-texture-background_53876-138197.jpg?w=2000'} alt={''} /> */}

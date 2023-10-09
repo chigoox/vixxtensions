@@ -1,4 +1,3 @@
-import { bestseller } from "@/app/META"
 import { checkout } from "@/app/myCodes/Stripe"
 import Image from "next/image"
 import { useCartContext } from "@/StateManager/CartContext";
