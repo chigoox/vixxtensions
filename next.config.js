@@ -14,7 +14,9 @@ module.exports = {
         'www.asteriahair.com',
         'media.freestocktextures.com',
         'img.freepik.com',
-        'cdn-s.acuityscheduling.com'
+        'cdn-s.acuityscheduling.com',
+        'scontent-ord5-1.cdninstagram.com',
+        'scontent-ord5-2.cdninstagram.com',
       ],
   },
 }
