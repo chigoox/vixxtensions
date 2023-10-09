@@ -6,7 +6,7 @@ import EmblaCarouselThumb from '@/app/Componets/HomePage/CarouselThumb'
 import { Red_Hat_Text } from 'next/font/google'
 import { fetchPricesFor } from '@/app/myCodes/Stripe'
 import ItemQTYButton from '@/app/Shop/Componets/ItemQTYButton'
-import { Button, Select, SelectItem, Skeleton } from "@nextui-org/react";
+import { Button, Card, Select, SelectItem, Skeleton } from "@nextui-org/react";
 import { useCartContext } from '@/StateManager/CartContext'
 import { AfterpayClearpayMessageElement } from '@stripe/react-stripe-js'
 
@@ -60,14 +60,17 @@ const Product = ({ forThis, itemData }) => {
     const PayOptions = ({ price, service }) => {
         const services = ['After Pay', 'Klarna', 'Affirm']
         return (
-            <Skeleton className={'rounded-xl w-fit flex mt-2 gap-2 relative p-2 overflow-hidden'} isLoaded={price}>
-                <div className='font-thin text-sm md:text-base'>or 4 interest-free payments of <span className=' font-normal'>${price / 4}</span> with:</div>
+            <div className={'rounded-xl w-fit center-col m-auto mt-2 gap-2 relative p-2 overflow-hidden'} isLoaded={price}>
+                <div className='font-thin text-sm md:text-base'>or 4 interest-free payments of <span className=' font-normal'><Skeleton isLoaded={price} className='w-fit  relative top-[.40rem] inline-block'>${price / 4}</Skeleton ></span> with:</div>
+
                 <div className='center gap-2 mt-1'>
-                    {services.map(service => (<div key={service} className='w-20 h-8 rounded-full center bg-green-100 shadow-gray-300 shadow-sm font-bold text-gray-500 text-sm'>
-                        <h1 className='text-center'>{service}</h1>
-                    </div>))}
+                    {services.map(service => (<Skeleton isLoaded={price} key={service} className='w-20 h-8 center bg-green-100 shadow-gray-300 shadow-sm font-bold text-gray-500 text-sm'>
+                        <h1 className='text-center h-full rounded-full'>{service}</h1>
+                    </Skeleton>))}
                 </div>
-            </Skeleton>
+
+
+            </div>
 
         )
     }
@@ -80,14 +83,14 @@ const Product = ({ forThis, itemData }) => {
             <div>
 
                 <div className='flex md:flex-row flex-col gap-2'>
-                    <Skeleton className='h-[44rem]' isLoaded={thisProduct}>
+                    <Skeleton className='h-[32rem]' isLoaded={thisProduct}>
                         <EmblaCarouselThumb options={{}} slides={slides} />
                     </Skeleton>
 
 
 
                     <div className='h-fit md:w-1/2 p-2 pt-8'>
-                        <Skeleton isLoaded={name} className='rounded h-12'>
+                        <Skeleton isLoaded={name} className={`${name ? 'h-auto' : 'h-8'} rounded`}>
                             <h1 className='text-3xl md:text-6xl font-bold'>{name}</h1>
                         </Skeleton>
                         <span className='font-thin'>from</span>
