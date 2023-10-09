@@ -91,7 +91,7 @@ const Product = ({ forThis, itemData }) => {
                             <h1 className='text-3xl md:text-6xl font-bold'>{name}</h1>
                         </Skeleton>
                         <span className='font-thin'>from</span>
-                        <Skeleton isLoaded={price} className='w-fit flex rounded-full'>
+                        <Skeleton isLoaded={price} className='w-fit flex'>
                             <span className=' font-light text-2xl'>${price}.00</span>
                         </Skeleton>
                         <PayOptions price={price} />
