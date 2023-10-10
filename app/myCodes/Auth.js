@@ -3,7 +3,6 @@ import { GoogleAuthProvider, signInWithPopup, FacebookAuthProvider, signOut, sig
 
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail } from "firebase/auth";
 import app, { AUTH } from "@/Firebase";
-import { useState } from "react";
 
 const provider = new GoogleAuthProvider();
 const auth = getAuth(app)

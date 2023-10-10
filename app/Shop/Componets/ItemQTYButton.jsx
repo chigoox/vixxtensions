@@ -1,4 +1,5 @@
 import { useCartContext } from '@/StateManager/CartContext'
+import { Button } from '@nextui-org/react'
 import { BellMinus, Minus, MinusIcon, Plus, PlusIcon } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 function ItemQTYButton({ state, setState, product }) {
@@ -23,9 +24,9 @@ function ItemQTYButton({ state, setState, product }) {
 
     return (
         <div className="center h-1/2 w-fit m-auto my-2">
-            <button onClick={() => { controlQTY('sub') }} className="rounded-l h-8 w-8 bg-gray-300 center"><MinusIcon /> </button>
-            <input max={2} maxLength={2} onChange={event => controlQTY('set', null, event)} value={product?.Qty ? product?.Qty : QTY} className="w-8 h-8 bg-gray-200 text-center center" placeholder="0" type="number" name="" id="" />
-            <button onClick={() => { controlQTY() }} className="rounded-r h-8 w-8 bg-gray-300 center"><PlusIcon /> </button>
+            <Button onClick={() => { controlQTY('sub') }} className="rounded-none rounded-l min-w-0 h-8 w-10  bg-gray-300 center"><MinusIcon /> </Button>
+            <input max={2} maxLength={2} onChange={event => controlQTY('set', null, event)} value={product?.Qty ? product?.Qty : QTY} className="w-10 h-8  bg-gray-200 text-center center" placeholder="0" type="number" name="" id="" />
+            <Button onClick={() => { controlQTY() }} className=" rounded-none  min-w-0 h-8 w-10 bg-gray-300 center"><PlusIcon /> </Button>
 
         </div>
     )
