@@ -12,6 +12,7 @@
     "@nextui-org/react": "^2.1.13",
     "@stripe/react-stripe-js": "^1.16.5",
     "@stripe/stripe-js": "^1.54.2",
+    "antd": "^5.10.0",
     "autoprefixer": "10.4.15",
     "axios": "^1.5.0",
     "clsx": "^2.0.0",

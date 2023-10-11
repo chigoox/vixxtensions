@@ -15,7 +15,6 @@ export async function POST (request) {
          name: productName, //string
          description: productDesc,  //string
          metadata: productMeta, //object
-         default_price_data: productPrice, //object
         images: productImg, //array
         features: productFeat, //array
     });

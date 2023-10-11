@@ -9,7 +9,6 @@ const {category} = data
         limit: 25,
         query: `active:\'true\' AND metadata[\'category\']:\'${category}\'`,
     });
-
     return NextResponse.json(prices.data.reverse())
 }
 
