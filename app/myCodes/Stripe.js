@@ -12,6 +12,19 @@ export const fetchProducts = async (category, setterfunction = null) => {
     return (data)
   }
 
+  export const createProduct = async (productData, priceData) => {
+    const { data } = await axios.post('/api/createProduct', {
+      productData: productData,
+      priceData: priceData? priceData:null,
+    },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+    return (data)
+  }
+
 export const fetchPricesFor = async (nameNoSpace, setterfunction) => {
     const { data } = await axios.post('/api/fetchPrices', {
       name: nameNoSpace
