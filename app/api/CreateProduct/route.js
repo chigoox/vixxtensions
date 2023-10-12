@@ -6,12 +6,12 @@ import { NextResponse, NextRequest } from "next/server";
 export async function POST (request) {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
     let data = await request.json();
-    let {productData, PriceData} = data
+    let {productData, priceData} = data
     
     const {productName, productDesc,  price, img, productFeat, isNew, isBestSelling, category} = productData
-    //const priceINFO = Object.values(PriceData)
-    
-    console.log(productData)
+    const priceINFO = Object.values(priceData)
+
+    console.log(priceINFO)
     
     
     const product = await stripe.products.create({
@@ -20,14 +20,15 @@ export async function POST (request) {
          metadata: {
             category:category,
             price:price,
-            isnew:isNew,
-            isBestSelling:isBestSelling,
+            isnew:isNew ? isNew : false,
+            isBestSeller:isBestSelling ? isBestSelling : false,
          }, //object
-        images: img, //array
-        features: productFeat, //array
+        images: [], //array
+        features: [], //array
     });
 
-    priceINFO.forEach(async (data, index) => {
+
+ priceINFO.forEach(async (data, index) => {
 
         if (index !=0){
             const {priceName, amount} = data
@@ -35,17 +36,17 @@ export async function POST (request) {
         product: product.id,    
         metadata: {
             price:amount,
-            for:data.for
+            for:priceINFO[0]
 
         },
         nickname: priceName,
         currency: 'USD',
-        unit_amount: priceAmount * 100,
+        unit_amount: data.amount * 100,
         })
         }
     })
 
-    
+  
 
     return NextResponse.json(product)
 }

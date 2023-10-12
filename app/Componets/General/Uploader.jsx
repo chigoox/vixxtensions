@@ -35,6 +35,7 @@ export const Uploader = ({ setProductData }) => {
         }
 
 
+
         setFileList(fileList)
         setProductData(old => { return ({ ...old, img: fileList }) })
     }
