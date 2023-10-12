@@ -18,7 +18,7 @@ function Cart({ showCart }) {
     const user = useAUTHListener()
     const [event, setEvent] = useState()
 
-    const checkOutItems = Object.values(lineItems).map(item => ({ key: item.priceID, price: item.priceID, quantity: item.Qty }))
+    const checkOutItems = Object.values(lineItems).map(item => ({ price: item.priceID, quantity: item.Qty }))
     const RemoveFromCart = (itemRemove) => {
         dispatch({ type: "REMOVE_FROM_CART", value: itemRemove })
     }
