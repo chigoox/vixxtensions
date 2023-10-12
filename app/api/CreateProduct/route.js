@@ -11,7 +11,6 @@ export async function POST (request) {
     const {productName, productDesc,  price, img, productFeat, isNew, isBestSelling, category} = productData
     const priceINFO = Object.values(priceData)
 
-    console.log(priceINFO)
     
     
     const product = await stripe.products.create({
@@ -23,7 +22,7 @@ export async function POST (request) {
             isnew:isNew ? isNew : false,
             isBestSeller:isBestSelling ? isBestSelling : false,
          }, //object
-        images: [], //array
+        images: img? img : [], //array
         features: [], //array
     });
 

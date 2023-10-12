@@ -34,13 +34,10 @@ const EmblaCarouselThumb = ({ slides, options }) => {
     }, [emblaMainApi, onSelect])
     return (
         <div className="emblathumb">
-            <Card className="emblathumb__viewport overflow-hidden rounded  w-full md:w-[30rem] shadow-md shadow-gray-300" ref={emblaMainRef}>
-                <div className="emblathumb__container overflow-hidden">
+            <div className="emblathumb__viewport overflow-hidden rounded  w-full md:w-[30rem] shadow-md shadow-gray-300" ref={emblaMainRef}>
+                <div className="emblathumb__container ">
                     {slides?.map((value, index) => (
                         <div className="emblathumb__slide" key={index}>
-                            <div className="emblathumb__slide__number">
-                                <span>{index + 1}</span>
-                            </div>
                             <img
                                 className="emblathumb__slide__img"
                                 src={imageByIndex(index, slides)}
@@ -49,7 +46,7 @@ const EmblaCarouselThumb = ({ slides, options }) => {
                         </div>
                     ))}
                 </div>
-            </Card>
+            </div>
 
             <div className="emblathumb-thumbs border-y p-2 w-full md:w-96 m-auto">
                 <div className="emblathumb-thumbs__viewport" ref={emblaThumbsRef}>

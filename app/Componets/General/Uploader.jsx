@@ -2,6 +2,7 @@ import { Modal, Upload, message } from 'antd'
 import { AiOutlinePlusSquare } from "react-icons/ai";
 import { useState } from "react"
 import { getStorage, ref, uploadString } from "firebase/storage";
+import { useUploader } from '@/app/Hooks/useUploader';
 
 const getBase64 = (file) =>
     new Promise((resolve, reject) => {
@@ -11,11 +12,12 @@ const getBase64 = (file) =>
         reader.onerror = (error) => reject(error);
     });
 
-export const Uploader = ({ setProductData }) => {
+export const Uploader = ({ setProductData, folderName }) => {
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
     const [previewTitle, setPreviewTitle] = useState('');
     const [fileList, setFileList] = useState([]);
+    const [fileListURL, setFileListURL] = useState([])
     const handleCancel = () => setPreviewOpen(false);
 
     const handlePreview = async (file) => {
@@ -27,17 +29,21 @@ export const Uploader = ({ setProductData }) => {
         setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
     };
 
-    const handleChange = ({ file, fileList }) => {
+    const handleChange = async ({ file, fileList }) => {
         if (file.status === 'done') {
 
         } else if (file.status === 'error') {
             file.status = 'done'
+
+            const fileURL = await useUploader(file.originFileObj, folderName)
+
+            if (fileURL) setFileListURL(old => [...old, fileURL])
         }
 
 
 
         setFileList(fileList)
-        setProductData(old => { return ({ ...old, img: fileList }) })
+        setProductData(old => { return ({ ...old, img: fileListURL }) })
     }
 
 

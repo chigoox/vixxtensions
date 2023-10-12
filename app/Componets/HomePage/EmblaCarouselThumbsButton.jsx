@@ -1,3 +1,4 @@
+import { Image } from '@nextui-org/react'
 import React from 'react'
 
 export const Thumb = (props) => {
@@ -17,10 +18,12 @@ export const Thumb = (props) => {
                 <div className="emblathumb-thumbs__slide__number ">
                     <span>{index + 1}</span>
                 </div>
-                <img
+                <Image
                     className="emblathumb-thumbs__slide__img rounded-full"
                     src={imgSrc}
                     alt="Your alt text"
+                    fill
+
                 />
             </button>
         </div>

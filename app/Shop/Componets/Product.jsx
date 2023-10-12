@@ -34,6 +34,7 @@ const Product = ({ forThis, itemData }) => {
     const desc = thisProduct?.description
     const feats = thisProduct?.features
 
+
     const [prices, setPrices] = useState({})
     const [itemToCheckOut, setItemToCheckOut] = useState({ priceID: 0, Qty: 0, images: [] })
     const addToCart = () => {
@@ -83,7 +84,7 @@ const Product = ({ forThis, itemData }) => {
             <div>
 
                 <div className='flex md:flex-row flex-col gap-2'>
-                    <Skeleton className='h-[32rem]' isLoaded={thisProduct}>
+                    <Skeleton className='h-[32rem] md:h-[44rem]' isLoaded={thisProduct}>
                         <EmblaCarouselThumb options={{}} slides={slides} />
                     </Skeleton>
 

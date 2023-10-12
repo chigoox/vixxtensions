@@ -17,6 +17,7 @@ module.exports = {
         'cdn-s.acuityscheduling.com',
         'scontent-ord5-1.cdninstagram.com',
         'scontent-ord5-2.cdninstagram.com',
+        'firebasestorage.googleapis.com',
       ],
   },
 }

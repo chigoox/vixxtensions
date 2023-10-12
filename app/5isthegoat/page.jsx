@@ -3,8 +3,8 @@ import { Button, Card, CardBody, CardFooter, CardHeader, Checkbox, CheckboxGroup
 import { useEffect, useState } from "react"
 import { Uploader } from "../Componets/General/Uploader"
 import { createArray } from "../myCodes/Util"
-import { InputNumber } from "antd"
 import { createProduct } from "../myCodes/Stripe"
+import { message } from "antd"
 
 
 
@@ -16,8 +16,7 @@ function Admin() {
     const [productData, setProductData] = useState()
     const [priceData, setPriceData] = useState({ for: productData?.productName?.replace(/\s/g, '') })
 
-    //test
-    console('')
+    console.log(productData, priceData)
     const updateProduct = (event, setter) => {
         const { target } = event
         setter(oldState => ({ ...oldState, [target?.name]: target?.value }))
@@ -28,10 +27,21 @@ function Admin() {
     }
 
     if (priceIDCount < 1) setPriceIDCount(1)
-    if (priceIDCount > 4) setPriceIDCount(100)
+    if (priceIDCount > 100) setPriceIDCount(100)
 
-    const create = () => {
-        createProduct(productData, priceData)
+    const create = async () => {
+        try {
+            await createProduct(productData, priceData)
+            setProductData({ productName: '', productDesc: '', productFeat: '', category: '', price: '', isNew: false, isBestSelling: false, })
+            setPriceData()
+            setPriceIDCount(1)
+            message.success('Item Created', 3000)
+
+        } catch (error) {
+            console.log(error)
+            message.error(error.message, 3000)
+
+        }
     }
 
 
@@ -47,9 +57,10 @@ function Admin() {
                     <h1 className="text-center text-xl w-full">Product Data</h1>
                 </CardHeader>
 
-                <CardBody>
+                <CardBody className="">
                     <Input type="text"
                         onChange={(event) => { updateProduct(event, setProductData) }}
+                        value={productData?.productName}
                         placements={'inside'}
                         variant="flat"
                         name={'productName'}
@@ -57,13 +68,13 @@ function Admin() {
                         className="w-64 m-auto"
                     />
                     <Textarea
-                        className="text-white"
-                        variant="underlined"
+                        className="text-pink-500"
+                        variant="flat"
                         label="description"
                         name="productDesc"
                         labelPlacement="outside"
                         placeholder="Enter your description"
-                        value={productData?.desc}
+                        value={productData?.productDesc}
                         onChange={(event) => { updateProduct(event, setProductData) }}
                     />
 
@@ -73,6 +84,7 @@ function Admin() {
                             onChange={(event) => { updateProduct(event, setProductData) }}
                             placements={'inside'}
                             variant="flat"
+                            value={productData?.category}
                             name={'category'}
                             label={'Category'}
                             className="w-64 m-auto"
@@ -81,6 +93,7 @@ function Admin() {
                             onChange={(event) => { updateProduct(event, setProductData) }}
                             placements={'inside'}
                             variant="flat"
+                            value={productData?.price}
                             name={'price'}
                             label={'Price'}
                             className="w-64 m-auto"
@@ -105,7 +118,7 @@ function Admin() {
                         name="productFeat"
                         labelPlacement="outside"
                         placeholder="Enter features seperate by commas"
-                        value={productData?.desc}
+                        value={productData?.productFeat}
                         onChange={(event) => { updateProduct(event, setProductData) }}
                     />
                     <h1 className="text-red-500 text-center font-extrabold text-2xl">Images</h1>
