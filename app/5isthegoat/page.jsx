@@ -16,8 +16,8 @@ function Admin() {
     const [productData, setProductData] = useState()
     const [priceData, setPriceData] = useState({ for: productData?.productName?.replace(/\s/g, '') })
 
-
-
+    //test
+    console('')
     const updateProduct = (event, setter) => {
         const { target } = event
         setter(oldState => ({ ...oldState, [target?.name]: target?.value }))
@@ -28,7 +28,7 @@ function Admin() {
     }
 
     if (priceIDCount < 1) setPriceIDCount(1)
-    if (priceIDCount > 4) setPriceIDCount(4)
+    if (priceIDCount > 4) setPriceIDCount(100)
 
     const create = () => {
         createProduct(productData, priceData)
