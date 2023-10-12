@@ -6,6 +6,9 @@ export const fetchProducts = async (category, setterfunction = null) => {
       {
         headers: {
           "Content-Type": "application/json",
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache',
+          'Expires': '0',
         },
       })
     if (setterfunction) setterfunction(data)
@@ -20,6 +23,9 @@ export const fetchProducts = async (category, setterfunction = null) => {
       {
         headers: {
           "Content-Type": "application/json",
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache',
+          'Expires': '0',
         },
       })
     return (data)
@@ -32,6 +38,9 @@ export const fetchPricesFor = async (nameNoSpace, setterfunction) => {
       {
         headers: {
           "Content-Type": "application/json",
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache',
+          'Expires': '0',
         },
       })
     if (setterfunction) setterfunction(data)
