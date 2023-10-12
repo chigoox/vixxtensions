@@ -7,26 +7,42 @@ export async function POST (request) {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
     let data = await request.json();
     let {productData, PriceData} = data
-
-    const {productName, productDesc, productMeta, productPrice, productImg, productFeat} = productData
+    
+    const {productName, productDesc,  price, img, productFeat, isNew, isBestSelling, category} = productData
+    //const priceINFO = Object.values(PriceData)
+    
+    console.log(productData)
     
     
     const product = await stripe.products.create({
          name: productName, //string
          description: productDesc,  //string
-         metadata: productMeta, //object
-        images: productImg, //array
+         metadata: {
+            category:category,
+            price:price,
+            isnew:isNew,
+            isBestSelling:isBestSelling,
+         }, //object
+        images: img, //array
         features: productFeat, //array
     });
 
-    PriceData.forEach(async ({priceName, priceMeta, priceAmount}) => {
-        await stripe.prices.create({
+    priceINFO.forEach(async (data, index) => {
+
+        if (index !=0){
+            const {priceName, amount} = data
+            await stripe.prices.create({
         product: product.id,    
-        metadata: priceMeta,
+        metadata: {
+            price:amount,
+            for:data.for
+
+        },
         nickname: priceName,
         currency: 'USD',
         unit_amount: priceAmount * 100,
         })
+        }
     })
 
     

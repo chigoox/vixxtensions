@@ -1,9 +1,10 @@
 'use client'
-import { Card, CardBody, CardFooter, CardHeader, Checkbox, CheckboxGroup, Input, Textarea } from "@nextui-org/react"
+import { Button, Card, CardBody, CardFooter, CardHeader, Checkbox, CheckboxGroup, Input, Textarea } from "@nextui-org/react"
 import { useEffect, useState } from "react"
 import { Uploader } from "../Componets/General/Uploader"
 import { createArray } from "../myCodes/Util"
 import { InputNumber } from "antd"
+import { createProduct } from "../myCodes/Stripe"
 
 
 
@@ -11,22 +12,27 @@ import { InputNumber } from "antd"
 
 
 function Admin() {
-    const [priceIDCount, setPriceIDCount] = useState(0)
+    const [priceIDCount, setPriceIDCount] = useState(1)
     const [productData, setProductData] = useState()
     const [priceData, setPriceData] = useState({ for: productData?.productName?.replace(/\s/g, '') })
-    console.log(productData)
-    console.log(priceData)
+
+
+
     const updateProduct = (event, setter) => {
         const { target } = event
         setter(oldState => ({ ...oldState, [target?.name]: target?.value }))
     }
     const updatePrice = (event, setter, index) => {
         const { target } = event
-        setter(oldState => ({ ...oldState, ['price' + index]: { [target?.name]: target?.value } }))
+        setter(oldState => ({ ...oldState, ['price' + index]: { ...oldState['price' + index], [target?.name]: (index == 0 && productData?.price && target?.name == 'amount') ? productData.price : target.value } }))
     }
 
-    if (priceIDCount < 0) setPriceIDCount(0)
+    if (priceIDCount < 1) setPriceIDCount(1)
     if (priceIDCount > 4) setPriceIDCount(4)
+
+    const create = () => {
+        createProduct(productData, priceData)
+    }
 
 
 
@@ -115,11 +121,12 @@ function Admin() {
 
                     />
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 grid-flow-row gap-2">
-                        {createArray(priceIDCount).map((priceData, index) => {
+                        {createArray(priceIDCount).map((_priceData, index) => {
+
 
 
                             return (
-                                <Card className="w-60 h-60 scale-100 md:scale-75 lg:scale-75 m-auto bg-gray-300">
+                                <Card key={index} className="w-60 h-60 scale-100 md:scale-75 lg:scale-75 m-auto bg-gray-300">
                                     <CardHeader className="bg-red-500">
 
                                     </CardHeader>
@@ -137,8 +144,9 @@ function Admin() {
                                             placements={'inside'}
                                             variant="flat"
                                             name={'amount'}
-                                            label={'Price'}
+                                            label={'Price amount'}
                                             className=" m-auto"
+                                            value={(index == 0 && productData?.price) ? productData?.price : _priceData['price0']}
                                         />
                                     </CardBody>
                                     <CardFooter>
@@ -155,8 +163,10 @@ function Admin() {
 
 
                 </CardBody>
-                <CardFooter>
-
+                <CardFooter className="center bg-rose-500">
+                    <Button onPress={create} className="h-14 w-3/4 font-extrabold text-2xl" >
+                        Create Product
+                    </Button>
                 </CardFooter>
             </Card>
         </div>
