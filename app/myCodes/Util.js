@@ -68,3 +68,9 @@ export const filterObject = (obj, filterFunc) => {
     return(filtered);
 
 }
+
+export const createArray = (length) => {
+    const newArray = Array.from({ length: length }, (value, index) => index)
+    
+    return newArray
+}
