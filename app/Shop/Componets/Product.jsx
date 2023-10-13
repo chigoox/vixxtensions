@@ -1,40 +1,23 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import { AiFillAlipayCircle, AiFillMoneyCollect } from 'react-icons/ai'
 import EmblaCarouselThumb from '@/app/Componets/HomePage/CarouselThumb'
 import { Red_Hat_Text } from 'next/font/google'
-import { fetchPricesFor, fetchProducts } from '@/app/myCodes/Stripe'
+import { fetchPricesFor } from '@/app/myCodes/Stripe'
 import ItemQTYButton from '@/app/Shop/Componets/ItemQTYButton'
 import { Button, Card, Select, SelectItem, Skeleton } from "@nextui-org/react";
 import { useCartContext } from '@/StateManager/CartContext'
+import { AfterpayClearpayMessageElement } from '@stripe/react-stripe-js'
 
 const font1 = Red_Hat_Text({ subsets: ['latin'] })
 
-const fetchDataX = async (name) => {
+const fetchData = async (name) => {
     const data = await fetchPricesFor(name)
     return data
 }
 
-
-
-const Product = ({ forThis, category }) => {
-    const fetchData = async () => {
-        const data = await fetchProducts(category)
-        return data
-    }
-
-
-    const [itemData, setItemData] = useState([])
-    if (itemData) {
-
-    } else {
-        fetchData().then(data => {
-            setItemData(data)
-        })
-    }
-
-
-
+const Product = ({ forThis, itemData }) => {
     const { Item } = forThis
     const nameOfRouteWithOutSpace = Item
     const { state, dispatch } = useCartContext()
@@ -44,8 +27,6 @@ const Product = ({ forThis, category }) => {
     const thisProduct = itemData?.map(item => {
         if (item.name.replace(/\s/g, '') == nameOfRouteWithOutSpace) return item
     }).filter(Boolean)[0]
-
-
 
 
     const price = Number(thisProduct?.metadata?.price.replace('$', ''))
@@ -66,7 +47,7 @@ const Product = ({ forThis, category }) => {
     })
     useEffect(() => {
         const getData = async () => {
-            setPrices(await fetchDataX(Item))
+            setPrices(await fetchData(Item))
         }
         getData()
 
@@ -136,6 +117,7 @@ const Product = ({ forThis, category }) => {
 
                         </div>
                         <div className='mt-2 '>
+                            <h1 className='text-center md:text-left font-light'>Quntity</h1>
                             <div className=' gap-4 items-center  flex md:flex-row flex-col'>
                                 <ItemQTYButton state={itemToCheckOut} setState={setItemToCheckOut} />
                                 <Button onClick={addToCart} className='h-12 rounded-md w-48 bg-gray-500 mb-2'>ADD TO CART</Button>

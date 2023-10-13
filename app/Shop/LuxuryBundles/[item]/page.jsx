@@ -1,6 +1,9 @@
 'use client'
+
 import { fetchProducts } from '@/app/myCodes/Stripe'
 import Product from '../../Componets/Product'
+import { useEffect, useState } from 'react'
+import { useGetItemData } from '@/app/Hooks/useGetItemData'
 
 const fetchData = async () => {
   const data = await fetchProducts('LuxuryBundles')
@@ -20,10 +23,11 @@ export async function generateStaticParams() {
 
 export default function LuxBundleItemPage({ params }) {
 
+  const itemData = useGetItemData(fetchData)
 
   return (
     <div>
-      <Product forThis={params} category={'LuxuryBundles'} />
+      <Product forThis={params} itemData={itemData} />
     </div>
   )
 }

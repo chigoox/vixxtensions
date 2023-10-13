@@ -1,6 +1,8 @@
 'use client'
+
 import { fetchProducts } from '@/app/myCodes/Stripe'
 import Product from '../../Componets/Product'
+import { useGetItemData } from '@/app/Hooks/useGetItemData'
 
 const fetchData = async () => {
   const data = await fetchProducts('HotTools')
@@ -9,26 +11,22 @@ const fetchData = async () => {
 
 
 export async function generateStaticParams() {
-  let data;
-  if (data) {
-
-  } else {
-    data = await fetchData()
-  }
+  const data = await fetchData()
 
   return (data.map(d => ({ Item: d.name.replace(/\s/g, '') })))
 
-  //return [{ Item: 'Vihair480degreesFlatIron' }, { Item: 'wig2' }, { Item: 'wig3' }, { Item: 'wig4' }]
+  // return [{ Item: 'wig1' }, { Item: 'wig2' }, { Item: 'wig3' }, { Item: 'wig4' }]
 }
 
 
 
 
 export default function LuxHotToolItemPage({ params }) {
+  const itemData = useGetItemData(fetchData)
 
   return (
     <div>
-      <Product forThis={params} category={'HotTools'} />
+      <Product forThis={params} itemData={itemData} />
     </div>
   )
 }
