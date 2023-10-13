@@ -136,13 +136,9 @@ function Admin() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 grid-flow-row gap-2">
                         {createArray(priceIDCount).map((_priceData, index) => {
 
-
-
                             return (
                                 <Card key={index} className="w-60 h-60 scale-100 md:scale-75 lg:scale-75 m-auto bg-gray-300">
-                                    <CardHeader className="bg-red-500">
-
-                                    </CardHeader>
+                                    <CardHeader className="bg-red-500"></CardHeader>
                                     <CardBody>
                                         <Input type="text"
                                             onChange={(event) => { updatePrice(event, setPriceData, index) }}
@@ -158,6 +154,15 @@ function Admin() {
                                             variant="flat"
                                             name={'amount'}
                                             label={'Price amount'}
+                                            className=" m-auto"
+                                            value={(index == 0 && productData?.price) ? productData?.price : _priceData['price0']}
+                                        />
+                                        <Input type="number"
+                                            onChange={(event) => { updatePrice(event, setPriceData, index) }}
+                                            placements={'inside'}
+                                            variant="flat"
+                                            name={'qty'}
+                                            label={'Price QTY'}
                                             className=" m-auto"
                                             value={(index == 0 && productData?.price) ? productData?.price : _priceData['price0']}
                                         />
