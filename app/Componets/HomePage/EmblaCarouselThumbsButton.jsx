@@ -12,17 +12,14 @@ export const Thumb = (props) => {
         >
             <button
                 onClick={onClick}
-                className="emblathumb-thumbs__slide__button  shadow-sm shadow-gray-400 rounded-full"
+                className="emblathumb-thumbs__slide__button  shadow-sm relative shadow-gray-400 overflow-hidden rounded-3xl"
                 type="button"
             >
-                <div className="emblathumb-thumbs__slide__number ">
-                    <span>{index + 1}</span>
-                </div>
+
                 <Image
-                    className="emblathumb-thumbs__slide__img rounded-full"
+                    className="emblathumb-thumbs__slide__img object-cover max-md:scale-150 lg:scale-100 md:scale-150 sm:scale-100 "
                     src={imgSrc}
                     alt="Your alt text"
-                    fill
 
                 />
             </button>

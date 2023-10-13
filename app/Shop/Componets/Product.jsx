@@ -28,6 +28,8 @@ const Product = ({ forThis, itemData }) => {
         if (item.name.replace(/\s/g, '') == nameOfRouteWithOutSpace) return item
     }).filter(Boolean)[0]
 
+    console.log(thisProduct)
+
     const price = Number(thisProduct?.metadata?.price.replace('$', ''))
     const name = thisProduct?.name
     const slides = thisProduct?.images
@@ -84,7 +86,7 @@ const Product = ({ forThis, itemData }) => {
             <div>
 
                 <div className='flex md:flex-row flex-col gap-2'>
-                    <Skeleton className='h-[32rem] md:h-[44rem]' isLoaded={thisProduct}>
+                    <Skeleton className='h-auto' isLoaded={thisProduct}>
                         <EmblaCarouselThumb options={{}} slides={slides} />
                     </Skeleton>
 

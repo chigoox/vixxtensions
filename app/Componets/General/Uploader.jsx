@@ -1,6 +1,6 @@
 import { Modal, Upload, message } from 'antd'
 import { AiOutlinePlusSquare } from "react-icons/ai";
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { getStorage, ref, uploadString } from "firebase/storage";
 import { useUploader } from '@/app/Hooks/useUploader';
 
@@ -43,8 +43,12 @@ export const Uploader = ({ setProductData, folderName }) => {
 
 
         setFileList(fileList)
-        setProductData(old => { return ({ ...old, img: fileListURL }) })
     }
+
+    useEffect(() => {
+        setProductData(old => { return ({ ...old, img: fileListURL }) })
+
+    }, [fileList])
 
 
     const uploadButton = (

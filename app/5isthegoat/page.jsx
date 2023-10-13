@@ -18,7 +18,8 @@ function Admin() {
     const [productData, setProductData] = useState()
     const [priceData, setPriceData] = useState({ for: productData?.productName?.replace(/\s/g, '') })
 
-    console.log(productData, priceData)
+    console.log(priceData.for)
+
     const updateProduct = (event, setter) => {
         const { target } = event
         setter(oldState => ({ ...oldState, [target?.name]: target?.value }))
@@ -30,26 +31,43 @@ function Admin() {
 
     if (priceIDCount < 1) setPriceIDCount(1)
     if (priceIDCount > 100) setPriceIDCount(100)
-
     const create = async () => {
-        try {
-            await createProduct(productData, priceData)
-            setProductData({ productName: '', productDesc: '', productFeat: '', category: '', price: '', isNew: false, isBestSelling: false, })
-            setPriceData()
-            setPriceIDCount(1)
-            message.success('Item Created', 10)
+        if (priceData['price0']?.priceName &&
+            priceData['price0']?.qty &&
+            productData?.productName &&
+            productData?.productDesc &&
+            productData?.img &&
+            productData?.price &&
+            productData?.category
+        ) {
+            try {
+                await createProduct(productData, priceData)
+                console.log(productData, priceData)
+                setProductData({ productName: '', productDesc: '', productFeat: '', category: '', price: '', isNew: false, isBestSelling: false, })
+                setPriceData({ price0: { priceName: '', qty: '', amount: '' } })
+                setPriceIDCount(1)
+                message.success('Item Created', 5)
 
-        } catch (error) {
-            console.log(error)
-            message.error(error.message, 10)
+            } catch (error) {
+                console.log(error)
+                message.error(error.message, 5)
 
+            }
+        } else {
+            if (!productData?.productName) message.error('Missing product name', 5)
+            if (!productData?.productDesc) message.error('Missing product description', 5)
+            if (!productData?.img) message.error('Missing product images', 5)
+            if (!productData?.price) message.error('Missing product price', 5)
+            if (!productData?.category) message.error('Missing product category', 5)
+            if (!priceData['price0']?.priceName) message.error('Missing variant name', 5)
+            if (!priceData['price0']?.qty) message.error('Missing variant QTY', 5)
         }
     }
 
 
 
 
-    useEffect(() => { setPriceData(old => ({ ...old, for: productData?.productName?.replace(/\s/g, '') })) }, [productData?.productName])
+    useEffect(() => { setPriceData(old => ({ ...old, for: productData?.productName?.replace(/\s/g, '') })) }, [productData])
 
     return (
         <div className="bg-black p-2  md:p-4">
@@ -166,7 +184,6 @@ function Admin() {
                                             name={'amount'}
                                             label={'Variant price'}
                                             className=" m-auto"
-                                            value={(index == 0 && productData?.price) ? productData?.price : _priceData['price0']}
                                         />
                                         <Input type="number"
                                             onChange={(event) => { updatePrice(event, setPriceData, index) }}
@@ -175,6 +192,7 @@ function Admin() {
                                             name={'qty'}
                                             label={'Variant QTY'}
                                             className=" m-auto"
+
 
                                         />
                                     </CardBody>

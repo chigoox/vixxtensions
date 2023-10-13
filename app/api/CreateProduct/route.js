@@ -11,6 +11,8 @@ export async function POST (request) {
     const {productName, productDesc,  price, img, productFeat, isNew, isBestSelling, category} = productData
     const priceINFO = Object.values(priceData)
 
+    console.log(priceINFO[0])
+
     
     
     const product = await stripe.products.create({
@@ -35,7 +37,7 @@ export async function POST (request) {
         product: product.id,    
         metadata: {
             price:amount,
-            for:priceINFO[0]
+            for:productName.replace(/\s/g, '')
 
         },
         nickname: priceName,
