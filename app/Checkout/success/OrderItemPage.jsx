@@ -116,7 +116,7 @@ function OrderItemPage({ orderID }) {
 
 
     return (
-        <div>OrderItemPage</div>
+        <div className='text-8xl font-extrabold center'>DO NOT RELOAD OR EXIT!</div>
     )
 }
 
