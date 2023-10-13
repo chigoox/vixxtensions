@@ -5,6 +5,8 @@ import { Uploader } from "../Componets/General/Uploader"
 import { createArray } from "../myCodes/Util"
 import { createProduct } from "../myCodes/Stripe"
 import { message } from "antd"
+import { PlusCircle } from "lucide-react"
+import { AiFillMinusCircle, AiFillPlusCircle } from "react-icons/ai"
 
 
 
@@ -128,16 +130,20 @@ function Admin() {
                     <div className="border-2 w-full h-1"></div>
 
                     <div className="flex justify-center items-center gap-2 md:w-1/2 m-auto">
-                        <Button onPress={() => { setPriceIDCount(o => o - 1) }} className="h-10 w-8 bg-gradient-to-t from-rose-500 to-rose-950"></Button>
+                        <Button onPress={() => { setPriceIDCount(o => o - 1) }} className="h-10 w-8 bg-gradient-to-t  from-rose-500 to-rose-950">
+                            <AiFillMinusCircle size={20} color="red" />
+                        </Button>
                         <Input
 
                             type="number"
-                            className="w-8 min-w-0 p-0 m-auto my-4 text-center"
+                            className="w-auto p-0  my-4 "
                             onValueChange={setPriceIDCount}
                             value={priceIDCount}
 
                         />
-                        <Button onPress={() => { setPriceIDCount(o => o + 1) }} className="h-10 w-10 bg-gradient-to-t from-lime-500 to-lime-950"></Button>
+                        <Button onPress={() => { setPriceIDCount(o => o + 1) }} className="h-10 w-10 bg-gradient-to-t from-lime-500 to-lime-950">
+                            <AiFillPlusCircle color="lime" opacity={30} size={20} />
+                        </Button>
                     </div>
                     <div className="grid grid-cols-1 overflow-hidden shadow-md shadow-black rounded-2xl bg-gradient-to-t from-[#131313] via-pink-900 to-[#131313] bg-opacity-25 md:grid-cols-2 p-4 lg:grid-cols-3 grid-flow-row gap-2">
                         {createArray(priceIDCount).map((_priceData, index) => {
