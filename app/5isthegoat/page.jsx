@@ -35,11 +35,11 @@ function Admin() {
             setProductData({ productName: '', productDesc: '', productFeat: '', category: '', price: '', isNew: false, isBestSelling: false, })
             setPriceData()
             setPriceIDCount(1)
-            message.success('Item Created', 3000)
+            message.success('Item Created', 10)
 
         } catch (error) {
             console.log(error)
-            message.error(error.message, 3000)
+            message.error(error.message, 10)
 
         }
     }
