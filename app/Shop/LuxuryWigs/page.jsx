@@ -1,7 +1,5 @@
-import EmblaCarousel from '@/app/Componets/HomePage/Carousel'
 import React from 'react'
 import ProductsList from '../Componets/ProductsList'
-import luxWigs from '../../../public/Images/RawWig.jpeg'
 import ShopCategoryTitle from '../Componets/ShopCategoryTitle'
 import { revalidatePath } from 'next/cache'
 

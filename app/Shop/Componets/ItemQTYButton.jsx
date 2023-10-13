@@ -27,7 +27,6 @@ function ItemQTYButton({ state, setState, product, forCart }) {
         if (setState) setState(prev => ({ ...prev, Qty: QTY }))
 
     }, [QTY])
-    console.log(forCart)
     return (
         <div className="center h-1/2 w-fit m-auto my-2 relative">
             <h1 className={`${forCart ? 'text-white' : ''} font-light absolute w-full text-center -top-5`}>Quntity</h1>

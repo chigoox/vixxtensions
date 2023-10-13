@@ -2,8 +2,7 @@
 
 import { fetchProducts } from '@/app/myCodes/Stripe'
 import Product from '../../Componets/Product'
-import { useEffect, useState } from 'react'
-import { useGetItemData } from '@/app/Hooks/useGetItemData'
+
 
 const fetchData = async () => {
   const data = await fetchProducts('LuxuryWigs')
@@ -18,13 +17,13 @@ export async function generateStaticParams() {
 }
 
 export default function LuxWigItemPage({ params }) {
-  const itemData = useGetItemData(fetchData)
+  //const itemData = useGetItemData(fetchData)
 
 
 
   return (
     <div>
-      <Product forThis={params} itemData={itemData} />
+      <Product forThis={params} category={'LuxuryWigs'} />
     </div>
   )
 }

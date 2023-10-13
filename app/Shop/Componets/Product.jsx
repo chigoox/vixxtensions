@@ -1,23 +1,40 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { AiFillAlipayCircle, AiFillMoneyCollect } from 'react-icons/ai'
 import EmblaCarouselThumb from '@/app/Componets/HomePage/CarouselThumb'
 import { Red_Hat_Text } from 'next/font/google'
-import { fetchPricesFor } from '@/app/myCodes/Stripe'
+import { fetchPricesFor, fetchProducts } from '@/app/myCodes/Stripe'
 import ItemQTYButton from '@/app/Shop/Componets/ItemQTYButton'
 import { Button, Card, Select, SelectItem, Skeleton } from "@nextui-org/react";
 import { useCartContext } from '@/StateManager/CartContext'
-import { AfterpayClearpayMessageElement } from '@stripe/react-stripe-js'
 
 const font1 = Red_Hat_Text({ subsets: ['latin'] })
 
-const fetchData = async (name) => {
+const fetchDataX = async (name) => {
     const data = await fetchPricesFor(name)
     return data
 }
 
-const Product = ({ forThis, itemData }) => {
+
+
+const Product = ({ forThis, category }) => {
+    const fetchData = async () => {
+        const data = await fetchProducts(category)
+        return data
+    }
+
+
+    const [itemData, setItemData] = useState([])
+    if (itemData) {
+
+    } else {
+        fetchData().then(data => {
+            setItemData(data)
+        })
+    }
+
+
+
     const { Item } = forThis
     const nameOfRouteWithOutSpace = Item
     const { state, dispatch } = useCartContext()
@@ -28,7 +45,8 @@ const Product = ({ forThis, itemData }) => {
         if (item.name.replace(/\s/g, '') == nameOfRouteWithOutSpace) return item
     }).filter(Boolean)[0]
 
-    console.log(thisProduct)
+
+
 
     const price = Number(thisProduct?.metadata?.price.replace('$', ''))
     const name = thisProduct?.name
@@ -48,7 +66,7 @@ const Product = ({ forThis, itemData }) => {
     })
     useEffect(() => {
         const getData = async () => {
-            setPrices(await fetchData(Item))
+            setPrices(await fetchDataX(Item))
         }
         getData()
 
