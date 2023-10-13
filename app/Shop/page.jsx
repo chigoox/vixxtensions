@@ -1,6 +1,7 @@
 import React from 'react'
 import ProductsList from './Componets/ProductsList'
 import Link from 'next/link'
+import { revalidatePath } from 'next/cache'
 
 const ShopSections = ({ category, name }) => {
     return (
@@ -14,6 +15,8 @@ const ShopSections = ({ category, name }) => {
 
 
 function Shop({ params }) {
+
+    revalidatePath('/')
 
     return (
         <div className='flex min-h-screen flex-col '>

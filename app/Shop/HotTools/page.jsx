@@ -5,9 +5,12 @@ import hotTools from '../../../public/Images/RawTools.jpeg'
 import Image from 'next/image'
 import { category } from '@/app/META'
 import ShopCategoryTitle from '../Componets/ShopCategoryTitle'
+import { revalidatePath } from 'next/cache'
 
 
 async function HotTools() {
+    revalidatePath('/')
+
 
 
     return (
