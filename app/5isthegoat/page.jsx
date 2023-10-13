@@ -137,15 +137,15 @@ function Admin() {
                         {createArray(priceIDCount).map((_priceData, index) => {
 
                             return (
-                                <Card key={index} className="w-60 h-60 scale-100 md:scale-75 lg:scale-75 m-auto bg-gray-300">
+                                <Card key={index} className="w-60 h-auto scale-100 md:scale-75 lg:scale-75 m-auto bg-gray-300">
                                     <CardHeader className="bg-red-500"></CardHeader>
-                                    <CardBody>
+                                    <CardBody className="flex-col gap-2">
                                         <Input type="text"
                                             onChange={(event) => { updatePrice(event, setPriceData, index) }}
                                             placements={'inside'}
                                             variant="flat"
                                             name={`priceName`}
-                                            label={'Price Name'}
+                                            label={'Variant Name'}
                                             className=" m-auto"
                                         />
                                         <Input type="number"
@@ -153,7 +153,7 @@ function Admin() {
                                             placements={'inside'}
                                             variant="flat"
                                             name={'amount'}
-                                            label={'Price amount'}
+                                            label={'Variant price'}
                                             className=" m-auto"
                                             value={(index == 0 && productData?.price) ? productData?.price : _priceData['price0']}
                                         />
@@ -162,7 +162,7 @@ function Admin() {
                                             placements={'inside'}
                                             variant="flat"
                                             name={'qty'}
-                                            label={'Price QTY'}
+                                            label={'Variant QTY'}
                                             className=" m-auto"
                                             value={(index == 0 && productData?.price) ? productData?.price : _priceData['price0']}
                                         />
