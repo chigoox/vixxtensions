@@ -5,8 +5,8 @@ import { Uploader } from "../Componets/General/Uploader"
 import { createArray } from "../myCodes/Util"
 import { createProduct } from "../myCodes/Stripe"
 import { message } from "antd"
-import { PlusCircle } from "lucide-react"
 import { AiFillMinusCircle, AiFillPlusCircle } from "react-icons/ai"
+import { updateDatabaseItem } from "../myCodes/Database"
 
 
 
@@ -17,10 +17,10 @@ function Admin() {
     const [priceIDCount, setPriceIDCount] = useState(1)
     const [productData, setProductData] = useState()
     const [priceData, setPriceData] = useState({ for: productData?.productName?.replace(/\s/g, '') })
+    const [bannerData, setBannerData] = useState()
 
-    console.log(priceData.for)
 
-    const updateProduct = (event, setter) => {
+    const updateInfo = (event, setter) => {
         const { target } = event
         setter(oldState => ({ ...oldState, [target?.name]: target?.value }))
     }
@@ -29,8 +29,16 @@ function Admin() {
         setter(oldState => ({ ...oldState, ['price' + index]: { ...oldState['price' + index], [target?.name]: (index == 0 && productData?.price && target?.name == 'amount') ? productData.price : target.value } }))
     }
 
+
     if (priceIDCount < 1) setPriceIDCount(1)
     if (priceIDCount > 100) setPriceIDCount(100)
+    const updateBanner = () => {
+        if (bannerData.title) updateDatabaseItem('Admin', 'Banner', 'title', bannerData.title)
+        if (bannerData.link) updateDatabaseItem('Admin', 'Banner', 'link', bannerData.link)
+        if (bannerData.message) updateDatabaseItem('Admin', 'Banner', 'message', bannerData.message)
+
+
+    }
     const create = async () => {
         if (priceData['price0']?.priceName &&
             priceData['price0']?.qty &&
@@ -79,7 +87,7 @@ function Admin() {
 
                 <CardBody className="">
                     <Input type="text"
-                        onChange={(event) => { updateProduct(event, setProductData) }}
+                        onChange={(event) => { updateInfo(event, setProductData) }}
                         value={productData?.productName}
                         placements={'inside'}
                         variant="flat"
@@ -95,13 +103,13 @@ function Admin() {
                         labelPlacement="outside"
                         placeholder="Enter your description"
                         value={productData?.productDesc}
-                        onChange={(event) => { updateProduct(event, setProductData) }}
+                        onChange={(event) => { updateInfo(event, setProductData) }}
                     />
 
                     <div className="border p-2 my-4 center-col gap-2">
                         <h1 className="text-white font-extrabold">Metadata</h1>
                         <Input type="text"
-                            onChange={(event) => { updateProduct(event, setProductData) }}
+                            onChange={(event) => { updateInfo(event, setProductData) }}
                             placements={'inside'}
                             variant="flat"
                             value={productData?.category}
@@ -110,7 +118,7 @@ function Admin() {
                             className="w-64 m-auto"
                         />
                         <Input type="number"
-                            onChange={(event) => { updateProduct(event, setProductData) }}
+                            onChange={(event) => { updateInfo(event, setProductData) }}
                             placements={'inside'}
                             variant="flat"
                             value={productData?.price}
@@ -139,7 +147,7 @@ function Admin() {
                         labelPlacement="outside"
                         placeholder="Enter features seperate by commas"
                         value={productData?.productFeat}
-                        onChange={(event) => { updateProduct(event, setProductData) }}
+                        onChange={(event) => { updateInfo(event, setProductData) }}
                     />
                     <h1 className="text-red-500 text-center font-extrabold text-2xl">Images</h1>
                     <Uploader setProductData={setProductData} />
@@ -213,6 +221,48 @@ function Admin() {
                 <CardFooter className="center bg-rose-500">
                     <Button onPress={create} className="h-14 w-3/4 font-extrabold text-2xl" >
                         Create Product
+                    </Button>
+                </CardFooter>
+            </Card>
+
+
+
+
+            <Card className="bg-black-800 w-[90%] mt-4 md:w-[60%] mx-auto  bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900">
+                <CardHeader className="bg-blue-700 text-white  font-extrabold">
+                    <h1 className="text-center text-xl w-full">Banner Data</h1>
+                </CardHeader>
+
+                <CardBody className="center-col gap-2">
+                    <Input type="text"
+                        onChange={(event) => { updateInfo(event, setBannerData) }}
+                        placements={'inside'}
+                        variant="flat"
+                        name={`title`}
+                        label={'Link title'}
+                        className=" m-auto"
+                    />
+                    <Input type="text"
+                        onChange={(event) => { updateInfo(event, setBannerData) }}
+                        placements={'inside'}
+                        variant="flat"
+                        name={`message`}
+                        label={'Message'}
+                        className=" m-auto"
+                    />
+                    <Input type="text"
+                        onChange={(event) => { updateInfo(event, setBannerData) }}
+                        placements={'inside'}
+                        variant="flat"
+                        name={`link`}
+                        label={'Link'}
+                        className=" m-auto"
+                    />
+
+                </CardBody>
+                <CardFooter className="center">
+                    <Button onPress={updateBanner} className="h-14 w-3/4 font-extrabold text-2xl bg-blue-700 text-white" >
+                        Update Banner
                     </Button>
                 </CardFooter>
             </Card>
