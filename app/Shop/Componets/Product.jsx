@@ -66,8 +66,19 @@ const Product = ({ forThis, itemData }) => {
                 <div className='font-thin text-sm md:text-base'>or 4 interest-free payments of <span className=' font-normal'><Skeleton isLoaded={price} className='w-fit  relative top-[.40rem] inline-block'>${price / 4}</Skeleton ></span> with:</div>
 
                 <div className='center gap-2 mt-1'>
-                    {services.map(service => (<Skeleton isLoaded={price} key={service} className='w-20 h-8 center bg-green-100 shadow-gray-300 shadow-sm font-bold text-gray-500 text-sm'>
-                        <h1 className='text-center h-full rounded-full'>{service}</h1>
+                    {services.map(service => (<Skeleton isLoaded={price} key={service} className='w-20 h-8 center  font-bold text-gray-500 text-sm'>
+                        <h1 className='text-center h-full rounded-full'>{<img src={
+                            service == 'After Pay' ? 'https://business.afterpay.com/rs/539-RJA-633/images/AP_logo_badge_6328x2204_mintblack_jpg.jpg' :
+                                service == 'Affirm' ? 'https://cdn-assets.affirm.com/images/black_logo-transparent_bg.png' :
+                                    service == 'Klarna' ? 'https://www.klarna.com/b2b/_next/image/?url=https://images.ctfassets.net/4pxjo1vaz7xk/MTY3NzgzNTg4MDQ4ODQ/7f165976461ae5e1a60c149ccf8b5841/logo-black-thumbnail.png&w=3840&q=75' : ''
+
+
+
+
+                        } />
+
+
+                        }</h1>
                     </Skeleton>))}
                 </div>
 
