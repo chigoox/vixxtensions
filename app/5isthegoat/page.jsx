@@ -128,7 +128,7 @@ function Admin() {
                     <div className="border-2 w-full h-1"></div>
 
                     <div className="center ">
-                        <Button></Button>
+                        <Button className="h-10 w-10"></Button>
                         <Input
                             type="number"
                             className="w-10 min-w-0 p-0 m-auto my-4 text-center"
@@ -136,7 +136,7 @@ function Admin() {
                             value={priceIDCount}
 
                         />
-                        <Button></Button>
+                        <Button className="h-10 w-10"></Button>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 grid-flow-row gap-2">
                         {createArray(priceIDCount).map((_priceData, index) => {
