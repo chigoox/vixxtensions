@@ -78,7 +78,7 @@ function Cart({ showCart }) {
                                 <div className="font-semibold w-24 w rounded-t center text-red-500 bg-gray-600"><Trash2Icon /></div>
                             </button>
                             <div className={'text-black my-8'}>
-                                <ItemQTYButton product={item} />
+                                <ItemQTYButton product={item} forCart={true} />
                             </div>
                         </div>
                     )

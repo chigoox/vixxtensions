@@ -118,7 +118,6 @@ const Product = ({ forThis, itemData }) => {
 
                         </div>
                         <div className='mt-2 '>
-                            <h1 className='text-center md:text-left font-light'>Quntity</h1>
                             <div className=' gap-4 items-center  flex md:flex-row flex-col'>
                                 <ItemQTYButton state={itemToCheckOut} setState={setItemToCheckOut} />
                                 <Button onClick={addToCart} className='h-12 rounded-md w-48 bg-gray-500 mb-2'>ADD TO CART</Button>
