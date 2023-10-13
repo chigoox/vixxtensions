@@ -13,8 +13,12 @@ function ShippinInfo({ user, forCheckOut, event }) {
 
 
     const updateDatabase = (() => {
-        addToDatabase('User', user?.uid ? user?.uid : user?.gid, 'ShippingInfo', shippingInfo)
-        if (forCheckOut) forCheckOut(shippingInfo, event)
+        if (forCheckOut && Object.keys(shippingInfo).reduce((a, c) => a + 'email firstName lastName address zipcode phone'.includes(c), 0) >= 6
+        ) {
+            addToDatabase('User', user?.uid ? user?.uid : user?.gid, 'ShippingInfo', shippingInfo)
+            forCheckOut(shippingInfo, event)
+        }
+
     })
     return (
         <div className="center-col w-full h-auto z-[9999]">
@@ -23,6 +27,14 @@ function ShippinInfo({ user, forCheckOut, event }) {
                     <h1 className="text-center w-full">Add shipping Info</h1>
                 </CardHeader>
                 <CardBody className="center-col gap-2 text-black">
+                    <Input type="text"
+                        onChange={updateShippingInfo}
+                        placements={'inside'}
+                        variant="flat"
+                        name="email"
+                        label={'Address'}
+                        className="w-64 m-auto"
+                    />
                     <Input type="text"
                         onChange={updateShippingInfo}
                         placements={'inside'}

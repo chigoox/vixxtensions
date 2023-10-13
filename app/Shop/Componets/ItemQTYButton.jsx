@@ -5,10 +5,12 @@ import React, { useEffect, useState } from 'react'
 function ItemQTYButton({ state, setState, product, forCart }) {
     const { dispatch } = useCartContext()
     const [QTY, setQTY] = useState(product?.Qty ? product?.Qty : 0)
+
     const controlQTY = (action = 'add', count = 1, event) => {
         if (action == 'add') setQTY(prevState => prevState < 99 ? prevState + count : prevState)
         if (action == 'sub') setQTY(prevState => prevState > 0 ? prevState - count : prevState)
         if (action == 'set') setQTY(event.target.value)
+
         if (product) {
             const currentItemInfo = { images: product.images, name: product.name, price: product.price, variant: product.variant, priceID: product.priceID }
             if (action == 'add') dispatch({ type: "ADD_TO_CART", value: { ...currentItemInfo, Qty: 1 } })
@@ -16,6 +18,10 @@ function ItemQTYButton({ state, setState, product, forCart }) {
             if (action == 'set') dispatch({ type: "SET_CART", value: { ...currentItemInfo, Qty: event.target.value } })
         }
 
+    }
+    if (QTY == 0 && product) {
+        setQTY()
+        dispatch({ type: "REMOVE_FROM_CART", value: product })
     }
     useEffect(() => {
         if (setState) setState(prev => ({ ...prev, Qty: QTY }))

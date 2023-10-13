@@ -1,6 +1,7 @@
 'use client'
 import app, { AUTH } from '@/Firebase'
 import { useGuest, useSignInGuest } from '@/app/Hooks/useGuest'
+import { fetchDocument } from '@/app/myCodes/Database'
 import { addEmailToList, addUIDToList } from '@/app/myCodes/DatabaseUtils'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
@@ -33,6 +34,7 @@ export function useAUTHListener(add = false, set, protectedPage) {
     const { push } = useRouter()
     const [user, setUser] = useState({})
     const auth = getAuth(app)
+
     const GID = useGuest()
 
 
@@ -53,8 +55,20 @@ export function useAUTHListener(add = false, set, protectedPage) {
                 if (set) set()
                 if (protectedPage) push('/')
                 //initNoUser()
+                fetchDocument('User', GID).then((userDATA) => {
+                    console.log(userDATA)
+                    if (userDATA?.ShippingInfo?.email) {
+                        setUser({ gid: GID, email: userDATA?.ShippingInfo?.email })
+                    } else {
+                        setUser({ gid: GID })
+                    }
 
-                setUser({ gid: GID })
+
+                }).catch((e) => {
+                    setUser({ gid: GID })
+
+                })
+
 
             }
         });

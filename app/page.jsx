@@ -1,13 +1,9 @@
 
 import Image from "next/image";
-import Script from "next/script";
 import EmblaCarousel from "./Componets/HomePage/Carousel";
-import { EmblaCarousel2 } from "./Componets/HomePage/Carousel copy";
-import ShopItem from "./Shop/Componets/ShopItem";
 import { bestseller, category } from "./META";
 import IGFeed from "./Componets/HomePage/IGFeed";
 import { revalidatePath } from "next/cache";
-import VIXBAN1 from "../public/Images/Banners/Banner3.webp";
 import VIXBAN2 from "../public/Images/Banners/Banner1.png";
 import VIXBAN3 from "../public/Images/Banners/Banner2.png";
 import RawBundlesImage from '../public/Images/RawBundles.jpeg'
@@ -17,6 +13,7 @@ import RawTools from '../public/Images/RawTools.jpeg'
 import Link from "next/link";
 import ProductsList from "./Shop/Componets/ProductsList";
 import EmailCollectorMain from "./Componets/General/EmailCollectorMain";
+import AUTHListener from "@/StateManager/AUTHListener";
 
 
 
