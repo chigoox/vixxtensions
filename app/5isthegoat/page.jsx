@@ -1,5 +1,5 @@
 'use client'
-import { Button, Card, CardBody, CardFooter, CardHeader, Checkbox, CheckboxGroup, Input, Textarea } from "@nextui-org/react"
+import { Button, ButtonGroup, Card, CardBody, CardFooter, CardHeader, Checkbox, CheckboxGroup, Input, Textarea } from "@nextui-org/react"
 import { useEffect, useState } from "react"
 import { Uploader } from "../Componets/General/Uploader"
 import { createArray } from "../myCodes/Util"
@@ -126,13 +126,18 @@ function Admin() {
 
                     <h1 className="text-white text-center font-extrabold text-4xl my-4">Price Data</h1>
                     <div className="border-2 w-full h-1"></div>
-                    <Input
-                        type="number"
-                        className="w-10 min-w-0 p-0 m-auto my-4 text-center"
-                        onValueChange={setPriceIDCount}
-                        value={priceIDCount}
 
-                    />
+                    <div className="center ">
+                        <Button></Button>
+                        <Input
+                            type="number"
+                            className="w-10 min-w-0 p-0 m-auto my-4 text-center"
+                            onValueChange={setPriceIDCount}
+                            value={priceIDCount}
+
+                        />
+                        <Button></Button>
+                    </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 grid-flow-row gap-2">
                         {createArray(priceIDCount).map((_priceData, index) => {
 
@@ -164,7 +169,7 @@ function Admin() {
                                             name={'qty'}
                                             label={'Variant QTY'}
                                             className=" m-auto"
-                                            value={(index == 0 && productData?.price) ? productData?.price : _priceData['price0']}
+
                                         />
                                     </CardBody>
                                     <CardFooter>
