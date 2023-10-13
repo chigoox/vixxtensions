@@ -92,7 +92,7 @@ function OrderItemPage({ orderID }) {
         if (Object.keys(orders).includes(`Vi-${orderID}`)) {
             setTimeout(() => {
                 dispatch({ type: "EMPTY_CART", value: null })
-            }, 2000);
+            }, 1500);
             push('/Shop')
             updateDatabaseItem('Admin', 'Orders', 'orderID', orderID + 1)
         }
