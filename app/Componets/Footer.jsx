@@ -60,7 +60,7 @@ function Footer() {
                     <h1 className='m-1 '>Be the first to hear
                         the latest news from {siteName}, and much more!
                     </h1>
-                    <Input onValueChange={(text) => setEmail(text)} label={'Enter email for 10% off'} placement={'inside'} className='w-[90%] m-auto text-black  trans p-2 focus:scale-110 hover:scale-105' type="text" />
+                    <Input onValueChange={(text) => setEmail(text)} label={'Subscribe to my newsletter'} placement={'inside'} className='w-[90%] m-auto text-black  trans p-2 focus:scale-110 hover:scale-105' type="text" />
 
 
                     <h1 className='mt-4'>By subscribing you agree to our privacy policy</h1>

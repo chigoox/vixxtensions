@@ -2,6 +2,7 @@
 import { addToDatabase } from '@/app/myCodes/Database'
 import { Button, Card, CardBody, CardFooter, CardHeader, Input } from '@nextui-org/react'
 import React, { useState } from 'react'
+import { Uploader } from '../General/Uploader'
 
 function ShippinInfo({ user, forCheckOut, event }) {
     const [shippingInfo, setShippingInfo] = useState({})
@@ -27,6 +28,12 @@ function ShippinInfo({ user, forCheckOut, event }) {
                     <h1 className="text-center w-full">Add shipping Info</h1>
                 </CardHeader>
                 <CardBody className="center-col gap-2 text-black">
+
+
+                    <h1 className='text-white'>Upload ID Please</h1>
+                    <Uploader setProductData={setShippingInfo} limit={1} />
+
+
                     <Input type="text"
                         onChange={updateShippingInfo}
                         placements={'inside'}
@@ -81,7 +88,6 @@ function ShippinInfo({ user, forCheckOut, event }) {
                         variant="flat"
                         name="phone"
                         label={'Phone'}
-
                         className="w-64 m-auto"
                     />
                 </CardBody>

@@ -4,6 +4,7 @@ import { useAUTHListener } from '@/StateManager/AUTHListener'
 import { addToDatabase, fetchDocument, updateDatabaseItem } from '@/app/myCodes/Database'
 import { useRouter } from "next/navigation"
 import { useCartContext } from '@/StateManager/CartContext'
+import { Card } from '@nextui-org/react'
 
 
 function OrderItemPage({ orderID }) {
@@ -93,7 +94,7 @@ function OrderItemPage({ orderID }) {
             setTimeout(() => {
                 dispatch({ type: "EMPTY_CART", value: null })
             }, 1500);
-            push('/Shop')
+
             updateDatabaseItem('Admin', 'Orders', 'orderID', orderID + 1)
         }
 
@@ -115,8 +116,21 @@ function OrderItemPage({ orderID }) {
     }, [data])
 
 
+
     return (
-        <div className='text-8xl font-extrabold center'>DO NOT RELOAD OR EXIT!</div>
+        <div className='text-4xl center relative font-extrabold center bg-black'>
+            <div className='h-96 w-[50%] bg-black flex flex-col item  justify-between'>
+                <h1 className='text-white'>Order Successful!</h1>
+
+                <div className='border h-20 w-full'>
+                    <h1 className='text-2xl text-white'>items ordered</h1>
+
+                </div>
+            </div>
+            <img className='object-cover w-1/2 h-full rounded' src="https://megalook.com/cdn/shop/files/1_f44b18dc-da97-4db9-af1c-00d5a04efc5d.jpg?v=1689905711" alt="" />
+
+
+        </div>
     )
 }
 

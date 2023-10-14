@@ -150,7 +150,7 @@ function Admin() {
                         onChange={(event) => { updateInfo(event, setProductData) }}
                     />
                     <h1 className="text-red-500 text-center font-extrabold text-2xl">Images</h1>
-                    <Uploader setProductData={setProductData} />
+                    <Uploader setProductData={setProductData} folderName={'productImages'} />
 
                     <h1 className="text-white text-center font-extrabold text-4xl my-4">Price Data</h1>
                     <div className="border-2 w-full h-1"></div>

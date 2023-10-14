@@ -1,7 +1,6 @@
 import { Modal, Upload, message } from 'antd'
 import { AiOutlinePlusSquare } from "react-icons/ai";
 import { useEffect, useState } from "react"
-import { getStorage, ref, uploadString } from "firebase/storage";
 import { useUploader } from '@/app/Hooks/useUploader';
 
 const getBase64 = (file) =>
@@ -12,7 +11,7 @@ const getBase64 = (file) =>
         reader.onerror = (error) => reject(error);
     });
 
-export const Uploader = ({ setProductData, folderName }) => {
+export const Uploader = ({ setProductData, folderName, limit }) => {
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
     const [previewTitle, setPreviewTitle] = useState('');
@@ -68,7 +67,7 @@ export const Uploader = ({ setProductData, folderName }) => {
                 onPreview={handlePreview}
                 onChange={handleChange}
                 accept="image/*"
-                maxCount={8}
+                maxCount={limit ? limit : 8}
                 multiple
 
             >
