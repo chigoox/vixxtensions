@@ -21,6 +21,7 @@ export async function generateStaticParams() {
 
 
 export default function LuxBundleItemPage({ params }) {
+  console.log(params)
 
   const itemData = useGetItemData(fetchData)
 
