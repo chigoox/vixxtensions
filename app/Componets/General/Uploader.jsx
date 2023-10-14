@@ -58,6 +58,7 @@ export const Uploader = ({ setProductData, folderName, limit }) => {
             </div>
         </div>
     );
+    console.log(limit)
     return (
         <div className=''>
             <Upload
