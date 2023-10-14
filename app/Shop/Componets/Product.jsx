@@ -16,6 +16,7 @@ const fetchData = async (name) => {
 }
 
 const Product = ({ forThis, itemData }) => {
+
     const { Item } = forThis
     const nameOfRouteWithOutSpace = Item
     const { state, dispatch } = useCartContext()
