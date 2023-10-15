@@ -35,7 +35,7 @@ export default async function Home() {
 
       <div className=" mt-8 w-full ">
         <h1 className="my-2 text-2xl text-center">New Arrivals</h1>
-        <ProductsList search={'isNew'} category={'true'} list={true} />
+        <ProductsList search={'isNew'} category={'true'} list={true} limit={10} />
 
       </div>
 
@@ -61,7 +61,10 @@ export default async function Home() {
 
       <div className="center-col w-full overflow-hidden mt-32">
         <h1 className="font-thin text-center text-2xl  mb-2">FOLLOW US ON INSTAGRAM</h1>
-        <IGFeed />
+        <Link href={'https://www.instagram.com/vi_hair_/'}>
+
+          <IGFeed />
+        </Link>
       </div>
 
 

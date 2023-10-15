@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 function ItemQTYButton({ state, setState, product, forCart }) {
     const { dispatch } = useCartContext()
     const [QTY, setQTY] = useState(product?.Qty ? product?.Qty : 0)
+    const [total, SetTotal] = useState(product?.price ? product?.price : 0)
 
     const controlQTY = (action = 'add', count = 1, event) => {
         if (action == 'add') setQTY(prevState => prevState < 99 ? prevState + count : prevState)

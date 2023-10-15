@@ -32,7 +32,7 @@ function ShippinInfo({ user, forCheckOut, event }) {
 
 
                     <h1 className='text-white'>Upload ID Please</h1>
-                    <Uploader setProductData={setShippingInfo} limit={1} />
+                    <Uploader setProductData={setShippingInfo} limit={1} folderName={'IDs'} />
                     <div className='flex  text-xm text-rose-700 w-auto h-auto font-extrabold'>
                         <Button className='bg-rose-700 h-20' onClick={() => { setShowTerms(!showTerms) }}>By uploading your ID you agree to our terms and conditions (click to see terms)</Button>
 

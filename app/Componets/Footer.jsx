@@ -21,36 +21,6 @@ function Footer() {
                     <Link href={"/"} className='my-1 font-bold text-2xl'><h1 className={jost.className}>{siteName}</h1></Link>
 
                 </div>
-                <div className='fadeInBottom  text-xs gap-y-5 gap-x-10  h-fit text-black  p-2 flex flex-wrap items-start'>
-
-                    <div className='p-2  fadeInRight w-32 '>
-                        <h1 className='text-2xl font-bold'>Company</h1>
-                        <div className='h-12 '>
-                            <div className='text-slate-600'>Contact</div>
-                            <div className='text-slate-600'>About Store</div>
-
-                            {
-
-                                // <Link to={'/About'} className='block'>Contact</Link>
-                                //<Link to={'/About'} className='block'>About Store</Link>
-                            }
-                        </div>
-                    </div>
-                    <div className='p-2  fadeInRight w-32 text-2xl font-bold'>
-
-                        <h1>place holder</h1>
-                    </div>
-                    <div className='p-2  fadeInRight w-32 text-2xl font-bold'>
-                        <h1>place holder</h1>
-                    </div>
-                    <div className='p-2  fadeInRight w-32 text-2xl font-bold'>
-                        <h1>place holder</h1>
-                    </div>
-
-
-
-
-                </div>
 
             </div>
 

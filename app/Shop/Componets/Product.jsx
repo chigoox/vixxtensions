@@ -8,6 +8,7 @@ import ItemQTYButton from '@/app/Shop/Componets/ItemQTYButton'
 import { Button, Select, SelectItem, Skeleton } from "@nextui-org/react";
 import { useCartContext } from '@/StateManager/CartContext'
 import { useGetItemData } from '@/app/Hooks/useGetItemData'
+import { getRand } from '@/app/myCodes/Util'
 
 const font1 = Red_Hat_Text({ subsets: ['latin'] })
 
@@ -57,7 +58,7 @@ const Product = ({ forThis, category }) => {
     const addToCart = () => {
         if (itemToCheckOut.priceID && itemToCheckOut.Qty > 0) dispatch({ type: "ADD_TO_CART", value: itemToCheckOut })
     }
-
+    console.log(itemToCheckOut)
     const variants = Object.values(prices).map(i => {
         return i
     })
@@ -71,7 +72,7 @@ const Product = ({ forThis, category }) => {
     }, [])
 
     useEffect(() => {
-        setItemToCheckOut(prev => ({ ...prev, price: price, name: name, images: slides }))
+        setItemToCheckOut(prev => ({ ...prev, name: name, images: slides }))
     }, [thisProduct])
 
 
@@ -129,16 +130,19 @@ const Product = ({ forThis, category }) => {
                         <PayOptions price={price} />
                         <div className='center flex-wrap md:w-3/4 m-auto mt-2 gap-2'>
                             <Select
-                                onChange={({ target }) => { setItemToCheckOut(prev => ({ ...prev, priceID: target.value.split(',', 2)[0], variant: target.value.split(',', 2)[1] })) }}
+                                onChange={({ target }) => { setItemToCheckOut(prev => ({ ...prev, price: Number(target.value.split(',', 3)[2].replace('$', '')), priceID: target.value.split(',', 2)[0], variant: target.value.split(',', 2)[1] })) }}
                                 labelPlacement={'outside'}
                                 label="Select Variant"
                                 className="max-w-xs my-8"
                             >
-                                {variants.map((variant) => (
-                                    <SelectItem key={[variant.id, variant.nickname]} name={variant.nickname}>
-                                        {`${variant.nickname} - ${variant.metadata.price}`}
-                                    </SelectItem>
-                                ))}
+                                {variants.map((variant) => {
+                                    console.log(variant.metadata.price)
+                                    return (
+                                        <SelectItem key={[variant.id, variant.nickname, variant.metadata.price]} name={variant.nickname}>
+                                            {`${variant.nickname} - ${variant.metadata.price}`}
+                                        </SelectItem>
+                                    )
+                                })}
                             </Select>
 
                         </div>

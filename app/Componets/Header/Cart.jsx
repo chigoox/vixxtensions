@@ -14,7 +14,7 @@ import { getRand } from "@/app/myCodes/Util";
 function Cart({ showCart }) {
 
     const { state, dispatch } = useCartContext()
-    const { lineItems } = state
+    const { lineItems, total } = state
     const user = useAUTHListener()
     const [event, setEvent] = useState()
 
@@ -86,10 +86,14 @@ function Cart({ showCart }) {
 
             </div >
 
-            <div className="center">
+            <div className="center-col">
+                <div className="evenly w-full text-pink-400">
+                    <h1 className="">Total</h1>
+                    <h1 className="font-extrabold">${total}</h1>
+                </div>
+
+
                 <button onClick={(event) => {
-
-
                     checkShippingInfo(event)
 
                 }} className="w-3/4 h-12 bg-white rounded hover:text-lg trans">
