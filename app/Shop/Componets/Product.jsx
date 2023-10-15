@@ -3,21 +3,34 @@
 import React, { useEffect, useState } from 'react'
 import EmblaCarouselThumb from '@/app/Componets/HomePage/CarouselThumb'
 import { Red_Hat_Text } from 'next/font/google'
-import { fetchPricesFor } from '@/app/myCodes/Stripe'
+import { fetchPricesFor, fetchProducts } from '@/app/myCodes/Stripe'
 import ItemQTYButton from '@/app/Shop/Componets/ItemQTYButton'
 import { Button, Card, Select, SelectItem, Skeleton } from "@nextui-org/react";
 import { useCartContext } from '@/StateManager/CartContext'
+import { useGetItemData } from '@/app/Hooks/useGetItemData'
 
 const font1 = Red_Hat_Text({ subsets: ['latin'] })
 
-const fetchData = async (name) => {
+const featchPrice = async (name) => {
     const data = await fetchPricesFor(name)
     return data
 }
 
-const Product = ({ forThis, itemData }) => {
 
-    console.log(forThis)
+
+const Product = ({ forThis, category }) => {
+
+
+    const featchProducts = async () => {
+        const data = await fetchProducts(category)
+        return data
+    }
+
+
+    const itemData = useGetItemData(featchProducts)
+
+
+
 
     const { Item } = forThis
 
@@ -50,7 +63,7 @@ const Product = ({ forThis, itemData }) => {
     })
     useEffect(() => {
         const getData = async () => {
-            setPrices(await fetchData(Item))
+            setPrices(await featchPrice(Item))
         }
         getData()
 

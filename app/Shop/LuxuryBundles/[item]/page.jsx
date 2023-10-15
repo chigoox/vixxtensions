@@ -1,39 +1,31 @@
 'use client'
-
-import { fetchProducts } from '@/app/myCodes/Stripe'
 import Product from '../../Componets/Product'
-import { useGetItemData } from '@/app/Hooks/useGetItemData'
-
-const fetchData = async () => {
-  const data = await fetchProducts('LuxuryBundles')
-  return data
-}
-
-
-export async function generateStaticParams() {
-  const data = await fetchData()
-
-  return (data.map(d => ({ Item: d.name.replace(/\s/g, '') })))
-
-  // return [{ Item: 'wig1' }, { Item: 'wig2' }, { Item: 'wig3' }, { Item: 'wig4' }]
-}
+import { usePathname } from 'next/navigation'
 
 
 
-export default function LuxBundleItemPage({ params }) {
+export default function LuxBundleItemPage({ }) {
+
+  const path = usePathname().replace(`/Shop/LuxuryBundles/`, '')
+
+  const fetchData = async () => {
+    const data = await fetchProducts('LuxuryBundles')
+    return data
+  }
 
 
 
-  const itemData = useGetItemData(fetchData)
+
+  const params = { Item: path }
 
   return (
     <div>
-      < Product forThis={params} itemData={itemData} />
+      < Product forThis={params} category={'LuxuryBundles'} />
     </div>
   )
 
-
-
-
 }
+
+
+
 

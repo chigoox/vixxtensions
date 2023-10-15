@@ -1,32 +1,31 @@
 'use client'
-import { fetchProducts } from '@/app/myCodes/Stripe'
 import Product from '../../Componets/Product'
-import { useEffect, useState } from 'react'
-import { useGetItemData } from '@/app/Hooks/useGetItemData'
-
-const fetchData = async () => {
-  const data = await fetchProducts('LuxuryLace')
-  return data
-}
+import { usePathname } from 'next/navigation'
 
 
-export async function generateStaticParams() {
-  const data = await fetchData()
 
-  return (data.map(d => ({ Item: d.name.replace(/\s/g, '') })))
+export default function LuxBundleItemPage({ }) {
 
-  // return [{ Item: 'wig1' }, { Item: 'wig2' }, { Item: 'wig3' }, { Item: 'wig4' }]
-}
+  const path = usePathname().replace(`/Shop/LuxuryLace/`, '')
 
-export default function LuxLaceItemPage({ params }) {
-  const itemData = useGetItemData(fetchData)
+  const fetchData = async () => {
+    const data = await fetchProducts('LuxuryLace')
+    return data
+  }
 
 
+
+
+  const params = { Item: path }
 
   return (
     <div>
-      <Product forThis={params} itemData={itemData} />
+      < Product forThis={params} category={'LuxuryLace'} />
     </div>
   )
+
 }
+
+
+
 
