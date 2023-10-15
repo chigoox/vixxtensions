@@ -87,7 +87,7 @@ function Cart({ showCart }) {
             </div >
 
             <div className="center-col">
-                <div className="evenly w-full text-pink-400">
+                <div className={`${showCart ? 'scale-1' : 'scale-0'} trans-slow evenly w-full text-pink-400`}>
                     <h1 className="">Total</h1>
                     <h1 className="font-extrabold">${total}</h1>
                 </div>
