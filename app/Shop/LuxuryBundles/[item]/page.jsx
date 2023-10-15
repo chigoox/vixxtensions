@@ -21,17 +21,20 @@ export async function generateStaticParams() {
 
 
 export default function LuxBundleItemPage({ params }) {
-  /*  console.log(params)
-   const fake = { Item: params.item }
-   console.log(fake) */
+
+  console.log(params, 'parans')
 
 
   const itemData = useGetItemData(fetchData)
 
   return (
     <div>
-      <Product forThis={params} itemData={itemData} />
+      < Product forThis={params} itemData={itemData} />
     </div>
   )
+
+
+
+
 }
 
