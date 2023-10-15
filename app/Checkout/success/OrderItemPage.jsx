@@ -4,15 +4,18 @@ import { useAUTHListener } from '@/StateManager/AUTHListener'
 import { addToDatabase, fetchDocument, updateDatabaseItem } from '@/app/myCodes/Database'
 import { useRouter } from "next/navigation"
 import { useCartContext } from '@/StateManager/CartContext'
-import { Card } from '@nextui-org/react'
+import { Button, Card } from '@nextui-org/react'
+import IMG from '@/public/Images/luxlace.JPG'
 
 
 function OrderItemPage({ orderID }) {
     const { state, dispatch } = useCartContext()
-    const [data, setData] = useState({})
+    const [data, setData] = useState()
     const { push } = useRouter()
     const user = useAUTHListener()
     const UID = user.uid ? user.uid : user.gid
+    const [showExitButton, setShowExitButton] = useState(false)
+    const [currentOrder, setCurrentOrder] = useState({})
 
 
     const getData = async () => {
@@ -41,7 +44,6 @@ function OrderItemPage({ orderID }) {
     const getArrayToAddPrice = () => {
         Object.values(data?.cart ? data?.cart : {}).map((order) => {
             const total = Object.values(order.lineItems ? order.lineItems : {}).map((orderInfo) => {
-                console.log(orderInfo.price)
                 return orderInfo.price
             })
             setArrayPrice(total)
@@ -65,7 +67,9 @@ function OrderItemPage({ orderID }) {
     if (!arrayImages) getArrayToAddImages()
     const orderQTY = addArray(arrayQTY)
     const orderPrice = addArray(arrayPrice)
+
     const ordered = async () => {
+
         await addToDatabase('User', UID, 'orders', {
             [`Vi-${orderID}`]: {
                 shippingInfo: data?.shipping ? data?.shipping : '',
@@ -90,9 +94,13 @@ function OrderItemPage({ orderID }) {
         })
 
         const { orders } = UID ? await fetchDocument('User', UID) : { orders: {} }
+
         if (Object.keys(orders).includes(`Vi-${orderID}`)) {
+            console.log(orderID)
             setTimeout(() => {
+                setShowExitButton(true)
                 dispatch({ type: "EMPTY_CART", value: null })
+                setTimeout(push('/Shop'), 1000)
             }, 1500);
 
             updateDatabaseItem('Admin', 'Orders', 'orderID', orderID + 1)
@@ -104,9 +112,14 @@ function OrderItemPage({ orderID }) {
     const run = async () => {
         await getData()
     }
-    run()
+
+
+    if (!data) run()
+
+    const orderMap = Object.values(data?.cart?.state?.lineItems ? data?.cart?.state?.lineItems : {})
+
     useEffect(() => {
-        if (data.shipping && data.cart && UID) ordered().then((d) => {
+        if (data?.shipping && data?.cart && UID) ordered().then((d) => {
             console.log(d)
         }).catch((e) => {
             console.log(e.message)
@@ -115,34 +128,48 @@ function OrderItemPage({ orderID }) {
 
     }, [data])
 
+    console.log(data)
 
 
     return (
-        <div className='text-4xl center relative font-extrabold center bg-black'>
-            <div className='h-96 w-[50%] bg-black flex flex-col item  justify-between'>
-                <h1 className='text-white'>Order Successful!</h1>
+        <div className=' center h-[40rem] relative text-white flex md:flex-row flex-col md:gap-0 gap-24 bg-black'>
+            <div className='h-96 md:w-[50%] w-[90%] bg-black flex flex-col relative'>
+                <h1 className='text-4xl text-white font-extrabold text-center'>Thank you for ordering</h1>
+                <h1 className='text-sm font-light text-center text-white'>an email confirmation has been sent to {data?.shipping?.email || user?.email}</h1>
 
-                <div className='border h-20 w-full'>
-                    <h1 className='text-2xl text-white'>items ordered</h1>
+                <div className='h-20 w-full mt-10'>
+                    <h1 className='text-2xl text-white'>Items ordered</h1>
 
-                    <div className="evenly gap-2 relative h-1/2 top-4 ">
-                        <Card shadow="true" className={'w-24 h-full relative overflow-hidden'}>
-                            <Image fill src={''} alt="" />
-
-                        </Card>
-                        <div className="p-1  w-1/2">
-                            <h1 className="md:text-lg">{item.name?.substr(0, 20)}{item?.name?.length > 20 ? '...' : ''}</h1>
-                            <h1 className="font-light text-xs h-4 overflow-hidden">{item?.variant}</h1>
-                            <h1 className="font-bold">{String(item?.price).includes('$') ? '' : '$'}{item?.price}</h1>
-                        </div>
-
+                    <div className='grid grid-cols-2 p-2 h-32 border-y overflow-y-scroll hidescroll  md:grid-cols-3 gap-1 w-full'>
+                        {orderMap.map((item) => {
+                            return (
+                                <div>
+                                    <div className='bg-white m-auto text-black center border-2 w-12 h-12 overflow-hidden rounded-full relative'>
+                                        <h1 className='absolute h-full w-full text-2xl center text-white bg-opacity-50 bg-black'>{item.Qty}</h1>
+                                        <img src={item.images[0]} alt="" />
+                                    </div>
+                                    <h1 className='bg-opacity-25 text-xs text-center'>{item.name}</h1>
+                                </div>
+                            )
+                        })}
+                    </div>
+                    <div className='center-col p-2'>
+                        <h1>Total: {data?.cart?.state?.total}</h1>
+                        {showExitButton &&
+                            <Button onPress={() => { push('/Shop') }}>
+                                Continue to store
+                            </Button>}
 
                     </div>
 
+
+
                 </div>
             </div>
-            <img className='object-cover w-1/2 h-full rounded' src="https://megalook.com/cdn/shop/files/1_f44b18dc-da97-4db9-af1c-00d5a04efc5d.jpg?v=1689905711" alt="" />
+            <div className='h-40 overflow-hidden'>
+                <img className='object-cover rounded' src={IMG} alt="" />
 
+            </div>
 
         </div>
     )
