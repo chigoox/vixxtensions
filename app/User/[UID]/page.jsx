@@ -1,28 +1,15 @@
 'use client'
-import { onAuthStateChanged } from "firebase/auth";
-import app, { AUTH } from "@/Firebase";
 import { useEffect, useState } from "react";
 import { Button, Card, CardBody, CardFooter, CardHeader } from "@nextui-org/react";
 import AUTHListener from "@/StateManager/AUTHListener";
 import { fetchDocument } from "@/app/myCodes/Database";
 import { logOut } from "@/app/myCodes/Auth";
-import { Input } from "@nextui-org/react";
 import ShippinInfo from "@/app/Componets/User/ShippinInfo";
 import Image from "next/image";
 
 
 
 
-const fetchData = async () => {
-    const data = await fetchDocument('Admin', 'Users')
-    return data
-}
-
-
-export async function generateStaticParams() {
-    const data = await fetchData()
-    return (data.map(uid => ({ UID: uid })))
-}
 
 
 const getUID = (user) => {
