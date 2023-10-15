@@ -20,7 +20,8 @@ const Product = ({ forThis, itemData }) => {
     console.log(forThis)
 
     const { Item } = forThis
-    const nameOfRouteWithOutSpace = Item
+
+    const nameOfRouteWithOutSpace = Item ? Item : forThis?.item ? forThis?.item : null
     const { state, dispatch } = useCartContext()
 
 
