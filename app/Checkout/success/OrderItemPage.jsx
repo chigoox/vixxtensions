@@ -125,6 +125,20 @@ function OrderItemPage({ orderID }) {
                 <div className='border h-20 w-full'>
                     <h1 className='text-2xl text-white'>items ordered</h1>
 
+                    <div className="evenly gap-2 relative h-1/2 top-4 ">
+                        <Card shadow="true" className={'w-24 h-full relative overflow-hidden'}>
+                            <Image fill src={''} alt="" />
+
+                        </Card>
+                        <div className="p-1  w-1/2">
+                            <h1 className="md:text-lg">{item.name?.substr(0, 20)}{item?.name?.length > 20 ? '...' : ''}</h1>
+                            <h1 className="font-light text-xs h-4 overflow-hidden">{item?.variant}</h1>
+                            <h1 className="font-bold">{String(item?.price).includes('$') ? '' : '$'}{item?.price}</h1>
+                        </div>
+
+
+                    </div>
+
                 </div>
             </div>
             <img className='object-cover w-1/2 h-full rounded' src="https://megalook.com/cdn/shop/files/1_f44b18dc-da97-4db9-af1c-00d5a04efc5d.jpg?v=1689905711" alt="" />
