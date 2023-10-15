@@ -48,7 +48,7 @@ function Cart({ showCart }) {
     }
 
     return (
-        <div className={`fixed z-[99999]  md:top-8 top-0 trans right-0 ${showCart ? 'w-[50vw] p-2' : 'w-[0] P-0'} h-[100vh] bg-black`}>
+        <div className={`fixed z-[99999]  md:top-8 top-0 trans right-0 ${showCart ? 'w-[50vw] md:w-[25vw] p-2' : 'w-[0] P-0'} h-[100vh] bg-black`}>
             {getShippingWindow && <div className="absolute w-auto z-50 -left-40 ">
                 <ShippinInfo user={user} forCheckOut={getShippingInfo} />
             </div>}

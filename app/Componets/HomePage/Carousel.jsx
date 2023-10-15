@@ -21,7 +21,7 @@ export const EmblaCarousel = ({ img1, img2, img3, img4, rounded, noArrow, dim, t
             <div className={`embla__slide ${rounded ? 'h-[5rem]' : 'h-full w-full'}   relative`}>
                 {text && <div className='text-center w-full h-full text-4xl absolute center text-white font-bold z-[50] drop-shadow-sm shadow-black shadow-md'>{text}</div>}
                 {dim && <div className='bg-opacity-25  h-full w-full bg-black absolute top-0'></div>}
-                <Image fill quality={100} objectFit='cover' className={`h-full  w-full object-cover`} src={img} alt="" />
+                <Image fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw" quality={100} objectFit='cover' className={`h-full  w-full object-cover`} src={img} alt="" />
             </div>
 
         )

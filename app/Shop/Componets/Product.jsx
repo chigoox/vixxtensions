@@ -58,7 +58,6 @@ const Product = ({ forThis, category }) => {
     const addToCart = () => {
         if (itemToCheckOut.priceID && itemToCheckOut.Qty > 0) dispatch({ type: "ADD_TO_CART", value: itemToCheckOut })
     }
-    console.log(itemToCheckOut)
     const variants = Object.values(prices).map(i => {
         return i
     })
@@ -136,7 +135,6 @@ const Product = ({ forThis, category }) => {
                                 className="max-w-xs my-8"
                             >
                                 {variants.map((variant) => {
-                                    console.log(variant.metadata.price)
                                     return (
                                         <SelectItem key={[variant.id, variant.nickname, variant.metadata.price]} name={variant.nickname}>
                                             {`${variant.nickname} - ${variant.metadata.price}`}

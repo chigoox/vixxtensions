@@ -9,7 +9,6 @@ export const CartReducer = (state, action) => {
    const actionQTY = action?.value?.Qty 
    const actionPrice = action?.value?.price * actionQTY
 
-   console.log(stateTotal)
 
 
     switch (action.type){
