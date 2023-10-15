@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 export async function POST(request) {
   let data = await request.json();
 const {name} = data
-console.log(data)
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
     const prices = await stripe.prices.search({
         limit: 25,

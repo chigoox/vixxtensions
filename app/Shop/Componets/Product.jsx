@@ -5,7 +5,7 @@ import EmblaCarouselThumb from '@/app/Componets/HomePage/CarouselThumb'
 import { Red_Hat_Text } from 'next/font/google'
 import { fetchPricesFor, fetchProducts } from '@/app/myCodes/Stripe'
 import ItemQTYButton from '@/app/Shop/Componets/ItemQTYButton'
-import { Button, Card, Select, SelectItem, Skeleton } from "@nextui-org/react";
+import { Button, Select, SelectItem, Skeleton } from "@nextui-org/react";
 import { useCartContext } from '@/StateManager/CartContext'
 import { useGetItemData } from '@/app/Hooks/useGetItemData'
 
@@ -44,8 +44,8 @@ const Product = ({ forThis, category }) => {
         if (item.name.replace(/\s/g, '') == nameOfRouteWithOutSpace) return item
     }).filter(Boolean)[0]
 
-
-    const price = Number(thisProduct?.metadata?.price.replace('$', ''))
+    const filteredPrice = thisProduct?.metadata?.price.replace('$', '')
+    const price = Number(filteredPrice ? filteredPrice : false)
     const name = thisProduct?.name
     const slides = thisProduct?.images
     const desc = thisProduct?.description
@@ -78,7 +78,7 @@ const Product = ({ forThis, category }) => {
     const PayOptions = ({ price, service }) => {
         const services = ['After Pay', 'Klarna', 'Affirm']
         return (
-            <div className={'rounded-xl w-fit center-col m-auto mt-2 gap-2 relative p-2 overflow-hidden'} isLoaded={price}>
+            <div className={'rounded-xl w-fit center-col m-auto mt-2 gap-2 relative p-2 overflow-hidden'} >
                 <div className='font-thin text-sm md:text-base'>or 4 interest-free payments of <span className=' font-normal'><Skeleton isLoaded={price} className='w-fit  relative top-[.40rem] inline-block'>${price / 4}</Skeleton ></span> with:</div>
 
                 <div className='center gap-2 mt-1'>
@@ -128,7 +128,6 @@ const Product = ({ forThis, category }) => {
                         </Skeleton>
                         <PayOptions price={price} />
                         <div className='center flex-wrap md:w-3/4 m-auto mt-2 gap-2'>
-                            {/* {prices && variants.map(variant => (<button key={variant.id} className='h-12 m-auto w-32 bg-black-800 text-white'>{variant.nickname}</button>))} */}
                             <Select
                                 onChange={({ target }) => { setItemToCheckOut(prev => ({ ...prev, priceID: target.value.split(',', 2)[0], variant: target.value.split(',', 2)[1] })) }}
                                 labelPlacement={'outside'}

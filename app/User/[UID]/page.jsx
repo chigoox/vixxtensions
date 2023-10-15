@@ -51,7 +51,6 @@ export default function ProtectedRoute({ params }) {
     const menu = ['Orders', 'Reservations', 'Update Shipping Info']
     const OrderItem = ({ orderInfo }) => {
         const { order, shippingInfo, id, total, qty, images } = orderInfo
-        console.log(Object.values(order?.state?.lineItems ? order?.state?.lineItems : {}))
         return (
             <Card shadow="md" variant={'bordered'} className="h-36 w-full m-auto bg-black center-col">
                 <CardBody className="bg-white center-col relative">

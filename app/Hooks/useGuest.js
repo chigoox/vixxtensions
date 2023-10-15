@@ -12,7 +12,6 @@ import { fetchDocument } from "../myCodes/Database"
      const [GID, setGID] = useState(getRandTN(17))
      
      const checkGID = async () => { 
-         console.log('first')
 
     await fetchDocument('User', GID)
     .then((data) => {
@@ -29,7 +28,6 @@ import { fetchDocument } from "../myCodes/Database"
    useEffect(()=>{
     if(typeof window !== "undefined"){
         if (JSON.parse(localStorage.getItem("GuestID"))) { 
-console.log('first')        
     } else{
      checkGID()
     }

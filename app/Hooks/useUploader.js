@@ -12,7 +12,6 @@ export async function useUploader(file, folder) {
 
     const uploadTask = await uploadBytesResumable(storageRef, file);
     await getDownloadURL(storageRef).then((downloadURL) => {
-        console.log(downloadURL)       
         URL = downloadURL;
             });
 

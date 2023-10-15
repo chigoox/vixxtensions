@@ -11,7 +11,6 @@ export const ProductsList = async ({ category, limit, list, search }) => {
     const x = await stripe.products.list({
         limit: limit ? limit : 25,
     });
-    //{ console.log(x.data.reverse()[4]) }
 
     return (
         <div className='mt-12'>

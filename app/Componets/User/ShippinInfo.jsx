@@ -10,7 +10,6 @@ function ShippinInfo({ user, forCheckOut, event }) {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
     const updateShippingInfo = async ({ target }) => {
-        console.log(target)
         setShippingInfo(oldState => ({ ...oldState, [target.name]: target.value }))
     }
 
