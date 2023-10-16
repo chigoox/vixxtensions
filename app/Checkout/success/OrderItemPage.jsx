@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation"
 import { useCartContext } from '@/StateManager/CartContext'
 import { Button, Card } from '@nextui-org/react'
 import IMG from '@/public/Images/luxlace.JPG'
+import { sendMail } from '@/app/myCodes/Email'
+import EmailOrderSuccessful from '@/app/Componets/emails/EmailOrderSuccessful'
 
 
 function OrderItemPage({ orderID }) {
@@ -16,6 +18,7 @@ function OrderItemPage({ orderID }) {
     const UID = user.uid ? user.uid : user.gid
     const [showExitButton, setShowExitButton] = useState(false)
     const [currentOrder, setCurrentOrder] = useState({})
+    const [emailSent, setEmailSent] = useState(false)
 
 
     const getData = async () => {
@@ -96,11 +99,10 @@ function OrderItemPage({ orderID }) {
         const { orders } = UID ? await fetchDocument('User', UID) : { orders: {} }
 
         if (Object.keys(orders).includes(`Vi-${orderID}`)) {
-            console.log(orderID)
             setTimeout(() => {
                 setShowExitButton(true)
                 dispatch({ type: "EMPTY_CART", value: null })
-                setTimeout(push('/Shop'), 1000)
+                setTimeout(push('/Shop'), 4000)
             }, 1500);
 
             updateDatabaseItem('Admin', 'Orders', 'orderID', orderID + 1)
@@ -116,11 +118,16 @@ function OrderItemPage({ orderID }) {
 
     if (!data) run()
 
+    if (!emailSent && data?.shipping) {
+        console.log('first')
+        sendMail(data?.shipping, data?.shipping.email, 'Order Successfull', 'EmailOrderSuccessful', data?.cart.state, orderID)
+        setEmailSent(true)
+    }
+
     const orderMap = Object.values(data?.cart?.state?.lineItems ? data?.cart?.state?.lineItems : {})
 
     useEffect(() => {
         if (data?.shipping && data?.cart && UID) ordered().then((d) => {
-            console.log(d)
         }).catch((e) => {
             console.log(e.message)
         })
@@ -128,7 +135,6 @@ function OrderItemPage({ orderID }) {
 
     }, [data])
 
-    console.log(data)
 
 
     return (

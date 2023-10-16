@@ -15,9 +15,10 @@ function ShippinInfo({ user, forCheckOut, event }) {
 
 
     const updateDatabase = (() => {
-        if (forCheckOut && Object.keys(shippingInfo).reduce((a, c) => a + 'email firstName lastName address zipcode phone'.includes(c), 0) >= 6
+        addToDatabase('User', user?.uid ? user?.uid : user?.gid, 'ShippingInfo', shippingInfo)
+        if (forCheckOut && Object.keys(shippingInfo).reduce((a, c) => a + 'email firstName lastName address zipcode phone img'.includes(c), 0) >= 7
         ) {
-            addToDatabase('User', user?.uid ? user?.uid : user?.gid, 'ShippingInfo', shippingInfo)
+            console.log('first')
             forCheckOut(shippingInfo, event)
         }
 
@@ -33,8 +34,11 @@ function ShippinInfo({ user, forCheckOut, event }) {
 
                     <h1 className='text-white'>Upload ID Please</h1>
                     <Uploader setProductData={setShippingInfo} limit={1} folderName={'IDs'} />
-                    <div className='flex  text-xm text-rose-700 w-auto h-auto font-extrabold'>
-                        <Button className='bg-rose-700 h-20' onClick={() => { setShowTerms(!showTerms) }}>By uploading your ID you agree to our terms and conditions (click to see terms)</Button>
+                    <div className='flex w-[99%] text-xm text-rose-700  h-auto font-extrabold'>
+                        <div className='h-auto text-center w-72 text-white' >
+                            <h1>By uploading your ID you agree to our terms and conditions</h1>
+                            <Button className='bg-rose-700' onPress={() => { setShowTerms(!showTerms) }}>(click to see terms)</Button>
+                        </div>
 
                     </div>
 
