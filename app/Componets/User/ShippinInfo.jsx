@@ -24,15 +24,15 @@ function ShippinInfo({ user, forCheckOut, event }) {
 
     })
     return (
-        <div className={`center-col w-full  hidescroll ${forCheckOut ? 'h-[45rem] md:h-auto' : 'h-auto'}`}>
-            <Card className={`${forCheckOut ? 'w-full' : 'w-3/4'} border-2 border-[#121212] h-auto bg-[#171717] center-col`}>
+        <div className={`center-col w-full  hidescroll ${forCheckOut ? 'h-[45rem] md:h-[50rem]' : 'h-auto'}`}>
+            <Card className={`${forCheckOut ? 'w-full' : 'w-3/4'} shadow-md shadow-black border-2 border-[#121212] h-auto bg-[#171717] center-col`}>
                 <CardHeader className="font-bold  text-white bg-black-800 mb-4">
                     <h1 className="text-center w-full">Add shipping Info</h1>
                 </CardHeader>
                 <CardBody className="center-col hidescroll  gap-2 text-black">
 
 
-                    <h1 className='text-white mt-24'>Upload ID Please</h1>
+                    <h1 className='text-white md:mt-10 mt-24'>Upload ID Please</h1>
                     <Uploader setProductData={setShippingInfo} limit={1} folderName={'IDs'} />
                     <div className='flex w-[99%] text-xm text-rose-700  h-auto font-extrabold'>
                         <div className='h-auto text-center w-72 text-white' >
