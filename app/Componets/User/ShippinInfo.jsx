@@ -24,7 +24,7 @@ function ShippinInfo({ user, forCheckOut, event }) {
 
     })
     return (
-        <div className={`center-col w-full  hidescroll ${forCheckOut ? 'h-[45rem] md:h-[50rem]' : 'h-auto'}`}>
+        <div className={`center-col w-full fadeInRight  relative hidescroll ${forCheckOut ? 'h-[45rem] md:h-[50rem]' : 'h-auto'}`}>
             <Card className={`${forCheckOut ? 'w-full' : 'w-3/4'} shadow-md shadow-black border-2 border-[#121212] h-auto bg-[#171717] center-col`}>
                 <CardHeader className="font-bold  text-white bg-black-800 mb-4">
                     <h1 className="text-center w-full">Add shipping Info</h1>
@@ -103,41 +103,42 @@ function ShippinInfo({ user, forCheckOut, event }) {
                 <CardFooter className='p-2 bg-black-800'><Button className="w-3/4 m-auto mb-4" onPress={updateDatabase}>Update</Button></CardFooter>
             </Card>
 
-            <Modal className='z-[9999]' isOpen={showTerms} onOpenChange={onOpenChange}>
-                <ModalContent>
-                    {(onClose) => (
-                        <>
-                            <ModalHeader className="flex flex-col gap-1">Terms & Conditions</ModalHeader>
-                            <ModalBody>
-                                <p>
-                                    All orders will take 2-4 business days to be processed.
-                                    All orders are shipped through USPS STANDARD SHIPPING which is 5-7 business days.
-                                    If you accidentally entered the wrong shipping address, contact vihairwigs@outlook.com
-                                    for a change of address. Vihair LLC is not reponsible for any lost items due to a wrong
-                                    shipping address.
-                                    Thank you .
-                                </p>
-                                <h1 className='text-xl font-extrabold' >Return Policy</h1>
-                                <h1>
-                                    All sales are FINAL and there are no refunds Exchanges.
-                                    A Refund and Exchange will be only acceptable when we are at
-                                    fault with a costumer’s order . If you have any questions concerning
-                                    your order Email Vihairwigs@outlook.com.
-                                </h1>
+            {showTerms &&
+                <Card className='absolute  h-full bg-white p-4 z-[9999]'>
+                    <div className='left-24 '>
 
-                                <h1>GOVERNMENT PHOTO ID IS REQUIRED FOR ALL ORDERS .</h1>
-                            </ModalBody>
-                            <ModalFooter>
+                        <div className="flex flex-col mb-10">Terms & Conditions</div>
+                        <div className='fadeInBottom'>
+                            <p>
+                                All orders will take 2-4 business days to be processed.
+                                All orders are shipped through USPS STANDARD SHIPPING which is 5-7 business days.
+                                If you accidentally entered the wrong shipping address, contact vihairwigs@outlook.com
+                                for a change of address. Vihair LLC is not reponsible for any lost items due to a wrong
+                                shipping address.
+                                Thank you .
+                            </p>
+                            <h1 className='text-xl font-extrabold my-8' >Return Policy</h1>
+                            <h1>
+                                All sales are FINAL and there are no refunds Exchanges.
+                                A Refund and Exchange will be only acceptable when we are at
+                                fault with a costumer’s order . If you have any questions concerning
+                                your order Email Vihairwigs@outlook.com.
+                            </h1>
 
-                                <Button color="primary" className='bottom-8 right-5 relative' onPress={() => { setShowTerms(false) }}>
-                                    Agree by uploading ID
-                                </Button>
-                            </ModalFooter>
-                        </>
-                    )}
-                </ModalContent>
-            </Modal>
+                            <h1>GOVERNMENT PHOTO ID IS REQUIRED FOR ALL ORDERS .</h1>
+                        </div>
+                        <div className='text-center my-4'>
+
+                            <Button color="primary" className=' relative' onPress={() => { setShowTerms(false) }}>
+                                Agree by uploading ID
+                            </Button>
+                        </div>
+
+                    </div>
+                </Card>
+            }
         </div>
+
     )
 }
 
