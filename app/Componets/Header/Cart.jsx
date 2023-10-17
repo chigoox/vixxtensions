@@ -5,7 +5,7 @@ import ItemQTYButton from "../../Shop/Componets/ItemQTYButton";
 import { DeleteIcon, Trash2Icon } from "lucide-react";
 import { useAUTHListener } from "@/StateManager/AUTHListener";
 import { fetchDocument } from "@/app/myCodes/Database";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ShippinInfo from "../User/ShippinInfo";
 import { Card } from "@nextui-org/react";
 import { getRand } from "@/app/myCodes/Util";
@@ -47,9 +47,16 @@ function Cart({ showCart }) {
             })
     }
 
+    useEffect(() => {
+        if (!showCart) setGetShippingWindow(false)
+
+
+    }, [showCart])
+
+
     return (
-        <div className={`fixed z-[99999]  md:top-8 top-0 trans right-0 ${showCart ? 'w-[50vw] md:w-[25vw] p-2' : 'w-[0] P-0'} h-[100vh] bg-black`}>
-            {getShippingWindow && <div className="absolute w-auto z-50 -left-40 ">
+        <div className={`fixed z-[999]  md:top-8 top-0 trans right-0 ${showCart ? 'w-[50vw] md:w-[25vw] p-2' : 'w-[0] P-0'} h-[100vh] bg-black`}>
+            {(getShippingWindow && showCart) && <div className="absolute w-auto  -left-40 ">
                 <ShippinInfo user={user} forCheckOut={getShippingInfo} />
             </div>}
             <div className="center gap-2">

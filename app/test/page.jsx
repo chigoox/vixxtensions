@@ -30,112 +30,114 @@ function EmailOrderSuccessful({ shippinginfo, emailData }) {
 
 
     return (
-        <Html>
-            <Head />
-            <Preview>Get your order summary, estimated delivery date and more</Preview>
-            <Body style={main}>
-                <Container style={container}>
-                    <Section style={track.container}>
-                        <Row>
-                            <Column>
-                                <Text style={global.paragraphWithBold}>Tracking Number</Text>
-                                <Text style={track.number}>Coming soon...</Text>
-                            </Column>
-                            <Column align="right">
-                                <Link style={global.button}>Track Package</Link>
-                            </Column>
-                        </Row>
-                    </Section>
-                    <Hr style={global.hr} />
-                    <Section style={message}>
-                        <h1 className='font-bold'>Vihair</h1>
-                        <Heading style={global.heading}>It's On Its Way.</Heading>
-                        <Text style={global.text}>
-                            Your order is on its way. Use the link above to track its progress.
-                        </Text>
-                        <Text style={{ ...global.text, marginTop: 24 }}>
-                            We´ve also charged your payment method for the cost of your order
-                            and will be removing any authorization holds. For payment details,
-                            please visit your Orders page on the website.
-                        </Text>
-                    </Section>
-                    <Hr style={global.hr} />
-                    <Section style={global.defaultPadding}>
-                        <Text style={adressTitle}>Shipping to: {firstName} {lastName}</Text>
-                        <Text style={{ ...global.text, fontSize: 14 }}>
-                            {address.replace('.', '')}, {shippinginfo?.zipcode}
-                        </Text>
-                    </Section>
-                    <Hr style={global.hr} />
-                    <Section
-                        style={{ ...paddingX, paddingTop: '40px', paddingBottom: '40px' }}
-                    >
-                        {emailData?.lineItems.map((order) => {
+        <div className='mt-20'>
+            <Html>
+                <Head />
+                <Preview>Get your order summary, estimated delivery date and more</Preview>
+                <Body style={main}>
+                    <Container style={container}>
+                        <Section style={track.container}>
+                            <Row>
+                                <Column>
+                                    <Text style={global.paragraphWithBold}>Tracking Number</Text>
+                                    <Text style={track.number}>Coming soon...</Text>
+                                </Column>
+                                <Column align="right">
+                                    <Link style={global.button}>Track Package</Link>
+                                </Column>
+                            </Row>
+                        </Section>
+                        <Hr style={global.hr} />
+                        <Section style={message}>
+                            <h1 className='font-bold'>Vihair</h1>
+                            <Heading style={global.heading}>It's On Its Way.</Heading>
+                            <Text style={global.text}>
+                                Your order is on its way. Use the link above to track its progress.
+                            </Text>
+                            <Text style={{ ...global.text, marginTop: 24 }}>
+                                We´ve also charged your payment method for the cost of your order
+                                and will be removing any authorization holds. For payment details,
+                                please visit your Orders page on the website.
+                            </Text>
+                        </Section>
+                        <Hr style={global.hr} />
+                        <Section style={global.defaultPadding}>
+                            <Text style={adressTitle}>Shipping to: {firstName} {lastName}</Text>
+                            <Text style={{ ...global.text, fontSize: 14 }}>
+                                {address.replace('.', '')}, {shippinginfo?.zipcode}
+                            </Text>
+                        </Section>
+                        <Hr style={global.hr} />
+                        <Section
+                            style={{ ...paddingX, paddingTop: '40px', paddingBottom: '40px' }}
+                        >
+                            {emailData?.lineItems.map((order) => {
 
-                            return (
-                                <Row>
-                                    <Column>
-                                        <Img
-                                            src={order.images[0]}
-                                            alt="Brazil 2022/23 Stadium Away Women's Nike Dri-FIT Soccer Jersey"
-                                            style={{ float: 'left' }}
-                                            width="260px"
-                                        />
-                                    </Column>
-                                    <Column style={{ verticalAlign: 'top', paddingLeft: '12px' }}>
-                                        <Text style={{ ...paragraph, fontWeight: '500' }}>
-                                            {order.variant}
-                                        </Text>
-                                        <Text style={{ ...paragraph, fontWeight: '500' }}>
-                                            {order.price}
-                                        </Text>
-                                        <Text style={{ ...paragraph, fontWeight: '500' }}>
-                                            {order.Qty}
-                                        </Text>
-                                        <Text style={global.text}>Size L (12–14)</Text>
-                                    </Column>
-                                </Row>
-                            )
-                        })}
-                    </Section>
-                    <Hr style={global.hr} />
-                    <Section style={global.defaultPadding}>
-                        <Row style={{ display: 'inline-flex', marginBottom: 40 }}>
-                            <Column style={{ width: '170px' }}>
-                                <Text style={global.paragraphWithBold}>Order Number</Text>
-                                <Text style={track.number}>C0106373851</Text>
-                            </Column>
-                            <Column>
-                                <Text style={global.paragraphWithBold}>Order Date</Text>
-                                <Text style={track.number}>{format(date, 'MM-dd-yy')}</Text>
-                            </Column>
-                        </Row>
-                        <Row>
-                            <Column align="center">
-                                <Link style={global.button}>Order Status</Link>
-                            </Column>
-                        </Row>
-                    </Section>
-                    <Hr style={global.hr} />
+                                return (
+                                    <Row>
+                                        <Column>
+                                            <Img
+                                                src={order.images[0]}
+                                                alt="Brazil 2022/23 Stadium Away Women's Nike Dri-FIT Soccer Jersey"
+                                                style={{ float: 'left' }}
+                                                width="260px"
+                                            />
+                                        </Column>
+                                        <Column style={{ verticalAlign: 'top', paddingLeft: '12px' }}>
+                                            <Text style={{ ...paragraph, fontWeight: '500' }}>
+                                                {order.variant}
+                                            </Text>
+                                            <Text style={{ ...paragraph, fontWeight: '500' }}>
+                                                {order.price}
+                                            </Text>
+                                            <Text style={{ ...paragraph, fontWeight: '500' }}>
+                                                {order.Qty}
+                                            </Text>
+                                            <Text style={global.text}>Size L (12–14)</Text>
+                                        </Column>
+                                    </Row>
+                                )
+                            })}
+                        </Section>
+                        <Hr style={global.hr} />
+                        <Section style={global.defaultPadding}>
+                            <Row style={{ display: 'inline-flex', marginBottom: 40 }}>
+                                <Column style={{ width: '170px' }}>
+                                    <Text style={global.paragraphWithBold}>Order Number</Text>
+                                    <Text style={track.number}>C0106373851</Text>
+                                </Column>
+                                <Column>
+                                    <Text style={global.paragraphWithBold}>Order Date</Text>
+                                    <Text style={track.number}>{format(date, 'MM-dd-yy')}</Text>
+                                </Column>
+                            </Row>
+                            <Row>
+                                <Column align="center">
+                                    <Link style={global.button}>Order Status</Link>
+                                </Column>
+                            </Row>
+                        </Section>
+                        <Hr style={global.hr} />
 
-                    <Hr style={global.hr} />
+                        <Hr style={global.hr} />
 
-                    <Hr style={global.hr} />
+                        <Hr style={global.hr} />
 
-                    <Hr style={{ ...global.hr, marginTop: '12px' }} />
-                    <Section style={paddingY}>
-                        <Text style={{ ...footer.text, paddingTop: 30, paddingBottom: 30, }}>
-                            Please contact us if you have any questions. (If you reply to this
-                            email, we won't be able to see it.)
-                        </Text>
-                        <Text style={footer.text}>
-                            © 2022 Vihair, Inc. All Rights Reserved.
-                        </Text>
+                        <Hr style={{ ...global.hr, marginTop: '12px' }} />
+                        <Section style={paddingY}>
+                            <Text style={{ ...footer.text, paddingTop: 30, paddingBottom: 30, }}>
+                                Please contact us if you have any questions. (If you reply to this
+                                email, we won't be able to see it.)
+                            </Text>
+                            <Text style={footer.text}>
+                                © 2022 Vihair, Inc. All Rights Reserved.
+                            </Text>
 
-                    </Section>
-                </Container>
-            </Body>
-        </Html>
+                        </Section>
+                    </Container>
+                </Body>
+            </Html>
+        </div>
     )
 }
 

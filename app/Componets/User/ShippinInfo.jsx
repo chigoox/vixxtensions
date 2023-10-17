@@ -24,15 +24,15 @@ function ShippinInfo({ user, forCheckOut, event }) {
 
     })
     return (
-        <div className="center-col w-full h-auto z-[9999]">
-            <Card className={`${forCheckOut ? 'w-full' : 'w=3/4'}  h-full bg-black center-col`}>
-                <CardHeader className="font-bold text-white bg-black-800 mb-4">
+        <div className={`center-col w-full  hidescroll ${forCheckOut ? 'h-[45rem] md:h-auto' : 'h-auto'}`}>
+            <Card className={`${forCheckOut ? 'w-full' : 'w-3/4'} border-2 border-[#121212] h-auto bg-[#171717] center-col`}>
+                <CardHeader className="font-bold  text-white bg-black-800 mb-4">
                     <h1 className="text-center w-full">Add shipping Info</h1>
                 </CardHeader>
-                <CardBody className="center-col gap-2 text-black">
+                <CardBody className="center-col hidescroll  gap-2 text-black">
 
 
-                    <h1 className='text-white'>Upload ID Please</h1>
+                    <h1 className='text-white mt-24'>Upload ID Please</h1>
                     <Uploader setProductData={setShippingInfo} limit={1} folderName={'IDs'} />
                     <div className='flex w-[99%] text-xm text-rose-700  h-auto font-extrabold'>
                         <div className='h-auto text-center w-72 text-white' >
@@ -100,10 +100,10 @@ function ShippinInfo({ user, forCheckOut, event }) {
                         className="w-64 m-auto"
                     />
                 </CardBody>
-                <CardFooter><Button className="w-3/4 m-auto" onPress={updateDatabase}>Update</Button></CardFooter>
+                <CardFooter className='p-2 bg-black-800'><Button className="w-3/4 m-auto mb-4" onPress={updateDatabase}>Update</Button></CardFooter>
             </Card>
 
-            <Modal isOpen={showTerms} onOpenChange={onOpenChange}>
+            <Modal className='z-[9999]' isOpen={showTerms} onOpenChange={onOpenChange}>
                 <ModalContent>
                     {(onClose) => (
                         <>
