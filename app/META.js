@@ -1,5 +1,6 @@
 export const siteName = 'ViHair'
 export const siteTag = 'Raw Luxury Hair'
+export const orderNumberPrefix = 'Vi'
 
 
 const shopItem = (title, img, price) =>{

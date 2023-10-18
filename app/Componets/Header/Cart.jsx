@@ -18,6 +18,8 @@ function Cart({ showCart }) {
     const user = useAUTHListener()
     const [event, setEvent] = useState()
 
+    const g_u_ID = user?.uid ? user?.uid : user?.gid
+
     const checkOutItems = Object.values(lineItems).map(item => ({ price: item.priceID, quantity: item.Qty }))
     const RemoveFromCart = (itemRemove) => {
         dispatch({ type: "REMOVE_FROM_CART", value: itemRemove })
@@ -30,14 +32,14 @@ function Cart({ showCart }) {
 
     const getShippingInfo = (shippinginfo) => {
         setGetShippingWindow(false)
-        if (checkOutItems) checkout(event, checkOutItems)
+        if (checkOutItems) checkout(event, checkOutItems, g_u_ID)
     }
 
     const checkShippingInfo = async (_event) => {
         await fetchDocument('User', user?.uid ? user?.uid : user?.gid)
             .then((data) => {
                 if (data?.ShippingInfo) {
-                    checkout(_event, checkOutItems)
+                    checkout(_event, checkOutItems, g_u_ID)
                 } else {
                     setEvent(_event)
                     setGetShippingWindow(true)

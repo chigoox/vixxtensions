@@ -8,13 +8,17 @@ import { isDev } from "@/app/myCodes/Util";
 export async function POST (request) {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
     let data = await request.json();
-    let {cart} = data
+    let {cart, UID} = data
     console.log(cart)
     const session = await stripe.checkout.sessions.create({
         line_items: cart,
       mode: 'payment',
       success_url: `http://${ !isDev() ? siteName + '.netlify.app':'localhost:3000'}/Checkout/success`,
       cancel_url: `http://${ !isDev() ? siteName + '.netlify.app':'localhost:3000'}/Checkout/canceled`,
+      metadata : {
+            uid: UID,
+            cart: cart,
+          }
     })
 
     return NextResponse.json(session.url)

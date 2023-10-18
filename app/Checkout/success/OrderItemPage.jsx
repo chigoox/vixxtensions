@@ -17,7 +17,6 @@ function OrderItemPage({ orderID }) {
     const user = useAUTHListener()
     const UID = user.uid ? user.uid : user.gid
     const [showExitButton, setShowExitButton] = useState(false)
-    const [currentOrder, setCurrentOrder] = useState({})
     const [emailSent, setEmailSent] = useState(false)
 
 
@@ -41,6 +40,7 @@ function OrderItemPage({ orderID }) {
                 return orderInfo.Qty
             })
             setArrayQTY(total)
+            return total
 
         })
     }
@@ -50,6 +50,7 @@ function OrderItemPage({ orderID }) {
                 return orderInfo.price
             })
             setArrayPrice(total)
+            return total
 
         })
     }
@@ -57,10 +58,11 @@ function OrderItemPage({ orderID }) {
     const getArrayToAddImages = () => {
         Object.values(data?.cart ? data?.cart : {}).map((order) => {
             const total = Object.values(order.lineItems ? order.lineItems : {}).map((orderInfo) => {
-                console.log(orderInfo.price)
                 return orderInfo.images[0]
             })
             setArrayImages(total)
+            return total
+
 
         })
     }
@@ -71,69 +73,49 @@ function OrderItemPage({ orderID }) {
     const orderQTY = addArray(arrayQTY)
     const orderPrice = addArray(arrayPrice)
 
-    const ordered = async () => {
-
-        await addToDatabase('User', UID, 'orders', {
-            [`Vi-${orderID}`]: {
-                shippingInfo: data?.shipping ? data?.shipping : '',
-                order: data?.cart.state, id: `Vi-${orderID}`,
-                qty: orderQTY,
-                total: orderPrice,
-                images: arrayImages
-            }
-        })
 
 
 
-        await addToDatabase('Admin', 'Manage', 'orders', {
-            [`Vi-${orderID}`]: {
-                shippingInfo: data?.shipping ? data?.shipping : '',
-                order: data?.cart.state,
-                id: `Vi-${orderID}`,
-                qty: orderQTY,
-                total: orderPrice,
-                images: arrayImages
-            }
-        })
-
-        const { orders } = UID ? await fetchDocument('User', UID) : { orders: {} }
-
-        if (Object.keys(orders).includes(`Vi-${orderID}`)) {
-            setTimeout(() => {
-                setShowExitButton(true)
-                dispatch({ type: "EMPTY_CART", value: null })
-                setTimeout(push('/Shop'), 4000)
-            }, 1500);
-
-            updateDatabaseItem('Admin', 'Orders', 'orderID', orderID + 1)
-        }
-
-    }
 
 
     const run = async () => {
         await getData()
+
+        const { orders } = UID ? await fetchDocument('User', UID) : { orders: {} }
+        console.log(orderID)
+        if (Object.keys(orders).includes(`Vi-${orderID - 1}`)) {
+            setTimeout(() => {
+                setShowExitButton(true)
+                dispatch({ type: "EMPTY_CART", value: null })
+                // setTimeout(() => { push('/Shop') }, 4000)
+            }, 3000);
+
+
+            //updateDatabaseItem('Admin', 'Orders', 'orderID', orderID + 1)
+        }
     }
 
 
+
+    console.log(showExitButton)
     if (!data) run()
 
     if (!emailSent && data?.shipping) {
-        console.log('first')
+
         sendMail(data?.shipping, data?.shipping.email, 'Order Successfull', 'EmailOrderSuccessful', data?.cart.state, orderID)
         setEmailSent(true)
     }
 
     const orderMap = Object.values(data?.cart?.state?.lineItems ? data?.cart?.state?.lineItems : {})
 
-    useEffect(() => {
-        if (data?.shipping && data?.cart && UID) ordered().then((d) => {
-        }).catch((e) => {
-            console.log(e.message)
-        })
-
-
-    }, [data])
+    /*   useEffect(() => {
+          if (data?.shipping && data?.cart && UID) ordered().then((d) => {
+          }).catch((e) => {
+              console.log(e.message)
+          })
+  
+  
+      }, [data]) */
 
 
 

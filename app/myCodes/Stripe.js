@@ -49,11 +49,12 @@ export const fetchPricesFor = async (nameNoSpace, setterfunction) => {
 
 
   
-  export const checkout = async (event , cart) => {
+  export const checkout = async (event , cart, userID) => {
     event.preventDefault();
     const { data } = await axios.post('/api/Checkout',
       {
-        cart: cart
+        cart: cart,
+        UID: userID
       },
       {
         headers: {
