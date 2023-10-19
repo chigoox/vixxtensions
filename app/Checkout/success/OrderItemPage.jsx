@@ -1,13 +1,12 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useAUTHListener } from '@/StateManager/AUTHListener'
-import { addToDatabase, fetchDocument, updateDatabaseItem } from '@/app/myCodes/Database'
+import { fetchDocument } from '@/app/myCodes/Database'
 import { useRouter } from "next/navigation"
 import { useCartContext } from '@/StateManager/CartContext'
-import { Button, Card } from '@nextui-org/react'
+import { Button } from '@nextui-org/react'
 import IMG from '@/public/Images/luxlace.JPG'
 import { sendMail } from '@/app/myCodes/Email'
-import EmailOrderSuccessful from '@/app/Componets/emails/EmailOrderSuccessful'
 
 
 function OrderItemPage({ orderID }) {
@@ -97,7 +96,6 @@ function OrderItemPage({ orderID }) {
 
 
 
-    console.log(showExitButton)
     if (!data) run()
 
     if (!emailSent && data?.shipping) {
