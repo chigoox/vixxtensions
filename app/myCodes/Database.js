@@ -30,7 +30,6 @@ export async function updateArrayDatabaseItem(collection, Doc, Field, Value, rem
 }
 
 export async function fetchDocument(collection, document, setterfunction) {
-    console.log('document', document)
     const docRef = doc(DATABASE, collection, document);
    try {
      const docSnap = await getDoc(docRef);

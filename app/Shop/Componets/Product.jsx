@@ -19,7 +19,7 @@ const featchPrice = async (name) => {
 
 
 
-const Product = ({ forThis, category }) => {
+const Product = ({ product, forThis, category }) => {
 
 
     const featchProducts = async () => {
@@ -33,24 +33,34 @@ const Product = ({ forThis, category }) => {
 
 
 
-    const { Item } = forThis
+
+    const { Item } = forThis ? forThis : { Item: product }
+
+
 
     const nameOfRouteWithOutSpace = Item ? Item : forThis?.item ? forThis?.item : null
-    const { state, dispatch } = useCartContext()
+    const { dispatch } = useCartContext()
+
+
 
 
 
 
     const thisProduct = itemData?.map(item => {
+
         if (item.name.replace(/\s/g, '') == nameOfRouteWithOutSpace) return item
     }).filter(Boolean)[0]
 
-    const filteredPrice = thisProduct?.metadata?.price.replace('$', '')
+
+
+
+    const filteredPrice = thisProduct?.metadata?.price?.replace('$', '')
     const price = Number(filteredPrice ? filteredPrice : false)
     const name = thisProduct?.name
     const slides = thisProduct?.images
     const desc = thisProduct?.description
     const feats = thisProduct?.features
+
 
 
     const [prices, setPrices] = useState({})
@@ -119,7 +129,7 @@ const Product = ({ forThis, category }) => {
 
 
                     <div className='h-fit md:w-1/2 p-2 pt-8'>
-                        <Skeleton isLoaded={name} className={`${name ? 'h-auto' : 'h-8'} rounded`}>
+                        <Skeleton isLoaded={name} className={`${name ? 'h-auto' : 'h-8'} rounded py-2`}>
                             <h1 className='text-3xl md:text-6xl font-bold'>{name}</h1>
                         </Skeleton>
                         <span className='font-thin'>from</span>

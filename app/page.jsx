@@ -13,7 +13,6 @@ import RawTools from '../public/Images/RawTools.jpeg'
 import Link from "next/link";
 import ProductsList from "./Shop/Componets/ProductsList";
 import EmailCollectorMain from "./Componets/General/EmailCollectorMain";
-import AUTHListener from "@/StateManager/AUTHListener";
 
 
 

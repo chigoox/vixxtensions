@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 
 export default function LuxBundleItemPage() {
 
-  const path = usePathname().replace(`/Shop/LuxuryBundles/`, '')
+  const path = usePathname().replace(`/Shop/LuxuryBundlesOLD/`, '')
 
 
 

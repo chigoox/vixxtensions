@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 
 export default function LuxBundleItemPage({ }) {
 
-  const path = usePathname().replace(`/Shop/LuxuryWigs/`, '')
+  const path = usePathname().replace(`/Shop/LuxuryWigsOLD/`, '')
 
   const fetchData = async () => {
     const data = await fetchProducts('LuxuryWigs')

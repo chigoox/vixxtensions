@@ -1,7 +1,8 @@
+'use client'
 import React from 'react'
 import ProductsList from './Componets/ProductsList'
 import Link from 'next/link'
-import { revalidatePath } from 'next/cache'
+import { category } from '../META'
 
 const ShopSections = ({ category, name }) => {
     return (
@@ -14,18 +15,19 @@ const ShopSections = ({ category, name }) => {
 }
 
 
-function Shop({ params }) {
+function Shop() {
 
-    revalidatePath('/')
 
     return (
         <div className='flex min-h-screen flex-col '>
+            {category.map(category => {
+                return (
+
+                    <ShopSections category={category.replace(/\s/g, '')} name={category} />
+                )
+            })}
 
 
-            <ShopSections category={'LuxuryBundles'} name={'Luxury Bundles'} />
-            <ShopSections category={'LuxuryLace'} name={'Luxury Lace'} />
-            <ShopSections category={'LuxuryWigs'} name={'Luxury Wigs'} />
-            <ShopSections category={'HotTools'} name={'Hot Tools'} />
 
         </div>
     )

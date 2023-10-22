@@ -1,12 +1,33 @@
-'use client'
+
 //import { useRouter } from 'next/navigation'
 import React from 'react'
+import CheckoutAgain from './componets/CheckoutAgain'
 
-function canceled() {
-    /*  const { push } = useRouter()
-     push('/') */
+async function canceled() {
+
+
+
+
     return (
-        <div>canceled</div>
+        <div className='h-auto'>
+            <div className='h-96'>
+                <h1 className='font-extrabold text-center text-3xl'>You canceled your order.</h1>
+                <div className='border p-2 h-auto w-fit m-auto'>
+                    <h1>Checkout again</h1>
+                    <CheckoutAgain />
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+
+
+        </div>
     )
 }
 

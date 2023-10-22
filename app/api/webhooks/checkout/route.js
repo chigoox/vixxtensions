@@ -25,12 +25,12 @@ export async function POST(request) {
     
     if (event.type === "checkout.session.completed") {
       const {uid} = event.data.object.metadata
+      
 
       const {orderID} = await fetchDocument('Admin','Orders')
       const {ShippingInfo} = await fetchDocument('User',uid)
       const {cart} = await fetchDocument('User',uid)
 
-      console.log(cart)
 
       const addArray = (array) => {
           const mainArray = Array.isArray(array) ? array : Object.values(array ? array : {})

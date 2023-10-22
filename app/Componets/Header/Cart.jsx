@@ -20,7 +20,7 @@ function Cart({ showCart }) {
 
     const g_u_ID = user?.uid ? user?.uid : user?.gid
 
-    const checkOutItems = Object.values(lineItems).map(item => ({ price: item.priceID, quantity: item.Qty }))
+    const checkOutItems = Object.values(lineItems).map(item => ({ price: item.priceID, quantity: Number(item.Qty) }))
     const RemoveFromCart = (itemRemove) => {
         dispatch({ type: "REMOVE_FROM_CART", value: itemRemove })
     }

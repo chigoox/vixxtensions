@@ -91,18 +91,22 @@ function OrderItemPage({ orderID }) {
 
 
             //updateDatabaseItem('Admin', 'Orders', 'orderID', orderID + 1)
+
+            if (!emailSent && data?.shipping) {
+
+                sendMail(data?.shipping, data?.shipping.email, 'Order Successfull', 'EmailOrderSuccessful', data?.cart.state, orderID)
+                setEmailSent(true)
+            }
         }
+
+
     }
 
 
 
     if (!data) run()
 
-    if (!emailSent && data?.shipping) {
 
-        sendMail(data?.shipping, data?.shipping.email, 'Order Successfull', 'EmailOrderSuccessful', data?.cart.state, orderID)
-        setEmailSent(true)
-    }
 
     const orderMap = Object.values(data?.cart?.state?.lineItems ? data?.cart?.state?.lineItems : {})
 

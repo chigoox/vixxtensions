@@ -17,7 +17,11 @@ export const bestseller = [
 
 ]
 
-export const category = ['Luxury Bundles', 'Luxury Lace', 'Luxury Wigs', 'Hot Tools & Accessories']
+export const category = ['Luxury Bundles', 'Luxury Lace', 'Luxury Wigs', 'Hot Tools & Accessories','hoodies','shirts']
+export const categoryLinks = category.map((category)=>{
+    return category.replace(/\s/g, '')
+})
+
 
 
 

@@ -6,10 +6,10 @@ import { usePathname } from 'next/navigation'
 
 export default function LuxBundleItemPage({ }) {
 
-  const path = usePathname().replace(`/Shop/HotTools/`, '')
+  const path = usePathname().replace(`/Shop/LuxuryLaceOLD/`, '')
 
   const fetchData = async () => {
-    const data = await fetchProducts('HotTools')
+    const data = await fetchProducts('LuxuryLace')
     return data
   }
 
@@ -20,7 +20,7 @@ export default function LuxBundleItemPage({ }) {
 
   return (
     <div>
-      < Product forThis={params} category={'HotTools'} />
+      < Product forThis={params} category={'LuxuryLace'} />
     </div>
   )
 
