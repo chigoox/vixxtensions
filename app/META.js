@@ -4,11 +4,11 @@ import { GoalIcon } from "lucide-react";
 
 
 
-export const siteName = <div className="center-col">
-   
+export const siteName = <div className="center-col"> 
     Vihair
-
 </div>
+
+export const NavBarVideoURL = 'QWHjHFtDfV8'
 export const siteTag = 'Raw Luxury Hair'
 export const orderNumberPrefix = 'Vi'
 export const category = ['Luxury Bundles', 'Luxury Lace', 'Luxury Wigs', 'Hot Tools','hoodies','shirts']

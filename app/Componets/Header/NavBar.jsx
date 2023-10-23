@@ -6,7 +6,7 @@ import { Jost } from 'next/font/google'
 import { AiOutlineClose, AiOutlineShoppingCart, } from 'react-icons/ai'
 import MenuButton from '../General/MobileMenuButton'
 import { NavigationEvents } from "../NavigationEvents";
-import { category, siteName } from '@/app/META'
+import { NavBarVideoURL, category, siteName } from '@/app/META'
 import { Calendar, HomeIcon, ShoppingBagIcon, User } from 'lucide-react'
 import Cart from './Cart'
 import LoginCard from '../General/Auth/LoginCard'
@@ -50,7 +50,7 @@ function NavBar() {
 
 
 
-    const url = 'QWHjHFtDfV8'
+    const url = NavBarVideoURL
 
     return (
         <div className='h-22 bg-black w-full  center-col overflow-hidden'>
