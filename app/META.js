@@ -5,8 +5,8 @@ import { GoalIcon } from "lucide-react";
 
 
 export const siteName = <div className="center-col">
-    <GoalIcon />
-    Hooded Goat
+   
+    Vihair
 
 </div>
 export const siteTag = 'Raw Luxury Hair'
