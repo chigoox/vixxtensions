@@ -14,7 +14,6 @@ function CategoryPage() {
     const validatePath = (path) => {
         let validPath = 'Page does not exist!'
         categoryLinks.forEach((value, index) => {
-            console.log(value == path)
             if (value == path) {
                 validPath = value
             }

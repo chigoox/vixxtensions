@@ -1,5 +1,5 @@
 'use client'
-import { Button, ButtonGroup, Card, CardBody, CardFooter, CardHeader, Checkbox, CheckboxGroup, Input, Textarea } from "@nextui-org/react"
+import { Button, ButtonGroup, Card, CardBody, CardFooter, CardHeader, Checkbox, CheckboxGroup, Input, Select, SelectItem, Textarea } from "@nextui-org/react"
 import { useEffect, useState } from "react"
 import { Uploader } from "../Componets/General/Uploader"
 import { createArray } from "../myCodes/Util"
@@ -7,6 +7,7 @@ import { createProduct } from "../myCodes/Stripe"
 import { message } from "antd"
 import { AiFillMinusCircle, AiFillPlusCircle } from "react-icons/ai"
 import { updateDatabaseItem } from "../myCodes/Database"
+import { category } from "../META"
 
 
 
@@ -21,6 +22,7 @@ function Admin() {
 
 
     const updateInfo = (event, setter) => {
+        console.log(event.target.value, event.target.name)
         const { target } = event
         setter(oldState => ({ ...oldState, [target?.name]: target?.value }))
     }
@@ -108,15 +110,25 @@ function Admin() {
 
                     <div className="border p-2 my-4 center-col gap-2">
                         <h1 className="text-white font-extrabold">Metadata</h1>
-                        <Input type="text"
+
+                        <Select
+                            //onChange={({ target }) => { console.log(target.name.replace(/\s/g, '')) }}
                             onChange={(event) => { updateInfo(event, setProductData) }}
-                            placements={'inside'}
-                            variant="flat"
-                            value={productData?.category}
+                            labelPlacement={'outside'}
+                            label="Select Category"
+                            className="max-w-xs my-8"
                             name={'category'}
-                            label={'Category'}
-                            className="w-64 m-auto"
-                        />
+                        >
+                            {category.map((category) => {
+                                return (
+                                    <SelectItem key={category.replace(/\s/g, '')} name={category}>
+                                        {category}
+                                    </SelectItem>
+                                )
+                            })}
+                        </Select>
+
+
                         <Input type="number"
                             onChange={(event) => { updateInfo(event, setProductData) }}
                             placements={'inside'}

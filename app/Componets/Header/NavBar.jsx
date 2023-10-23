@@ -6,13 +6,14 @@ import { Jost } from 'next/font/google'
 import { AiOutlineClose, AiOutlineShoppingCart, } from 'react-icons/ai'
 import MenuButton from '../General/MobileMenuButton'
 import { NavigationEvents } from "../NavigationEvents";
-import { NavBarVideoURL, category, siteName } from '@/app/META'
+import { NavBarVideoURL, siteName } from '@/app/META'
 import { Calendar, HomeIcon, ShoppingBagIcon, User } from 'lucide-react'
 import Cart from './Cart'
 import LoginCard from '../General/Auth/LoginCard'
 import { Button } from '@nextui-org/react'
 import { useAUTHListener } from '@/StateManager/AUTHListener'
 import { useRouter } from 'next/navigation'
+import useFilterEmptyCategory from '@/app/Hooks/useFilterCategory'
 
 const jost = Jost({
     weight: '400',
@@ -26,6 +27,7 @@ function NavBar() {
     const [navRoute, setNavRoute] = useState([])
     const user = useAUTHListener()
     const { push } = useRouter()
+    const category = useFilterEmptyCategory()
 
 
 
@@ -87,7 +89,7 @@ function NavBar() {
 
                 </div>
             </div>
-            <nav className={`fixed  trans md:top-0 -bottom-[1rem] items-center md:justify-evenly ${showCart ? 'justify-center' : 'justify-center'}  flex md:flex-row  gap-4 md:gap-0 ${showMobileMenu ? 'h-16 scale-100 ' : 'h-0 p-0 '} ${showCart ? 'h-16 scale-100 w-[50%] md:w-[100%] md:left-[0%]  left-[50%] ' : 'w-[100%] left-[0%] '}  rounded-t-2xl md:rounded-none  bg-black-900 text-white md:text-black md:bg-white group   md:h-8 z-[99999]`}>
+            <nav className={`fixed  trans md:top-0 -bottom-[1rem] items-center  justify-evenly ${showCart ? 'justify-center' : 'justify-center'}  flex md:flex-row  gap-4 md:gap-0 ${showMobileMenu ? 'h-16 scale-100 ' : 'h-0 p-0 '} ${showCart ? 'h-16 scale-100 w-[50%] md:w-[100%] md:left-[0%]  left-[50%] ' : 'w-[100%] left-[0%] '}  rounded-t-2xl md:rounded-none  bg-black-900 text-white md:text-black md:bg-white group   md:h-8 z-[99999]`}>
                 {!showCart && <button onClick={toggleMobileMenu} className={`absolute -top-[4.7rem] bg-black rounded-full h-12 w-12 center p-2 ${showCart ? '' : ''}`}>
                     <MenuButton menuOpen={showMobileMenu} />
                 </button>}
@@ -96,9 +98,12 @@ function NavBar() {
                     {!showCart ? <AiOutlineShoppingCart size={32} /> : <AiOutlineClose size={32} />}
                 </button>
 
-                <Link className='center' href={'/'}><HomeIcon size={showCart ? 24 : 32} />{!showCart && 'Home'}</Link>
-                <Link className='center' href={'/Shop'}><ShoppingBagIcon size={showCart ? 24 : 32} />{!showCart && 'Shop'}</Link>
-                <Link className='center' href={'/Book'}><Calendar size={showCart ? 24 : 32} />{!showCart && 'Book'}</Link>
+                <div className={`evenly gap-3 relative ${showCart ? 'right-3' : ''}`}>
+                    <Link className='center' href={'/'}><HomeIcon size={showCart ? 24 : 32} />{!showCart && 'Home'}</Link>
+                    <Link className='center' href={'/Shop'}><ShoppingBagIcon size={showCart ? 24 : 32} />{!showCart && 'Shop'}</Link>
+                    <Link className='center' href={'/Book'}><Calendar size={showCart ? 24 : 32} />{!showCart && 'Book'}</Link>
+                </div>
+
                 {<div className={` gap-2 w-[20%] ${showCart ? 'right-2 ' : 'right-4'} ${showMobileMenu ? 'absolute' : '-bottom-8 md:bottom-0'}  flex items-end justify-end`}>
                     <Button onPress={toggleLogin} className={'min-w-0 h-fit w-fit p-1 center bg-none'}>
                         <User size={24} />

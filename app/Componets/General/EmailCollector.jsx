@@ -1,9 +1,8 @@
 'use client'
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Card, CardHeader, CardBody, Input } from "@nextui-org/react";
 import React, { useState } from 'react'
-import IMG from "public/Images/0A90A7F5-E6FC-421A-8A5D-9383ED7A1868.JPG";
 import Image from "next/image";
-import { siteName, siteTag } from "@/app/META";
+import { emailCollectorIMG, siteName, siteTag } from "@/app/META";
 import { addEmailToList } from "@/app/myCodes/DatabaseUtils";
 import { AiFillCloseCircle } from "react-icons/ai";
 
@@ -14,6 +13,8 @@ export const collectAndSendEmail = (email, setOpen) => {
     if (setOpen) setOpen(false)
 
 }
+
+const IMG = emailCollectorIMG
 
 function EmailCollector({ isopen5, setOpen }) {
     const [email, setEmail] = useState()

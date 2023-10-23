@@ -4,6 +4,7 @@ import ProductsList from './Componets/ProductsList'
 import Link from 'next/link'
 import { category } from '../META'
 import { fetchProducts } from '../myCodes/Stripe'
+import useFilterEmptyCategory from '../Hooks/useFilterCategory'
 
 const ShopSections = ({ category, name }) => {
     return (
@@ -32,7 +33,7 @@ function Shop() {
 
     const filteredCategory = [...new Set(categoryWithProducts)]
 
-    console.log(filteredCategory)
+
 
     useEffect(() => {
         (async () => {
@@ -43,9 +44,11 @@ function Shop() {
 
 
 
+
+
     return (
         <div className='flex min-h-screen flex-col '>
-            {filteredCategory.map(category => {
+            {useFilterEmptyCategory().map(category => {
                 return (
 
                     <ShopSections key={category} category={category.replace(/\s/g, '')} name={category} />

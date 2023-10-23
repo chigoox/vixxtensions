@@ -15,9 +15,7 @@ function ShopItem({ shopItems, location = 'HotTools', onShopPage }) {
     const [productsLoaded, setProductsLoaded] = useState(false)
     // const stars = Array.apply(null, Array(rating))
     const awaitLoading = () => {
-        console.log('first')
         setTimeout(() => {
-            console.log(name)
             if (name) setProductsLoaded(true)
         }, getRand(500));
     }
