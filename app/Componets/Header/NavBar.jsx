@@ -96,9 +96,9 @@ function NavBar() {
                     {!showCart ? <AiOutlineShoppingCart size={32} /> : <AiOutlineClose size={32} />}
                 </button>
 
-                <Link className='' href={'/'}><HomeIcon size={showCart ? 24 : 32} /></Link>
-                <Link href={'/Shop'}><ShoppingBagIcon size={showCart ? 24 : 32} /></Link>
-                <Link href={'/Book'}><Calendar size={showCart ? 24 : 32} /></Link>
+                <Link className='center' href={'/'}><HomeIcon size={showCart ? 24 : 32} />{!showCart && 'Home'}</Link>
+                <Link className='center' href={'/Shop'}><ShoppingBagIcon size={showCart ? 24 : 32} />{!showCart && 'Shop'}</Link>
+                <Link className='center' href={'/Book'}><Calendar size={showCart ? 24 : 32} />{!showCart && 'Book'}</Link>
                 {<div className={` gap-2 w-[20%] ${showCart ? 'right-2 ' : 'right-4'} ${showMobileMenu ? 'absolute' : '-bottom-8 md:bottom-0'}  flex items-end justify-end`}>
                     <Button onPress={toggleLogin} className={'min-w-0 h-fit w-fit p-1 center bg-none'}>
                         <User size={24} />

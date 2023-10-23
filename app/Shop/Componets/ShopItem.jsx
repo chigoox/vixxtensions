@@ -3,6 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Grandstander, Dosis } from 'next/font/google'
 import { Skeleton } from "@nextui-org/react";
+import { useEffect, useState } from 'react';
+import { getRand } from '@/app/myCodes/Util';
 const font = Grandstander({ subsets: ['latin'], weight: ['400'] })
 const font2 = Dosis({ subsets: ['latin'], weight: ['400'] })
 
@@ -10,15 +12,27 @@ const font2 = Dosis({ subsets: ['latin'], weight: ['400'] })
 function ShopItem({ shopItems, location = 'HotTools', onShopPage }) {
     const { name, images, metadata } = shopItems ? shopItems : {}
     const { price } = metadata
+    const [productsLoaded, setProductsLoaded] = useState(false)
     // const stars = Array.apply(null, Array(rating))
+    const awaitLoading = () => {
+        console.log('first')
+        setTimeout(() => {
+            console.log(name)
+            if (name) setProductsLoaded(true)
+        }, getRand(500));
+    }
+
+    useEffect(() => {
+        awaitLoading()
+    }, [name])
     return (
-        <Link href={`/Shop/${location}/${name.replace(/\s/g, '')}`} className='h-[20rem] flex-shrink-0  w-[11rem] md:h-[33rem]  md:w-[20rem]  my-2 shadow-sm shadow-gray-300  border border-[#a3a3a3] -300 relative text-black rounded-lg overflow-hidden'>
-            <Skeleton isLoaded={name} className='w-full h-full'>
+        <Link href={`/Shop/${location}/${name.replace(/\s/g, '')}`} className='h-[20rem] flex-shrink-0  w-[11rem] md:h-[33rem]  md:w-[20rem]  my-2 shadow-sm shadow-gray-300  border border-[#a3a3a3]  relative  rounded-lg overflow-hidden'>
+            <Skeleton isLoaded={productsLoaded} className='w-full h-full bg-gray-400'>
                 <Image width={1920} height={1080} quality={100} src={images[0]} className='h-[20rem] md:h-[33rem] w-full object-cover' alt="" />
-                <div className='h-[30%] md:h-[20%] bg-gray-50 bg-opacity-75 absolute bottom-0  w-full flex items-center flex-col p-2'>
+                <div className='h-[30%] md:h-[20%] bg-gray-900 text-white bg-opacity-75 absolute bottom-0  w-full flex items-center flex-col p-2'>
 
                     <div className={'font.className'}>
-                        <h1 className='md:text-xl text-sm   p-1 w-[95%] text-center max-h-10 overflow-hidden md:max-h-16 max-w'>{name.substr(0, 50)}{name.length > 50 ? '...' : ''}</h1>
+                        <h1 className='md:text-xl text-sm   p-1 w-[95%] text-center max-h-16 overflow-hidden md:max-h-20 max-w'>{name.substr(0, 50)}{name.length > 50 ? '...' : ''}</h1>
                     </div>
                     <div className=' w-full center gap-1'>
                         <span className='font-extralight text-sm'>from</span><span className='text-2xl font-semibold'><h1 className={font2.className}><Skeleton isLoaded={price} className='rounded'>{price}</Skeleton></h1></span>

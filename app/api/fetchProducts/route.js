@@ -1,6 +1,8 @@
 import Stripe from "stripe";
 import { NextResponse } from "next/server";
 
+export const revalidate = 60
+
 export async function POST(request) {
   let data = await request.json();
 const {category, limit, search} = data
