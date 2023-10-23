@@ -196,6 +196,11 @@ body {
   animation: fadeInZoom 2s ease-in-out;
 }
 
+.fadeInZoomx2 {
+  position: relative;
+  animation: fadeInZoom 0.9s ease-in;
+}
+
 .fadeInBottom {
   position: relative;
   animation: fadeInBottom 2s ease-in-out;
