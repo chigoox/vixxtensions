@@ -1,8 +1,9 @@
 import React from 'react'
 import IGPost from './IGPost';
+import { IGFeedURL } from '@/app/META';
 async function getData() {
     try {
-        const res = await fetch('https://feeds.behold.so/trP3rN6f5NfTye0m7zu0')
+        const res = await fetch(IGFeedURL)
         // The return value is *not* serialized
         // You can return Date, Map, Set, etc.
 
