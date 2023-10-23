@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useState } from 'react'
 import { category } from '../META';
 import { fetchProducts } from '../myCodes/Stripe';
@@ -22,6 +23,8 @@ function useFilterEmptyCategory(_category = category) {
         })()
 
     }, [])
+
+    console.log(filteredCategory)
 
   return filteredCategory
   
