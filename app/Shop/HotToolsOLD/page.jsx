@@ -3,7 +3,6 @@ import React from 'react'
 import ProductsList from '../Componets/ProductsList'
 import hotTools from '../../../public/Images/RawTools.jpeg'
 import Image from 'next/image'
-import { category } from '@/app/META'
 import ShopCategoryTitle from '../Componets/ShopCategoryTitle'
 import { revalidatePath } from 'next/cache'
 

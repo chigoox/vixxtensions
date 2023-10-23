@@ -1,7 +1,10 @@
 import axios from 'axios'
-export const fetchProducts = async (category, setterfunction = null) => {
+export const fetchProducts = async (category, setterfunction = null, limit, search) => {
     const { data } = await axios.post('/api/fetchProducts', {
-      category: category ? category : ''
+      category: category ? category : undefined,
+      limit: limit ? limit: 25,
+      search: search
+      
     },
       {
         headers: {
@@ -14,6 +17,8 @@ export const fetchProducts = async (category, setterfunction = null) => {
     if (setterfunction) setterfunction(data)
     return (data)
   }
+
+ 
 
   export const createProduct = async (productData, priceData) => {
     const { data } = await axios.post('/api/CreateProduct', {

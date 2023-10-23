@@ -1,3 +1,4 @@
+'use client'
 import ShopItem from '@/app/Shop/Componets/ShopItem';
 import { fetchProducts } from '@/app/myCodes/Stripe';
 import { useEffect, useState } from 'react';
@@ -5,17 +6,15 @@ import { useEffect, useState } from 'react';
 export const ProductsList = ({ category, limit, list, search }) => {
     const [productData, setProductData] = useState([])
 
-    console.log(category)
 
     useEffect(() => {
-        fetchProducts(category, setProductData)
+        fetchProducts(category, setProductData, limit, search)
 
         return () => {
             null
         }
     }, [category])
 
-    console.log(productData)
 
 
     return (
