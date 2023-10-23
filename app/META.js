@@ -1,9 +1,14 @@
 import VIXBAN3 from "../public/Images/Banners/Banner2.png";
 import VIXBAN2 from "../public/Images/Banners/Banner1.png";
+import { GoalIcon } from "lucide-react";
 
 
 
-export const siteName = 'ViHair'
+export const siteName = <div className="center-col">
+    <GoalIcon />
+    Hooded Goat
+
+</div>
 export const siteTag = 'Raw Luxury Hair'
 export const orderNumberPrefix = 'Vi'
 export const category = ['Luxury Bundles', 'Luxury Lace', 'Luxury Wigs', 'Hot Tools','hoodies','shirts']
