@@ -14,7 +14,7 @@ function ShopItem({ shopItems, location = 'HotTools', onShopPage }) {
     return (
         <Link href={`/Shop/${location}/${name.replace(/\s/g, '')}`} className='h-[20rem] flex-shrink-0  w-[11rem] md:h-[33rem]  md:w-[20rem]  my-2 shadow-sm shadow-gray-300  border border-[#a3a3a3] -300 relative text-black rounded-lg overflow-hidden'>
             <Skeleton isLoaded={name} className='w-full h-full'>
-                <Image fill src={images[0]} className='h-[70%] w-full object-cover' alt="" />
+                <Image width={1920} height={1080} quality={100} src={images[0]} className='h-[20rem] w-full object-cover' alt="" />
                 <div className='h-[30%] md:h-[20%] bg-gray-50 bg-opacity-75 absolute bottom-0  w-full flex items-center flex-col p-2'>
 
                     <div className={'font.className'}>

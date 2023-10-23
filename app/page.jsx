@@ -40,7 +40,7 @@ export default function Home() {
         <h1 className="my-6  border-4 w-fit m-auto border-dotted p-2 border-spacing-8 font-extrabold text-3xl text-center">SHOP BY CATEGORY</h1>
         <div className="grid grid-cols-2 md:grid-cols-4 items-center justify-center  w-full h-80 relative">
           {category.slice(0, 6).map((category) => (
-            <Link href={`/Shop/${category.includes('Hot') ? 'HotTools' : category.replace(/\s/g, '')}`} className="  drop-shadow-md shadow-black m-auto overflow-hidden rounded-full md:w-[50%] md:h-[100%]  w-[90%] h-[70%] relative">
+            <Link key={category} href={`/Shop/${category.includes('Hot') ? 'HotTools' : category.replace(/\s/g, '')}`} className="  drop-shadow-md shadow-black m-auto overflow-hidden rounded-full md:w-[50%] md:h-[100%]  w-[90%] h-[70%] relative">
               <Image width='300' height='0' className='h-full w-full  object-cover'
                 src={category == 'Luxury Wigs' ? RawWig :
                   category == 'Luxury Lace' ? RawLace :

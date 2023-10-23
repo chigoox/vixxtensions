@@ -10,7 +10,6 @@ function CategoryPage() {
 
     const path = usePathname().match(/\Shop\/(.*)/)[1]
 
-    console.log(path)
 
     const validatePath = (path) => {
         let validPath = 'Page does not exist!'
