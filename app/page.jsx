@@ -20,13 +20,13 @@ export default function Home() {
 
 
 
-      <div className=" mt-8 w-full ">
+      <div className=" mt-8 w-full md:w-3/4">
         <h1 className="my-2 text-2xl text-center">New Arrivals</h1>
         <ProductsList search={'isNew'} category={'true'} list={true} limit={10} />
 
       </div>
 
-      <div className=" mt-8 w-full ">
+      <div className=" mt-8 w-full  md:w-3/4">
         <h1 className="my-6  border-4 w-fit m-auto border-dotted p-2 border-spacing-8 font-extrabold text-3xl text-center">SHOP BY CATEGORY</h1>
         <HomeProtuctCategories />
       </div>
