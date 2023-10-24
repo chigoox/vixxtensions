@@ -5,11 +5,7 @@ import ProductsList from "./Shop/Componets/ProductsList";
 import EmailCollectorMain from "./Componets/General/EmailCollectorMain";
 import HomeProtuctCategories from "./Componets/HomePage/HomeProtuctCategories";
 
-
-
-
 export default function Home() {
-
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-evenly">
