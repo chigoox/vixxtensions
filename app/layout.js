@@ -1,7 +1,7 @@
 import { CartWrapper } from '@/StateManager/CartContext'
 import Footer from './Componets/Footer'
 import NavBar from './Componets/Header/NavBar'
-import { siteName } from './META'
+import { siteName, siteTag } from './META'
 import './globals.css'
 import { Inter, Jost } from 'next/font/google'
 import {  UIProvider } from './UIProvider'
@@ -14,7 +14,7 @@ const jost = Jost({ subsets: ['latin'] })
 
 export const metadata = {
   title: siteName,
-  description: 'Luxury Raw Hair',
+  description: siteTag,
 }
 
 

@@ -7,9 +7,8 @@ import RawWig from '../public/Images/RawWig.jpeg'
 import RawTools from '../public/Images/RawTools.jpeg'
 
 
-export const siteName = <div className="center-col"> 
-    Vihair
-</div>
+export const siteName = 'Vihair'
+
 
 export const NavBarVideoURL = 'QWHjHFtDfV8'
 export const siteTag = 'Raw Luxury Hair'
