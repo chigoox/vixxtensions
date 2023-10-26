@@ -13,8 +13,7 @@ import Image from "next/image";
 
 
 const getUID = (user) => {
-    console.log(user.uid ? user.uid : user.gid)
-    return user.uid ? user.uid : user.gid
+    return user?.uid ? user?.uid : user?.gid
 }
 
 

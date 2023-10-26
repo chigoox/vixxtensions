@@ -139,7 +139,7 @@ const Product = ({ product, forThis, category }) => {
                         <PayOptions price={price} />
                         <div className='center flex-wrap md:w-3/4 m-auto mt-2 gap-2'>
                             <Select
-                                onChange={({ target }) => { setItemToCheckOut(prev => ({ ...prev, price: Number(target.value.split(',', 3)[2].replace('$', '')), priceID: target.value.split(',', 2)[0], variant: target.value.split(',', 2)[1] })) }}
+                                onChange={({ target }) => { setItemToCheckOut(prev => ({ ...prev, price: Number(target.value.split(',', 3)[2]?.replace('$', '')), priceID: target.value.split(',', 2)[0], variant: target.value.split(',', 2)[1] })) }}
                                 labelPlacement={'outside'}
                                 label="Select Variant"
                                 className="max-w-xs my-8"
