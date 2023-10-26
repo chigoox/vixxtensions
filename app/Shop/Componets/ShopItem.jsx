@@ -24,7 +24,7 @@ function ShopItem({ shopItems, location = 'HotTools', onShopPage }) {
         awaitLoading()
     }, [name])
     return (
-        <Link href={`/Shop/${location}/${name.replace(/\s/g, '')}`} className='h-[20rem] fadeInZoomx2 flex-shrink-0  w-[11rem] md:h-[33rem]  md:w-[20rem]  my-2 shadow-sm shadow-gray-300  border border-[#a3a3a3]  relative  rounded-lg overflow-hidden'>
+        <Link href={`/Shop/${location}/${name.replace(/\s/g, '')}`} className='h-[20rem] fadeInZoomx2 flex-shrink-0  w-[11rem] md:h-[33rem]  md:w-[20rem]  my-2 shadow-sm shadow-gray-300  border border-[#a3a3a3]  hover:border-white hover:font-extrabold hover:border-2 trans relative  rounded-lg overflow-hidden'>
             <Skeleton isLoaded={productsLoaded} className='w-full h-full bg-gray-400'>
                 <Image width={1920} height={1080} quality={100} src={images[0]} className='h-[20rem] md:h-[33rem] w-full object-cover' alt="" />
                 <div className='h-[30%] md:h-[20%] bg-gray-900 text-white bg-opacity-75 absolute bottom-0  w-full flex items-center flex-col p-2'>
